@@ -1,19 +1,17 @@
 package com.wabnet.cybering.model.users;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+
 public class Professional {
     @Id
     private String id;
     private String firstName;
     private String lastName;
     private Integer age;
-
-    public Professional() {
-    }
-
+    
     public Professional(String firstName, String lastName, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
