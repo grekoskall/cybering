@@ -4,14 +4,16 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.annotation.processing.Generated;
 
+@Document
 public class Professional {
     @Id
     private String id;
     private String firstName;
     private String lastName;
     private Integer age;
-    
+
     public Professional(String firstName, String lastName, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
