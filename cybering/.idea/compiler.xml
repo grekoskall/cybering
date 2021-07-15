@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cybering" target="11" />
+      <module name="cybering" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
