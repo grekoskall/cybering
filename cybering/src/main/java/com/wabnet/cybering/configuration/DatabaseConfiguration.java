@@ -6,10 +6,12 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 import static java.util.Collections.singletonList;
 
 @Configuration
+@EnableReactiveMongoRepositories
 public class DatabaseConfiguration extends AbstractMongoClientConfiguration {
 
     @Override

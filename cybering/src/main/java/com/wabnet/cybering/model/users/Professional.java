@@ -1,7 +1,9 @@
 package com.wabnet.cybering.model.users;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Professional {
     @Id
     private String id;
