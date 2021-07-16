@@ -1,0 +1,22 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+		  <th scope="col">Last Name</th>
+		  <th scope="col">Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let professional of professionals">
+          <td>{{ professional.id }}</td>
+		  <td>{{ professional.firstName }}</td>
+		  <td>{{ professional.lastName }}</td>
+          <td>{{ professional.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

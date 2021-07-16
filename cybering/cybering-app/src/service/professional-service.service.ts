@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Professional } from '../model/professional';
-import { Observable } from '../../node_modules/rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProfessionalService {
