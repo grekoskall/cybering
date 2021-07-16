@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="" />
+    <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cybering-app/.browserslistrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/.vscode/tasks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/angular.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/karma.conf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/environments/environment.prod.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/environments/environment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/model/professional.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/model/professional.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/polyfills.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/professional-service.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/professional-service.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/tsconfig.app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/tsconfig.spec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/ProfessionalsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +68,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -86,5 +125,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

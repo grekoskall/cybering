@@ -1,0 +1,125 @@
+========================================
+WELCOME PAGE
+========================================
+LOG IN
+SIGN IN
+SSL / TLS ENCRYPTION
+
+LOG IN
+  -> EMAIL
+  -> PASSWORD
+-- VERIFY CORRECTNESS
+
+SIGN IN
+  -> PASSWORD
+  -> PASSWORD VERIFICATION
+  -> NAME
+  -> SURNAME
+  -> EMAIL  -- VERIFY UNIQUENESS
+  -> PHONE
+========================================
+MANAGE PAGE || LOG IN {ADMIN}
+========================================
+EXPLORE -> PROFESSIONALS LIST
+EXPORT -> PROFESSIONAL(S) DATA (XML / JSON)
+  --  BIO
+  --  ARTICLES POSTS
+  --  ADS POSTS
+  --  WORK EXPERIENCE
+  --  LIKES TO POSTS
+  --  REPLIES TO POSTS
+  --  NETWORK
+
+PROFESSIONALS LIST -> PROFESSIONAL INFO PAGE(PROFILE)
+========================================
+HOME PAGE || LOG IN {PROFESSIONAL}
+========================================
+[ {TOP BAR} MENU ]:
+          [[ HOME PAGE ]]
+          [ NETWORK ]
+          [ ADS ]
+          [ DISCUSSIONS ]
+          [ NOTIFICATION ]
+          [ PROFILE ]
+          [ SETTINGS ]
+
+[ {LEFT SIDE} ]:
+          [ PERSONAL INFO ]
+          [ NETWORK ]
+
+[ {CENTRE} ]:
+          [ TIMELINE ]
+          [ INPUT FIELD ] = TEXT + OPTIONS (IMG / VIDEO / AUDIO) | POSTS NEW ARTICLE
+========================================
+NETWORK PAGE
+========================================
+[ WEB DIAGRAM (OF CONNECTIONS) ]
+  - FULL NAME
+  - PHOTO
+  - WORK POSITION
+  - WORK PLACE
+  - LINK TO THEIR PROFILE PAGE
+    -- {OPTION} INITIATE DISCUSSION
+
+[ SEARCH FIELD (FOR PROFESSIONALS) ]
+  - LIST {LINKS TO} THEIR PROFILE PAGE
+    -- {CONNECTED} CAN SEE NETWORK + PRIVATE|PUBLIC INFO
+    -- {NOT CONNECTED} CAN'T SEE NETWORK + ONLY PUBLIC INFO
+========================================
+ADS PAGE
+========================================
+[ ADVERISEMENTS OF CONNECTED USERS ]
+  - {OPTION} APPLY
+
+{OPTION} CREATE OWN ADS
+{OPTION} CHECK APPLICATIONS TO OWN ADS
+
+[ ADVERISEMENTS OF NON-CONNECTIONS ]
+  - {BASED ON} SKILLS
+  - {BASED ON} MATRIX FACT. COLLAB. FILTERING
+      -- ADS + PROFESSIONALS
+========================================
+DISCUSSIONS PAGE
+========================================
+[ {LEFT SIDE} ]:
+  [ LIST OF DISCUSSIONS WITH OTHER PROFESSIONALS]
+
+[ {CENTRE} ]:
+  [ DISCUSSION SELECTED FROM LEFT] (DEFAULT=LAST DISCUSSION)
+========================================
+NOTIFICATIONS PAGE
+========================================
+[ {UPPER PART} ]:
+  [ CONNECTION REQUESTS ]
+    - ACCEPT
+    - REFUSE
+    - LINK TO PROFILE
+
+[ {BOTTOM PART} ]:
+  [ LIKES TO ARTICLES ]
+  [ REPLIES TO ARTICLES ]
+========================================
+PERSONAL INFO PAGE / PROFILE PAGE
+========================================
+{OPTION}  UPDATE WORK EXPERIENCE
+{OPTION}  UPDATE EDUCATION
+{OPTION}  UPDATE SKILLS
+          ...
+{OPTION}  CHANGE VISIBILITY (PRIVATE/PUBLIC) OF INFO
+========================================
+SETTINGS PAGE
+========================================
+{OPTION}  CHANGE EMAIL
+{OPTION}  CHANGE PASSWORD
+========================================
+TIMELINE
+========================================
+[ ARTICLES ]
+  - {BASED ON} RECOMMENDATION ALGORITHM
+      --  PAST LIKES TO ARTICLES OF OTHER PROFESSIONALS
+      --  REPLIES TO ARTICLES OF OTHER PROFESSIONALS
+      --  NETWORK
+  - {USED} MATRIX FACT. ALGOR.
+      -- LIKES + REPLIES/NOT REPLIES
+      -- ARTICLES + PROFESSIONALS
+  - {ORDER} CONNECTED > NOT CONNECTED

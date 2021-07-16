@@ -24,7 +24,7 @@ public class CyberingApplication implements CommandLineRunner {
 		professionalRepository.save(new Professional("Bob", "Smith", 25));
 		professionalRepository.save(new Professional("Jacob", "Smith", 29));
 
-		System.out.println("Professionals found with findAll():");
+		/*System.out.println("Professionals found with findAll():");
 		System.out.println("-----------------------------------");
 		for (Professional professional : professionalRepository.findAll()) {
 			System.out.println(professional);
@@ -37,7 +37,7 @@ public class CyberingApplication implements CommandLineRunner {
 		for (Professional professional : professionalRepository.findByLastName("Smith")) {
 			System.out.println(professional);
 		}
-		System.out.println();
+		System.out.println();*/
 
 	}
 

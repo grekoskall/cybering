@@ -28,7 +28,6 @@ public class Professional {
         this.id = id;
     }
 
-
     public Integer getAge() {
         return age;
     }

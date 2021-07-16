@@ -1,0 +1,42 @@
+Administrator:
+  MANAGE Professionals
+  EXPORT ProfessionalData
+
+Professional:
+  MANAGE ProfessionalInfo
+  CONNECT Requests to Professional  -> OutgoingCONREQ
+  ACCEPT/REFUSE CONNECT Requests    -> IncomingCONREQ
+  MANAGE Network  -> REMOVE from Network, INSPECT from Network, DISCUSS from Network
+  POST Articles(+ image/video/audio)
+  POST Ads
+  REPLY to ads
+  REPLY to Articles
+  SEE Timeline
+  NOTE Interest to Articles
+  NOTIFIED for interest of other Professionals TO Article that they POSTED
+  DISCUSS with Connections
+  MODIFY Connections Settings
+
+ProfessionalInfo:
+  PRIVATE / PUBLIC / SECRET | CHANGEABLE(CH)
+  NAME  -> DEFAULT=(PUBLIC) CH -> IF PRIVATE SHOW FIRST LETTER + . (EX. G. FOR GEORGE)
+  SURNAME -> DEFAULT=(PUBLIC) NOT CH
+  PASSWORD  -> SECRET
+  EMAIL -> SECRET
+  PHOTO -> DEFAULT=(PUBLIC) CH -> IF PRIVATE SHOW DEFAULT EMPTY IMAGE
+  PHONE -> DEFAULT=(PUBLIC) CH
+  WORK EXPERIENCE -> DEFAULT=(PUBLIC) CH
+  WORK POSITION -> DEFAULT=(PUBLIC) CH
+  WORKPLACE -> DEFAULT=(PUBLIC) CH
+  EDUCATION -> DEFAULT=(PUBLIC) CH
+  BIO -> DEFAULT=(PUBLIC) CH
+  HOBBY -> DEFAULT=(PUBLIC) CH
+  SKILLS  -> DEFAULT=(PUBLIC) CH
+
+Article:
+  VISIBILITY - public/private
+  LIKES from Professionals
+
+Timeline:
+  HAS Articles POSTED from Connections -- CHRONOLOGICAL ORDER
+  HAS Articles LIKED from Connections
