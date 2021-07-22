@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-form/professionals-form.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-form/professionals-form.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-form/professionals-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-form/professionals-form.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-form/professionals-form.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-form/professionals-form.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-form/professionals-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-form/professionals-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-list/professionals-list.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-list/professionals-list.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-list/professionals-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-list/professionals-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-list/professionals-list.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-list/professionals-list.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/professionals-list/professionals-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/old-professionals-list/professionals-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/model/professional.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/model/old-professional.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/model/professional.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/model/old-professional.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/professional-service.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/old-professional-service.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/professional-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/old-professional-service.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

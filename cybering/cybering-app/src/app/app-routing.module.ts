@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ProfessionalsListComponent } from './professionals-list/professionals-list.component';
-import { ProfessionalsFormComponent } from './professionals-form/professionals-form.component';
+import { Routes, RouterModule} from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { LoginComponent } from './welcome_page/login/login.component';
+import { RegisterComponent } from './welcome_page/register/register.component';
 
-const routes: Routes = [
-  { path: 'professionals', component: ProfessionalsListComponent },
-  { path: 'addprofessional', component: ProfessionalsFormComponent }
-];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+  BrowserModule,
+  RouterModule.forRoot([
+    { path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent }
+  ]),
+],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
