@@ -1,0 +1,76 @@
+.container {
+	background-color: white;
+}
+
+.img-login-top {
+	position: absolute;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: auto;
+}
+
+.img-login img {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+
+.img-login .login-button {
+	position: absolute;
+	top: 53%;
+	left: 28%;
+	width: 23%;
+	height: 12%;
+}
+
+.img-login-welcome {
+	position: absolute;
+	top: 15%;
+	left: 27.5%;
+}
+
+.welcome-name {
+	position: relative;
+	left: 18%;
+	color: blue;
+
+}
+
+.next-color {
+	color: black;
+}
+
+.welcome-msg {
+	color: black;
+	position: relative;
+	left: 0%;
+}
+
+.email-div {
+	position: absolute;
+	top: 27%;
+	left: 20%;
+	width: 40%;
+}
+
+.login-form {
+	font-weight: 600;
+}
+
+.password-div {
+	position: absolute;
+	top: 37%;
+	left: 20%;
+	width: 40%;
+}
+
+.forgot-password {
+	position: absolute;
+	top: 45%;
+	left: 47%;
+	font-weight: 400;
+}
+
+
+
