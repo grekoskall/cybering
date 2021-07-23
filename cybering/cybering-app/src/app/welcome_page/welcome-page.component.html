@@ -1,84 +1,61 @@
-<div class="container-fluid base-grid">
-	<div class="container-fluid welcome-navbar">
+<div class="container base-grid">
+	<div class="container navbar-container">
 		<div class="row">
-			<div class="col-3">
-				<div class="row row-cols-auto">
-					<div class="col">
-						<div class="logo-img-div">
-							<a class="navbar-logo-link " href="/">
-								<img class="logo-img" src="favicon.ico" alt="logo" width="30px" height="30px">
-							</a>
-						</div>
-					</div>
-					<div class="col">
-						<div class="logo-text-div">
-							<a class="navbar-logo-link" href="/">
-								<p class="logo-text">Cybering</p>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-5">Col5</div>
-			<div class="col-2">
-				<div class="register-div">
-					<a class="register-link" href="/register">
-						<p class="register-text">Join now</p>
+			<div class="col-4 marg-top">
+				<div class="logo-img-div">
+					<a class="navbar-logo-link" href="/">
+						<img class="logo-img" src="favicon.ico" alt="logo" width="35px" height="35px">
+						<p class="logo-text">bering</p>
 					</a>
 				</div>
 			</div>
-			<div class="col-2">
-		
-					<div class="fullsignin-div">
-						<a class="fullsignin-link" href="/fullsignin">
-							<p class="fullsignin-text">Sign in</p>
-						</a>
+			<div class="col-5">
+			</div>
+			<div class="col-3">
+				<div class="top-nav-buttons">
+					<div class="register-div">
+						<a class="btn btn-outline-light regbtn" href="/register" role="button">Join now</a>
 					</div>
-
-		
+					<div class="fullsign-div">
+						<a class="btn btn-outline-primary signbtn" href="/fullsignin" role="button">Sign in</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 	<div class="container login-container">
 		<div class="row first-row">
-			<div class="col first-col">
-				Column1
+			<div class="col-2 first-col">
 			</div>
-			<div class="col second-col">
+			<div class="col second-col d-flex justify-content-center">
 				<div class="login-image-form">
 					<img src="assets/loginv0.png" class="img-fluid login-image" alt="Round image with login form">
-
 					<div class="login-welcome-form">
-						<p class="h1 welcome-name">Cy<span class="black-color">bering</span></p>
+						<p class="h1 welcome-name"><span class="wn-cy">Cy</span><span class="black-color">bering</span>
+						</p>
 						<p class="h1 welcome-msg">Welcomes you</p>
-
 						<div class="login-form">
 							<div class="mb-3 email-div">
 								<label for="loginInputEmail" class="form-label">Email</label>
 								<input type="email" class="form-control input-sm" id="loginInputEmail">
 							</div>
-
 							<div class="mb-3 password-div">
 								<label for="loginInputPassword" class="form-label">Password</label>
 								<input type="password" class="form-control input-sm" id="loginInputPassword">
 							</div>
 							<div class="forg-pass-div">
 								<a href="#" class="link-secondary forgot-password">Forgot password?</a>
-
 							</div>
 							<div class="submit-div">
 								<button type="submit" class="btn login-button bg-translate"
 									[routerLink]="['/login']">Sign In</button>
 							</div>
-
 						</div>
-
 					</div>
 				</div>
 			</div>
+			<div class="col-2 third-col">
+			</div>
 		</div>
-
 	</div>
-
 </div>
