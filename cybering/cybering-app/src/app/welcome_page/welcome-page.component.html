@@ -1,58 +1,84 @@
-<div class="container" style="min-height: 100%; min-width: 100%;">
-	<div class="intro-nav">
-		
-
-	</div>
-
-
-
-
-	<div class="img-login-top">
-		<div class="img-login">
-			<img src="assets/loginv0.png" class="img-fluid" alt="Round image with login button">
-			
-			<div class="img-login-welcome">
-				<p class="h1 welcome-name">Cy<span class="next-color">bering</span></p>
-				<p class="h1 welcome-msg">Welcomes you</p>
+<div class="container-fluid base-grid">
+	<div class="container-fluid welcome-navbar">
+		<div class="row">
+			<div class="col-3">
+				<div class="row row-cols-auto">
+					<div class="col">
+						<div class="logo-img-div">
+							<a class="navbar-logo-link " href="/">
+								<img class="logo-img" src="favicon.ico" alt="logo" width="30px" height="30px">
+							</a>
+						</div>
+					</div>
+					<div class="col">
+						<div class="logo-text-div">
+							<a class="navbar-logo-link" href="/">
+								<p class="logo-text">Cybering</p>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
+			<div class="col-5">Col5</div>
+			<div class="col-2">
+				<div class="register-div">
+					<a class="register-link" href="/register">
+						<p class="register-text">Join now</p>
+					</a>
+				</div>
+			</div>
+			<div class="col-2">
+		
+					<div class="fullsignin-div">
+						<a class="fullsignin-link" href="/fullsignin">
+							<p class="fullsignin-text">Sign in</p>
+						</a>
+					</div>
 
-			<form class="login-form">
-				<div class="mb-3 email-div">
-					<label for="loginInputEmail" class="form-label">Email:</label>
-					<input type="email" class="form-control" id="loginInputEmail">
-				</div>
-				<div class="mb-3 password-div">
-					<label for="loginInputPassword" class="form-label">Password:</label>
-					<input type="password" class="form-control" id="loginInputPassword">
-				</div>
-				<a href="#" class="link-secondary forgot-password">Forgot password?</a>
-				<button type="submit" class="btn login-button bg-transparent" [routerLink]="['/login']"></button>
-			</form>
+		
+			</div>
 		</div>
 	</div>
 
+	<div class="container login-container">
+		<div class="row first-row">
+			<div class="col first-col">
+				Column1
+			</div>
+			<div class="col second-col">
+				<div class="login-image-form">
+					<img src="assets/loginv0.png" class="img-fluid login-image" alt="Round image with login form">
 
+					<div class="login-welcome-form">
+						<p class="h1 welcome-name">Cy<span class="black-color">bering</span></p>
+						<p class="h1 welcome-msg">Welcomes you</p>
 
+						<div class="login-form">
+							<div class="mb-3 email-div">
+								<label for="loginInputEmail" class="form-label">Email</label>
+								<input type="email" class="form-control input-sm" id="loginInputEmail">
+							</div>
 
+							<div class="mb-3 password-div">
+								<label for="loginInputPassword" class="form-label">Password</label>
+								<input type="password" class="form-control input-sm" id="loginInputPassword">
+							</div>
+							<div class="forg-pass-div">
+								<a href="#" class="link-secondary forgot-password">Forgot password?</a>
 
-<!----
+							</div>
+							<div class="submit-div">
+								<button type="submit" class="btn login-button bg-translate"
+									[routerLink]="['/login']">Sign In</button>
+							</div>
 
+						</div>
 
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<nav>
-		<a class="button" [routerLink]="['/register']" routerLinkActive="activebutton">Register</a>
-	</nav>
-	<div class="title-in-image">
-		<figure>
-			<blockquote class="blockquote">
-				<p class="h1">Cybering</p>
-			</blockquote>
-			<figcaption class="blockquote-footer">
-				Connect, Apply, Hire <cite title="Source Title">Fast and Easy</cite>
-			</figcaption>
-		</figure>
 	</div>
-
---->
 
 </div>
