@@ -1,0 +1,47 @@
+.error-hr {
+	color: red;
+}
+
+.error-msg {
+	color: red;
+	text-align: center;
+}
+
+
+.login-form-div {
+	border: 0.2vw solid cornflowerblue;
+	border-radius: 1vw;
+	padding: 1vw;
+}
+
+.login-form {
+	padding-left: 4vw;
+	padding-right: 4vw;
+}
+
+.login-title {
+	text-align: center;
+}
+
+.login-text {
+	font-weight: lighter;
+	font-size: 2em;
+}
+
+.blue-color {
+	color: blue;
+}
+
+
+.submit-div {
+	text-align: center;
+}
+
+
+.logo-text {
+	font-size: 2em;
+}
+
+.whitespace {
+	padding-top: 9%;
+}

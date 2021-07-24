@@ -37,33 +37,6 @@
 	text-align: center;
 }
 
-@keyframes logoanim {
-	0% { color: cornflowerblue; }
-	100% {color: lightskyblue;}
-}
-
-.logo-link {
-	display:flex;
-	
-	text-decoration: none;
-	font-weight: bolder;
-	width: fit-content;
-	color: cornflowerblue;
-}
-
-.logo-link:hover {
-	color: lightskyblue;
-	animation-duration: 0.3s;
-	animation-iteration-count: 1;
-	animation-name: logoanim;
-	animation-timing-function: ease-in-out;
-}
-
-.logo-img {
-	width: 40px;
-	height: 40px;
-	margin-top: 1px;
-}
 
 .logo-text {
 	font-size: 2em;
