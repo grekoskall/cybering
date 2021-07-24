@@ -4,24 +4,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './welcome_page/login/login.component';
 import { RegisterComponent } from './welcome_page/register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WelcomePageComponent } from './welcome_page/welcome-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    FullSignInComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

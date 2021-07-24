@@ -15,7 +15,6 @@
 	border-color: white;
 }
 
-
 .register-div {
 	margin-right: 4%;
 }
@@ -51,6 +50,19 @@
 }
 
 /* extra */
+.email-alert-hr {
+	width: 30%;
+	position: relative;
+	left: 35%;
+	color: red;
+}
+
+.alerts {
+	font-size: 1vw;
+	font-weight: 200;
+	color: red;
+}
+
 .base-grid {
 	background-color: white;
 }
@@ -66,8 +78,6 @@
 .blue-color {
     color: blue;
 }
-
-
 
 /* login container */
 .form-label {
@@ -140,7 +150,6 @@
 	animation-timing-function: ease-in-out;
 	animation-fill-mode: forwards;
 }
-
 
 .login-form {
 	width: 100%;

@@ -34,23 +34,45 @@
 						<p class="h1 welcome-name"><span class="wn-cy">Cy</span><span class="black-color">bering</span>
 						</p>
 						<p class="h1 welcome-msg">Welcomes you</p>
-						<div class="login-form">
+						<form class="login-form" [formGroup]="signinForm" (ngSubmit)="onSigninSubmit()">
 							<div class="mb-3 email-div">
 								<label for="loginInputEmail" class="form-label">Email</label>
-								<input type="email" class="form-control input-sm" id="loginInputEmail">
+								<input type="email" class="form-control input-sm" id="loginInputEmail"
+									formControlName="emailControl">
 							</div>
 							<div class="mb-3 password-div">
 								<label for="loginInputPassword" class="form-label">Password</label>
-								<input type="password" class="form-control input-sm" id="loginInputPassword">
+								<input type="password" class="form-control input-sm" id="loginInputPassword"
+									formControlName="passControl">
 							</div>
 							<div class="forg-pass-div">
-								<a href="#" class="link-secondary forgot-password">Forgot password?</a>
+								<a href="/forgotpass" class="link-secondary forgot-password">Forgot password?</a>
+							</div>
+							<div class="email-alert alerts">
+								<div class="check-email-req"
+									*ngIf="this.signinForm.controls.emailControl.errors?.required; then emailMissing else emailOk">
+								</div>
+								<ng-template #emailMissing>
+									<hr class="email-alert-hr">
+									Please fill in your e-mail
+								</ng-template>
+								<ng-template #emailOk>
+									<div class="check-email-type"
+										*ngIf="this.signinForm.controls.emailControl.errors?.email">
+										<hr class="email-alert-hr">
+										Please provide a valid e-mail
+									</div>
+								</ng-template>
+								<div class="check-pass-req"
+									*ngIf="this.signinForm.controls.passControl.errors?.required && this.signinForm.controls.emailControl.valid">
+									<hr class="email-alert-hr">
+									Please fill in your password
+								</div>
 							</div>
 							<div class="submit-div">
-								<button type="submit" class="btn login-button bg-translate"
-									[routerLink]="['/login']">Sign In</button>
+								<button type="submit" class="btn login-button bg-translate">Sign In</button>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
