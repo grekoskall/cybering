@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { WelcomePageComponent } from './welcome_page/welcome-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.component';
+import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.co
     RegisterComponent,
     PageNotFoundComponent,
     WelcomePageComponent,
-    FullSignInComponent
+    FullSignInComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,65 @@
+
+.login-form-div {
+	border: 0.2vw solid cornflowerblue;
+	border-radius: 1vw;
+	padding: 1vw;
+}
+
+.login-form {
+	padding-left: 4vw;
+	padding-right: 4vw;
+}
+
+.login-title {
+	text-align: center;
+}
+
+.login-text {
+	font-weight: lighter;
+	font-size: 2em;
+}
+
+.blue-color {
+	color: blue;
+}
+
+
+.submit-div {
+	text-align: center;
+}
+
+@keyframes logoanim {
+	0% { color: cornflowerblue; }
+	100% {color: lightskyblue;}
+}
+
+.logo-link {
+	display:flex;
+	
+	text-decoration: none;
+	font-weight: bolder;
+	width: fit-content;
+	color: cornflowerblue;
+}
+
+.logo-link:hover {
+	color: lightskyblue;
+	animation-duration: 0.3s;
+	animation-iteration-count: 1;
+	animation-name: logoanim;
+	animation-timing-function: ease-in-out;
+}
+
+.logo-img {
+	width: 40px;
+	height: 40px;
+	padding-top: 4px;
+}
+
+.logo-text {
+	font-size: 2em;
+}
+
+.whitespace {
+	padding-top: 9%;
+}

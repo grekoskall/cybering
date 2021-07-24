@@ -157,7 +157,7 @@
 }
 
 .email-div {
-	font-size: 1vw;
+	font-size: 1.5vw;
 	width: 100%;
 	position: absolute;
 	color: black;
@@ -165,7 +165,7 @@
 }
 
 .password-div {
-	font-size: 1vw;
+	font-size: 1.5vw;
 	width: 100%;
 	position: absolute;
 	color: black;
@@ -189,7 +189,7 @@
 }
 
 .forg-pass-div  {
-	font-size: 1.1vw;
+	font-size: 1.2vw;
 	position: absolute;
 	width: 100%;
 	left: 20%;
