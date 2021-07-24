@@ -1,3 +1,12 @@
+.error-hr {
+	color: red;
+}
+
+.error-msg {
+	color: red;
+	text-align: center;
+}
+
 
 .login-form-div {
 	border: 0.2vw solid cornflowerblue;
@@ -53,7 +62,7 @@
 .logo-img {
 	width: 40px;
 	height: 40px;
-	padding-top: 4px;
+	margin-top: 1px;
 }
 
 .logo-text {
