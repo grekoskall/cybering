@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="row pt-3">
+		<div class="col d-flex justify-content-center">
+			<div class="card text-black border-0">
+				<img class="card-img" src="assets/loginv0.png" alt="Round image with login form">
+				<div class="card-img-overlay">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<h1 class="welcome-name card-title text-center mt-2"><span
+										class="blue-color">Cy</span>bering</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<h1 class="welcome-msg card-title text-center ">Welcomes You</h1>
+							</div>
+						</div>
+
+						<form class="login-form" [formGroup]="signInForm" (ngSubmit)="onSigninSubmit()">
+							<div class="row">
+								<div class="col-auto email-div">
+									<label for="loginInputEmail" class="fs-5 fw-light">Email</label>
+									<input type="email" class="form-control" id="loginInputEmail"
+										formControlName="emailControl">
+								</div>
+								<div class="col-auto password-div ">
+									<label for="loginInputPassword" class="fs-5 fw-light">Password</label>
+									<input type="password" class="form-control" id="loginInputPassword"
+										formControlName="passwordControl">
+								</div>
+								<div class="col-auto forgot-password-div text-end ">
+									<a href="/forgotpassword" class="link-secondary fw-light">Forgot password?</a>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col">
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="col-auto submit-div">
+										<button type="submit" class="btn fs-1 login-button">Sign In</button>
+									</div>
+								</div>
+							</div>
+
+						</form>
+
+
+						<div class="row m-3">
+							<div class="col text-center">
+								<div class="alert-div">
+									<div class="check-email-type"
+										*ngIf="this.signInForm.controls.emailControl.errors?.email">
+										<hr class="email-alert-hr">
+										Please provide a valid email
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

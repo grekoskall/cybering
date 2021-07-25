@@ -10,7 +10,7 @@ import { WelcomePageComponent } from './welcome_page/welcome-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.component';
 import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-password.component';
-
+import { SignInService } from 'src/service/sign-in-service/sign-in.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-p
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SignInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

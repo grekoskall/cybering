@@ -40,14 +40,11 @@
 }
 
 .submit-div button {
-	width: max-content;
-	height: 100%;
 	color: cornflowerblue;
 	font-weight: bold;
 }
 
 @keyframes flashing1 {
-
 	0% { color: cornflowerblue; }
 	100% { color: lightskyblue; }
 }

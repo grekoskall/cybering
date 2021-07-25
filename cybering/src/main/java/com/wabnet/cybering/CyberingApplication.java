@@ -2,6 +2,7 @@ package com.wabnet.cybering;
 
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
+import com.wabnet.cybering.repository.validation.ValidationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,8 @@ public class CyberingApplication implements CommandLineRunner {
 
 	@Autowired
 	private ProfessionalRepository professionalRepository;
+	@Autowired
+	private ValidationRepository validationRepository;
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(CyberingApplication.class, args);

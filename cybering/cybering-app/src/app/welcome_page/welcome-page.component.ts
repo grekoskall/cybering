@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { SignInInfo } from '../interfaces/signininfo';
+import { SignInService } from 'src/service/sign-in-service/sign-in.service';
+import { Authorization } from '../interfaces/authorization';
+import { SafeSubscriber } from 'rxjs/internal/Subscriber';
 
 @Component({
   selector: 'app-welcome-page',
@@ -7,12 +11,18 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent implements OnInit {
+
+  signInInfo: SignInInfo;
+  authToken: Authorization;
+
   signInForm = this.fb.group({
     emailControl: [''],
     passwordControl: ['']
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private signInService: SignInService) {
+    this.signInInfo = new SignInInfo();
+    this.authToken = new Authorization();
   }
 
   ngOnInit(): void {
@@ -25,7 +35,7 @@ export class WelcomePageComponent implements OnInit {
     // Save the above to sessionStorage and redirect to home page
     // If the response is negative (NO )
     // Show error message above submit button
-
+    this.authToken.SESSION_TOKEN = "hello";
     // Reset form validator group at empty values
     if (this.signInForm.controls.emailControl.value === "" && this.signInForm.controls.passwordControl.value === "") {
       this.signInForm = this.fb.group({
@@ -43,11 +53,18 @@ export class WelcomePageComponent implements OnInit {
     if ( this.signInForm.invalid ) {
       return;
     }
+    
 
+    // Make an http request and get Session token
+    this.signInService.signin(this.signInInfo).subscribe(result => this.authToken.SESSION_TOKEN = result.SESSION_TOKEN);
+    
+    // Update headers to always append the token at the head
+    this.signInService.updateToken(this.authToken);
 
-    // Make an http request
+    // Send full log in request
+
+    // Get redirected to new page.
+
   }
-
-
 
 }

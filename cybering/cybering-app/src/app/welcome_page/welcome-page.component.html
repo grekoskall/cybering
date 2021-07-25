@@ -1,4 +1,9 @@
 <div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>{{authToken.SESSION_TOKEN}} </h1>
+		</div>
+	</div>
 	<div class="row pt-3">
 		<div class="col d-flex justify-content-center">
 			<div class="card text-black border-0">
@@ -16,23 +21,25 @@
 								<h1 class="welcome-msg card-title text-center ">Welcomes You</h1>
 							</div>
 						</div>
-						<div class="row mt-2 d-flex justify-content-center ">
+						<div class="row mt-sm-2 d-flex justify-content-center ">
 							<div class="col-7">
-								<form class="login-form" [formGroup]="signInForm" (ngSubmit)="onSigninSubmit()">
-									<div class="mb-4 email-div text-center">
+								<form class="login-form" [formGroup]="signInForm" (ngSubmit)="onSigninSubmit()"
+									#signForm="ngForm">
+									<div class=" mb-sm-4 email-div text-center">
 										<label for="loginInputEmail" class="fs-5 fw-light">Email</label>
 										<input type="email" class="form-control" id="loginInputEmail"
-											formControlName="emailControl">
+											formControlName="emailControl" [(ngModel)]="signInInfo.email">
 									</div>
 									<div class="mb-1 password-div text-center">
 										<label for="loginInputPassword" class="fs-5 fw-light">Password</label>
 										<input type="password" class="form-control" id="loginInputPassword"
-											formControlName="passwordControl">
+											formControlName="passwordControl" [(ngModel)]="signInInfo.password">
 									</div>
-									<div class="forgot-password-div text-end">
+									<div class="forgot-password-div text-end mb-5 mb-sm-0 pb-sm-0 ">
 										<a href="/forgotpassword" class="link-secondary fw-light">Forgot password?</a>
 									</div>
-									<div class="submit-div text-center mt-lg-5 pt-lg-5 mt-5 mt-sm-5 pt-sm-5">
+									<div
+										class="submit-div text-center gap-3 mt-xl-5 mt-xxl-5 pt-xl-5 mt-xxl-5 mt-lg-5 pt-lg-5 mt-md-5 pt-md-5 mt-sm-5 pt-sm-5">
 										<button type="submit" class="btn fs-1 login-button">Sign In</button>
 									</div>
 								</form>
@@ -41,11 +48,11 @@
 						<div class="row m-3">
 							<div class="col text-center">
 								<div class="alert-div">
-										<div class="check-email-type"
-											*ngIf="this.signInForm.controls.emailControl.errors?.email">
-											<hr class="email-alert-hr">
-											Please provide a valid email
-										</div>
+									<div class="check-email-type"
+										*ngIf="this.signInForm.controls.emailControl.errors?.email">
+										<hr class="email-alert-hr">
+										Please provide a valid email
+									</div>
 								</div>
 							</div>
 						</div>
