@@ -14,40 +14,85 @@
 
 			</div>
 			<div class="col-8">
+				<div class="row">
+					<div class="col">
 
-				
+					</div>
+					<div class="col-10">
+						<figure class="text-end">
+							<blockquote class="blockquote">
+								Apply, Hire, Connect
+							</blockquote>
+							<figcaption class="blockquote-footer">
+								All your work in one place <cite title="Source Title">Fast and Easy</cite>
+							</figcaption>
+						</figure>
+
+					</div>
+					<div class="col">
+
+					</div>
+				</div>
+
 
 				<div class="row">
 					<div class="col">
 					</div>
 					<div class="col-10">
-						<div class="login-form-div">
+						<div class="register-form-div">
 							<div class="row">
 								<div class="col">
-									<div class="login-title">
-										<p class="login-text">Connect with your <span class="blue-color">Cy</span>bering community</p>
+									<div class="register-title">
+										<p class="register-text">Join your <span class="blue-color">Cy</span>bering
+											community</p>
 									</div>
 								</div>
 							</div>
-							<form class="login-form" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+							<form class="register-form" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
 								<div class="row g-3 align-items-center mb-3">
-									<div class="col-auto mb-3">
-										<label for="loginInputEmail" class="form-label">Email</label>
-										<input type="email" class="form-control" id="loginInputEmail" formControlName="emailControl">
-									</div>
-									<div class="col-2">
-									</div>
-									<div class="col-auto mb-3">
-										<label for="loginInputPassword" class="form-label">Password</label>
-										<input type="password" class="form-control" id="loginInputPassword" formControlName="passwordControl">
+									<div class="col-auto col-lg-6 mb-3">
+										<label for="registerInputEmail" class="form-label">Email</label>
+										<input type="email" class="form-control" id="registerInputEmail"
+											formControlName="emailControl">
 									</div>
 								</div>
-								<div class="row" *ngIf="!this.registerForm.controls.emailControl.errors?.required && this.registerForm.controls.emailControl.errors?.email">
-									<div class="col" *ngIf="!this.registerForm.controls.passwordControl.errors?.required">
+							
+								<div class="row g-3 align-items-center mb-3">
+									<div class="col-auto mb-3">
+										<label for="registerInputFirstName" class="form-label">First Name</label>
+										<input type="text" class="form-control" id="registerInputFirstName"
+											formControlName="firstNameControl">
+									</div>
+									<div class="col-auto mb-3">
+										<label for="registerInputLastName" class="form-label">Last Name</label>
+										<input type="text" class="form-control" id="registerInputLastName"
+											formControlName="registerInputLastName">
+									</div>
+								</div>
+
+								<div class="row g-3 align-items-center mb-3">
+									<div class="col-auto mb-3">
+										<label for="registerInputPassword" class="form-label">Password</label>
+										<input type="password" class="form-control" id="registerInputPassword"
+											formControlName="passwordControl">
+									</div>
+									<div class="col-auto mb-3">
+										<label for="registerInputPasswordValid" class="form-label">Re-type
+											Password</label>
+										<input type="password" class="form-control" id="registerInputPasswordValid"
+											formControlName="passwordValidControl">
+									</div>
+								</div>
+
+								<div class="row"
+									*ngIf="!this.registerForm.controls.emailControl.errors?.required && this.registerForm.controls.emailControl.errors?.email">
+									<div class="col"
+										*ngIf="!this.registerForm.controls.passwordControl.errors?.required">
 										<hr class="error-hr">
 										<p class="error-msg">Please provide a valid email address</p>
 									</div>
-									<div class="col" *ngIf="this.registerForm.controls.passwordControl.errors?.required">
+									<div class="col"
+										*ngIf="this.registerForm.controls.passwordControl.errors?.required">
 										<hr class="error-hr">
 										<p class="error-msg">Please provide a password</p>
 									</div>

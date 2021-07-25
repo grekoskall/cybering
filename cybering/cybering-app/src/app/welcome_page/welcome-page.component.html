@@ -1,59 +1,67 @@
-<div class="container base-grid">
+<div class="container">
+	<div class="row pt-3">
+		<div class="col d-flex justify-content-center">
+			<div class="card text-black border-0">
+				<img class="card-img" src="assets/loginv0.png" alt="Round image with login form">
+				<div class="card-img-overlay">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<h1 class="welcome-name card-title text-center mt-2"><span
+										class="blue-color">Cy</span>bering</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<h1 class="welcome-msg card-title text-center ">Welcomes You</h1>
+							</div>
+						</div>
+						<div class="row mt-2 d-flex justify-content-center ">
+							<div class="col-7">
+								<form class="login-form" [formGroup]="signInForm" (ngSubmit)="onSigninSubmit()">
+									<div class="alert-div">
+										<div class="check-email-req"
+											*ngIf="this.validatorService.checkemailexists(); then emailMissing else emailExists">
+										</div>
+										<ng-template #emailMissing>
+											<hr class="email-alert-hr">
+											Please fill in your email
+										</ng-template>
+										<ng-template #emailExists>
+											<div class="check-email-type" *ngIf="this.validatorService.checkemailstatus()">
+												<hr class="email-alert-hr">
+												Please provide a valid email
+											</div>
+										</ng-template>
 
-	<div class="container login-container">
-		<div class="row first-row">
-			<div class="col-2 first-col">
-			</div>
-			<div class="col second-col d-flex justify-content-center">
-				<div class="login-image-form">
-					<img src="assets/loginv0.png" class="img-fluid login-image" alt="Round image with login form">
-					<div class="login-welcome-form">
-						<p class="h1 welcome-name"><span class="wn-cy">Cy</span><span class="black-color">bering</span>
-						</p>
-						<p class="h1 welcome-msg">Welcomes you</p>
-						<form class="login-form" [formGroup]="signinForm" (ngSubmit)="onSigninSubmit()">
-							<div class="mb-3 email-div">
-								<label for="loginInputEmail" class="form-label">Email</label>
-								<input type="email" class="form-control input-sm" id="loginInputEmail"
-									formControlName="emailControl">
-							</div>
-							<div class="mb-3 password-div">
-								<label for="loginInputPassword" class="form-label">Password</label>
-								<input type="password" class="form-control input-sm" id="loginInputPassword"
-									formControlName="passControl">
-							</div>
-							<div class="forg-pass-div">
-								<a href="/forgotpassword" class="link-secondary forgot-password">Forgot password?</a>
-							</div>
-							<div class="email-alert alerts">
-								<div class="check-email-req"
-									*ngIf="this.signinForm.controls.emailControl.errors?.required; then emailMissing else emailOk">
-								</div>
-								<ng-template #emailMissing>
-									<hr class="email-alert-hr">
-									Please fill in your email
-								</ng-template>
-								<ng-template #emailOk>
-									<div class="check-email-type"
-										*ngIf="this.signinForm.controls.emailControl.errors?.email">
-										<hr class="email-alert-hr">
-										Please provide a valid email
+										<div class="check-pass-req"
+											*ngIf="this.validatorService.checkpasswordexists() && this.validatorService.checkemail()">
+											<hr class="email-alert-hr">
+											Please fill in your password
+										</div>
 									</div>
-								</ng-template>
-								<div class="check-pass-req"
-									*ngIf="this.signinForm.controls.passControl.errors?.required && this.signinForm.controls.emailControl.valid">
-									<hr class="email-alert-hr">
-									Please fill in your password
-								</div>
+
+									<div class="mb-4 email-div text-center">
+										<label for="loginInputEmail" class="fs-5 fw-light">Email</label>
+										<input type="email" class="form-control" id="loginInputEmail"
+											formControlName="emailControl">
+									</div>
+									<div class="mb-1 password-div text-center">
+										<label for="loginInputPassword" class="fs-5 fw-light">Password</label>
+										<input type="password" class="form-control" id="loginInputPassword"
+											formControlName="passwordControl">
+									</div>
+									<div class="forgot-password-div text-end">
+										<a href="/forgotpassword" class="link-secondary fw-light">Forgot password?</a>
+									</div>
+									<div class="submit-div text-center mt-lg-5 pt-lg-5 mt-5 mt-sm-5 pt-sm-5">
+										<button type="submit" class="btn fs-1 login-button">Sign In</button>
+									</div>
+								</form>
 							</div>
-							<div class="submit-div">
-								<button type="submit" class="btn login-button bg-translate">Sign In</button>
-							</div>
-						</form>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-2 third-col">
 			</div>
 		</div>
 	</div>

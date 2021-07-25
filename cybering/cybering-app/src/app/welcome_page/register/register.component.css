@@ -8,22 +8,22 @@
 }
 
 
-.login-form-div {
+.register-form-div {
 	border: 0.2vw solid cornflowerblue;
 	border-radius: 1vw;
 	padding: 1vw;
 }
 
-.login-form {
-	padding-left: 4vw;
-	padding-right: 4vw;
+.register-form {
+	padding-left: 0vw;
+	padding-right: 0vw;
 }
 
-.login-title {
+.register-title {
 	text-align: center;
 }
 
-.login-text {
+.register-text {
 	font-weight: lighter;
 	font-size: 2em;
 }
@@ -43,5 +43,5 @@
 }
 
 .whitespace {
-	padding-top: 9%;
+	padding-top: 2%;
 }

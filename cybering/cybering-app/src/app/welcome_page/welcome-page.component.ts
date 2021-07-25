@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { SignInValidatorService } from '../services/sign-in-validator/sign-in-validator.service';
+import { sign } from 'crypto';
 
 @Component({
   selector: 'app-welcome-page',
@@ -8,16 +9,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent implements OnInit {
+  signInForm !: FormGroup;
+  validatorService !: SignInValidatorService;
 
-  signinForm = new FormGroup({
-    emailControl: new FormControl(''),
-    passControl: new FormControl(''),
-  });
 
-  constructor() { }
+  constructor(validatorService: SignInValidatorService) {
+    this.signInForm = validatorService.signInForm; 
+  }
 
   ngOnInit(): void {
-
   }
 
   onSigninSubmit() {
@@ -28,22 +28,19 @@ export class WelcomePageComponent implements OnInit {
     // If the response is negative (NO )
     // Show error message above submit button
 
-    // First validate
-    if (this.signinForm.controls.emailControl.value === '' && this.signinForm.controls.passControl.value === '') {
-      this.signinForm = new FormGroup({
-        emailControl: new FormControl(''),
-        passControl: new FormControl(''),
-      });
+    // Reset form validator group at empty values
+    if( this.validatorService.isEmpty(this.signInForm) ) {
+      this.signInForm = this.validatorService.initEmptyForm();
       return;
-    }
+    } 
 
-    this.signinForm = new FormGroup({
-      emailControl: new FormControl(this.signinForm.controls.emailControl.value, [
-        Validators.email,
-        Validators.required
-      ]),
-      passControl: new FormControl(this.signinForm.controls.passControl.value, Validators.required),
-    });
+    // Form validation
+    this.signInForm = this.validatorService.initValidationForm();
+
+
+    // Make an http request
   }
+
+
 
 }

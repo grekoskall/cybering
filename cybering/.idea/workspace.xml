@@ -5,35 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/page-not-found/page-not-found.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/page-not-found/page-not-found.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/page-not-found/page-not-found.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/page-not-found/page-not-found.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/acidcat.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/glitchy_common_knowledge__by_dying_cat_de1q12a-pre.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/log-1-1-transp.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/log-1-1-transp1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/log-1-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/log-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/log1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/log1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/loginv0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/assets/loginv1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/wp-services/sing-in.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/wp-services/sing-in.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../glitchy_common_knowledge__by_dying_cat_de1q12a-pre.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../log-1-1-transp.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../log-1-1-transp1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../log-1-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../log-1.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +53,7 @@
     <property name="project.structure.proportion" value="0.23055555" />
     <property name="project.structure.side.proportion" value="0.42716858" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">

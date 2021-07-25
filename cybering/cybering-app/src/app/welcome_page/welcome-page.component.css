@@ -1,89 +1,5 @@
-
-/* extra */
-.email-alert-hr {
-	width: 30%;
-	position: relative;
-	left: 35%;
-	color: red;
-}
-
-.alerts {
-	font-size: 1vw;
-	font-weight: 200;
-	color: red;
-}
-
-.base-grid {
-	background-color: white;
-}
-
-.black-color {
-	color: black;
-}
-
-.white-color {
-	color: white;
-}
-
 .blue-color {
-    color: blue;
-}
-
-/* login container */
-.form-label {
-	font-weight: 200;
-}
-
-.login-image {
-	width: 100%;
-	display: block;
-}
-
-.login-image-form {
-	position: relative;
-	display: inline-block;
-}
-
-.login-welcome-form {
-	position: absolute;
-	top: 10%;
-	left: 50%;
-	bottom: 0%;
-	transform: translate( -50%, -10% );
-    text-align: center;
-    color: blue;
-	font-weight: bold;
-	width: 100%;
-}
-
-@keyframes cybering-appear {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
-}
-
-.welcome-name {
-	position: relative;
-	top: 3%;
-	font-size: 2.5vw;
-	animation-duration: 3s;
-	animation-iteration-count: 1;
-	animation-name: cybering-appear;
-	animation-timing-function: ease-in;
-}
-
-.welcome-msg {
-	color: black;
-	position: relative;
-	top: 2%;
-	font-size: 2vw;
-	opacity: 0;
-	animation-duration: 3s;
-	animation-iteration-count: 1;
-	animation-name: cybering-appear;
-	animation-timing-function: ease-in;
-	animation-delay: 2s;
-	animation-fill-mode: forwards;
-	
+	color: blue;	
 }
 
 @keyframes cyb {
@@ -92,8 +8,7 @@
 	100% { color: blue;}
 }
 
-.wn-cy:hover {
-	width: fit-content;
+.blue-color:hover {
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-name: cyb;
@@ -101,72 +16,38 @@
 	animation-fill-mode: forwards;
 }
 
-.login-form {
-	width: 100%;
-	height: 100%;
+
+@keyframes cybering-appear {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }
 
-.email-div {
-	font-size: 1.5vw;
-	width: 100%;
-	position: absolute;
-	color: black;
-	bottom: 50%;
+.welcome-name {
+	animation-duration: 3s;
+	animation-iteration-count: 1;
+	animation-name: cybering-appear;
+	animation-timing-function: ease-in;
 }
 
-.password-div {
-	font-size: 1.5vw;
-	width: 100%;
-	position: absolute;
-	color: black;
-	bottom: 30%;
-}
-
-.email-div input {
-	width: 22vw;
-	height: 2.5vw;
-	position: relative;
-	display: block;
-	margin: 0 auto;
-}
-
-.password-div input {
-	width: 22vw;
-	height: 2.5vw;
-	position: relative;
-	display: block;
-	margin: 0 auto;
-}
-
-.forg-pass-div  {
-	font-size: 1.2vw;
-	position: absolute;
-	width: 100%;
-	left: 20%;
-	bottom: 27%;
-	text-align: center;
-	margin: 0 auto;
-	font-weight: 300;
-}
-
-.submit-div {
-	position: absolute;
-	bottom: 0%;
-	text-align: center;
-	width: 100%;
-	height: 14%;
+.welcome-msg {
+	opacity: 0;
+	animation-duration: 3s;
+	animation-iteration-count: 1;
+	animation-name: cybering-appear;
+	animation-timing-function: ease-in;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
 }
 
 .submit-div button {
 	width: max-content;
 	height: 100%;
-	font-size: 3vw;
 	color: cornflowerblue;
 	font-weight: bold;
 }
 
 @keyframes flashing1 {
-	
+
 	0% { color: cornflowerblue; }
 	100% { color: lightskyblue; }
 }
@@ -178,4 +59,3 @@
 	animation-duration: 0.1s;
 	animation-timing-function: ease-in-out;
 }
-
