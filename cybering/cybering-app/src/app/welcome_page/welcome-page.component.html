@@ -41,20 +41,11 @@
 						<div class="row m-3">
 							<div class="col text-center">
 								<div class="alert-div">
-									<div class="check-email-req"
-										*ngIf="this.signInForm.controls.emailControl.errors?.required; then emailMissing else emailExists">
-									</div>
-									<ng-template #emailMissing>
-										<hr class="email-alert-hr">
-										Please fill in your email
-									</ng-template>
-									<ng-template #emailExists>
 										<div class="check-email-type"
 											*ngIf="this.signInForm.controls.emailControl.errors?.email">
 											<hr class="email-alert-hr">
 											Please provide a valid email
 										</div>
-									</ng-template>
 								</div>
 							</div>
 						</div>
