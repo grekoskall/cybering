@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { SignInValidatorService } from '../services/sign-in-validator/sign-in-validator.service';
-import { sign } from 'crypto';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,12 +7,12 @@ import { sign } from 'crypto';
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent implements OnInit {
-  signInForm !: FormGroup;
-  validatorService !: SignInValidatorService;
+  signInForm = this.fb.group({
+    emailControl: [''],
+    passwordControl: ['']
+  });
 
-
-  constructor(validatorService: SignInValidatorService) {
-    this.signInForm = validatorService.signInForm; 
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -29,13 +27,22 @@ export class WelcomePageComponent implements OnInit {
     // Show error message above submit button
 
     // Reset form validator group at empty values
-    if( this.validatorService.isEmpty(this.signInForm) ) {
-      this.signInForm = this.validatorService.initEmptyForm();
+    if (this.signInForm.controls.emailControl.value === "" && this.signInForm.controls.passwordControl.value === "") {
+      this.signInForm = this.fb.group({
+        emailControl: [''],
+        passwordControl: ['']
+      });
       return;
-    } 
+    }
 
     // Form validation
-    this.signInForm = this.validatorService.initValidationForm();
+    this.signInForm = this.fb.group({
+      emailControl: [this.signInForm.controls.emailControl.value, [Validators.required, Validators.email]],
+      passwordControl: [this.signInForm.controls.passwordControl.value, Validators.required]
+    });
+    if ( this.signInForm.invalid ) {
+      return;
+    }
 
 
     // Make an http request

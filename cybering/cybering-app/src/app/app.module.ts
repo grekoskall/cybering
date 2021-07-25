@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.component';
 import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-password.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,7 @@ import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-p
     PageNotFoundComponent,
     WelcomePageComponent,
     FullSignInComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
