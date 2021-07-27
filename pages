@@ -2,7 +2,7 @@
 WELCOME PAGE
 ========================================
 LOG IN
-SIGN IN
+SIGN UP
 SSL / TLS ENCRYPTION
 
 LOG IN
@@ -10,7 +10,7 @@ LOG IN
   -> PASSWORD
 -- VERIFY CORRECTNESS
 
-SIGN IN
+SIGN UP
   -> PASSWORD
   -> PASSWORD VERIFICATION
   -> NAME
