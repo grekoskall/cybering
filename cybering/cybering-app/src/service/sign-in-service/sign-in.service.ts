@@ -20,6 +20,7 @@ export class SignInService {
 
   signin(info: SignInInfo): Observable<Authorization> {
     return this.http.post<Authorization>(this.url, info).pipe(
+      retry(2),
       catchError(this.handleError)
     );
   }

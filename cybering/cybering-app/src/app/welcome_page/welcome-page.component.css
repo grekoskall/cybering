@@ -57,3 +57,10 @@
 	animation-timing-function: ease-in-out;
 }
 
+.sign-in-fail {
+	color: palevioletred;
+}
+
+.email-alert-hr {
+	color: palevioletred;
+}

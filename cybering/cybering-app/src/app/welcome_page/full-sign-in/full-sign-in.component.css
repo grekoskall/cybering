@@ -1,9 +1,9 @@
 .error-hr {
-	color: red;
+	color: palevioletred;
 }
 
 .error-msg {
-	color: red;
+	color: palevioletred;
 	text-align: center;
 }
 
@@ -26,6 +26,10 @@
 .login-text {
 	font-weight: lighter;
 	font-size: 2em;
+}
+
+.ng-invalid:not(form) {
+	border-left: 5px solid palevioletred;
 }
 
 .blue-color {

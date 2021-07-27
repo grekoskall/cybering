@@ -1,0 +1,21 @@
+// Make an http request and get Session token and redirect
+this.signInService.signin(this.signInInfo).subscribe(
+  (result) => {
+    if (!(result.SESSION_TOKEN === 'failed')) {
+      this.cookieService.set('ST_TOKEN', result.SESSION_TOKEN, { path: '/' });
+    }
+    this.authToken = result;
+    this.router.navigate(['/home-page']);
+  }
+);
+}
+
+
+constructor(
+  private fb: FormBuilder,
+  private signInService: SignInService,
+  private cookieService: CookieService,
+  private router: Router) {
+  this.signInInfo = new SignInInfo();
+  this.authToken = new Authorization();
+}

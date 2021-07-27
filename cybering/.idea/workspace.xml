@@ -5,28 +5,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/authorization.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/professional.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/signininfo.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/sign-in-service/sign-in.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/sign-in-service/sign-in.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/signin/info/SignInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/signin/tokens/AuthToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/validation/ValidationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/guards/auth.guard.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/guards/auth.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/home-page/home-page.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/home-page/home-page.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/home-page/home-page.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/home-page/home-page.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/simplestring.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/validators/same-password.directive.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/validators/same-password.directive.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/add-phone/add-phone/add-phone.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/add-phone/add-phone/add-phone.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/add-phone/add-phone/add-phone.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/add-phone/add-phone/add-phone.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/auth-service/auth.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/auth-service/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/base.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/base.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/register-service/register.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/register-service/register.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/reset-password-service/reset-password.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/reset-password-service/reset-password.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/PasswordResetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/bases/SimpleString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/signin/info/RegisterInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/signin/tokens/Authentication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/validation/AuthenticationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/utilities/AuthTokenMaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/node_modules/__ngcc_entry_points__.json" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/node_modules/__ngcc_entry_points__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/node_modules/@angular/core/testing/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/node_modules/@angular/core/testing/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/node_modules/@angular/core/testing/testing.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/node_modules/@angular/core/testing/testing.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/node_modules/__ngcc_entry_points__.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/interfaces/professional.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/professional.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/forgot-password/forgot-password.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/full-sign-in/full-sign-in.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/full-sign-in/full-sign-in.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/full-sign-in/full-sign-in.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/full-sign-in/full-sign-in.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/full-sign-in/full-sign-in.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/full-sign-in/full-sign-in.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/register/register.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/welcome_page/welcome-page.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/sign-in-service/sign-in.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/sign-in-service/sign-in.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/ProfessionalsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/ProfessionalsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/users/ProfessionalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/users/ProfessionalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/ProfessionalsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/ProfessionalsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/repository/users/ProfessionalRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/repository/users/ProfessionalRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +76,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

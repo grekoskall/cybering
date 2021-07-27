@@ -1,0 +1,77 @@
+<div class="container base-grid">
+	<div class="container login-container">
+		<div class="row">
+			<div class="col">
+				<div class="whitespace">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col-8">
+				<div class="row">
+					<div class="col">
+					</div>
+					<div class="col-10">
+						<div class="login-form-div">
+							<div class="row">
+								<div class="col">
+									<div class="login-title">
+										<p class="login-text">Log in to your <span class="blue-color">Cy</span>bering community</p>
+									</div>
+								</div>
+							</div>
+							<form class="login-form" [formGroup]="signinForm" (ngSubmit)="signinSubmit()">
+								<div class="row g-3 align-items-center mb-3">
+									<div class="col-auto mb-3">
+										<label for="loginInputEmail" class="form-label">Email</label>
+										<input type="email" class="form-control" id="loginInputEmail" formControlName="emailControl">
+									</div>
+									<div class="col-2">
+									</div>
+									<div class="col-auto mb-3">
+										<label for="loginInputPassword" class="form-label">Password</label>
+										<input type="password" class="form-control" id="loginInputPassword" formControlName="passwordControl">
+									</div>
+								</div>
+								<div class="row" *ngIf="!this.signinForm.controls.emailControl.errors?.required && this.signinForm.controls.emailControl.errors?.email">
+									<div class="col" *ngIf="!this.signinForm.controls.passwordControl.errors?.required">
+										<hr class="error-hr">
+										<p class="error-msg">Please provide a valid email address</p>
+									</div>
+									<div class="col" *ngIf="this.signinForm.controls.passwordControl.errors?.required">
+										<hr class="error-hr">
+										<p class="error-msg">Please provide a password</p>
+									</div>
+								</div>
+								<div class="row ">
+									<div class="col"></div>
+									<div class="col">
+										<div class="submit-div">
+											<button type="submit" class="btn btn-primary">Sing in</button>
+										</div>
+									</div>
+									<div class="col">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col">
+
+					</div>
+				</div>
+
+
+			</div>
+			<div class="col">
+
+			</div>
+		</div>
+
+
+	</div>
+
+
+</div>

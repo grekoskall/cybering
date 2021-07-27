@@ -11,6 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.component';
 import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-password.component';
 import { SignInService } from 'src/service/sign-in-service/sign-in.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HomePageComponent } from './home-page/home-page.component';
+import { SamePasswordDirective } from './validators/same-password.directive';
+import { AddPhoneComponent } from './welcome_page/register/add-phone/add-phone/add-phone.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,9 @@ import { SignInService } from 'src/service/sign-in-service/sign-in.service';
     WelcomePageComponent,
     FullSignInComponent,
     ForgotPasswordComponent,
+    HomePageComponent,
+    SamePasswordDirective,
+    AddPhoneComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,7 @@ import { SignInService } from 'src/service/sign-in-service/sign-in.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SignInService],
+  providers: [SignInService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

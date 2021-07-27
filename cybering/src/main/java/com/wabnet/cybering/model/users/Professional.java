@@ -13,11 +13,30 @@ public class Professional {
     private String firstName;
     private String lastName;
     private Integer age;
+    private String email;
+
+    public Professional() {
+    }
 
     public Professional(String firstName, String lastName, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public Professional(String firstName, String lastName, Integer age, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getId() {

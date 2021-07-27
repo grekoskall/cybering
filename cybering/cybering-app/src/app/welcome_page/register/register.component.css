@@ -45,3 +45,17 @@
 .whitespace {
 	padding-top: 2%;
 }
+
+.red-col {
+	color: palevioletred;
+}
+
+
+.pass-validation-text {
+	color: peru;
+}
+
+
+.green-color {
+	color: teal;
+}

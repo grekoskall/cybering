@@ -1,0 +1,206 @@
+<div class="container grid-div">
+	<div class="row">
+		<div class="col">
+			<div class="whitespace"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col-9">
+			<div class="image-div">
+				<div class="row">
+
+				</div>
+				<div class="on-top-of-img">
+					<div class="row">
+						<div class="col">
+							<p class="explain-text-title">Reset your password</p>
+							<div class="msg-div" *ngIf="this.emailGroup.invalid">
+								<div class="in-msg-div"
+									*ngIf="this.emailGroup.controls.emailControl.errors?.required && !this.emailGroup.controls.emailControl.errors?.email">
+									<hr class="error-hr">
+									<p class="error-msg">Please type your email address</p>
+								</div>
+								<div class="in-msg-div"
+									*ngIf="this.emailGroup.controls.emailControl.errors?.email && !this.emailGroup.controls.emailControl.errors?.required">
+									<div class="err-centerer-1">
+										<hr class="error-hr">
+										<p class="error-msg">Email address is invalid</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<p class="explain-text-msg">Enter your email address below and we will email you a password
+								reset
+								link:</p>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+						<form [formGroup]="emailGroup" (ngSubmit)="emailSubmit()">
+							<div class="col">
+								<div class="mb-3 email-div">
+									<input type="email" class="form-control" id="forgotInputEmail"
+										formControlName="emailControl">
+								</div>
+
+							</div>
+
+							<div class="col">
+								<div class="submit-div">
+									<button type="submit" class="send-btn btn submit-button">Send mail</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="row">
+						<div class="col">
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col"></div>
+
+	</div>
+
+
+
+</div>
+
+
+================
+
+
+
+
+.on-top-of-img {
+	position: absolute;
+	top: 4vw;
+}
+
+.explain-text-title  {
+	position: absolute;
+	width: fit-content;
+	top: 3vw;
+	left: 22vw;
+	font-size: 2.4vw;
+	color: cornflowerblue;
+}
+
+.explain-text-msg {
+	position: relative;
+	display: inline;
+	top: 17.5vw;
+	left: 15vw;
+	font-size: 1.1vw;
+	font-weight: light;
+}
+
+.image-bg {
+	position: absolute;
+	top:7.5vw;
+	max-width: 64vw;
+	max-height: 64vw;
+}
+
+.whitespace {
+	margin: 2vw;
+}
+
+.logo-text {
+	display: inline;
+}
+
+.logo-div {
+	margin: 2vw;
+}
+
+.logo-link {
+	text-decoration: none;
+	color: cornflowerblue;
+	font-weight: bolder;
+}
+
+.logo-img {
+	width: 35px;
+	height: 35px;
+	margin-bottom: 0.5vw;
+}
+
+.email-div {
+	position: absolute;
+	top: 21.5vw;
+	left: 21vw;
+}
+
+
+.form-control {
+	width: 24vw;
+	height: 2.7vw;
+	border: 0.1vw solid blue;
+}
+
+.submit-div {
+	position: absolute;
+	top: 27vw;
+	left: 28.25vw;
+	padding: 0.2vw;
+	border: 0.1vw solid green;
+	color: green;
+	background-color: palegreen;
+}
+
+.send-btn {
+	width: 10vw;
+	height: 3vw;
+	font-size: 1.5vw;
+	min-width: max-content;
+	min-height: max-content;
+}
+
+.msg-div {
+	position: absolute;
+	top: 6.7vw;
+	left: 26.5vw;
+	min-width: max-content;
+	text-align: center;
+}
+
+.error-msg {
+	font-size: 1vw;
+	color: red;
+}
+
+.error-hr {
+	color: red;
+}
+
+.err-centerer-1 {
+	position: relative;
+	left: 1.5vw;
+}
+
+.form-label {
+	display: inline;
+}
+
+.form-control {
+	display: inline;
+}

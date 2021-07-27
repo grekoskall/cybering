@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { SignInInfo } from '../interfaces/signininfo';
 import { SignInService } from 'src/service/sign-in-service/sign-in.service';
 import { Authorization } from '../interfaces/authorization';
-import { SafeSubscriber } from 'rxjs/internal/Subscriber';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome-page',
@@ -20,12 +21,17 @@ export class WelcomePageComponent implements OnInit {
     passwordControl: ['']
   });
 
-  constructor(private fb: FormBuilder, private signInService: SignInService) {
+  constructor(
+    private fb: FormBuilder,
+    private signInService: SignInService,
+    private cookieService: CookieService,
+    private router: Router) {
     this.signInInfo = new SignInInfo();
     this.authToken = new Authorization();
   }
 
   ngOnInit(): void {
+    //this.cookieService.deleteAll();
   }
 
   onSigninSubmit() {
@@ -35,9 +41,10 @@ export class WelcomePageComponent implements OnInit {
     // Save the above to sessionStorage and redirect to home page
     // If the response is negative (NO )
     // Show error message above submit button
-    this.authToken.SESSION_TOKEN = "hello";
     // Reset form validator group at empty values
-    if (this.signInForm.controls.emailControl.value === "" && this.signInForm.controls.passwordControl.value === "") {
+     this.authToken = new Authorization();
+     this.cookieService.deleteAll();
+    if (this.signInForm.controls.emailControl.value === '' && this.signInForm.controls.passwordControl.value === '') {
       this.signInForm = this.fb.group({
         emailControl: [''],
         passwordControl: ['']
@@ -50,21 +57,23 @@ export class WelcomePageComponent implements OnInit {
       emailControl: [this.signInForm.controls.emailControl.value, [Validators.required, Validators.email]],
       passwordControl: [this.signInForm.controls.passwordControl.value, Validators.required]
     });
-    if ( this.signInForm.invalid ) {
+    if (this.signInForm.invalid) {
       return;
     }
-    
 
-    // Make an http request and get Session token
-    this.signInService.signin(this.signInInfo).subscribe(result => this.authToken.SESSION_TOKEN = result.SESSION_TOKEN);
-    
-    // Update headers to always append the token at the head
-    this.signInService.updateToken(this.authToken);
-
-    // Send full log in request
-
-    // Get redirected to new page.
-
+    // Make an http request and get Session token and redirect
+    this.signInService.signin(this.signInInfo).subscribe(
+      (result) => {
+        if (!(result.SESSION_TOKEN === 'failed')) {
+          this.cookieService.set('ST_TOKEN', result.SESSION_TOKEN, { path: '/' });
+        }
+        this.authToken = result;
+        this.router.navigate(['/home-page']);
+      }
+    );
   }
 
+  signInFailed():boolean {
+    return this.authToken.SESSION_TOKEN === 'failed';
+  }
 }

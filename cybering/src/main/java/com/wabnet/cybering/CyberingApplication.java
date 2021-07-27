@@ -1,7 +1,9 @@
 package com.wabnet.cybering;
 
+import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
+import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.repository.validation.ValidationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,8 @@ public class CyberingApplication implements CommandLineRunner {
 	private ProfessionalRepository professionalRepository;
 	@Autowired
 	private ValidationRepository validationRepository;
+	@Autowired
+	private AuthenticationRepository authenticationRepository;
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(CyberingApplication.class, args);
@@ -23,9 +27,11 @@ public class CyberingApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		professionalRepository.deleteAll();
-		professionalRepository.save(new Professional("Alice", "Smith", 26));
-		professionalRepository.save(new Professional("Bob", "Smith", 25));
-		professionalRepository.save(new Professional("Jacob", "Smith", 29));
+		validationRepository.deleteAll();
+		authenticationRepository.deleteAll();
+		professionalRepository.save(new Professional("Alice", "Smith", 26, "alicesm@yahop.ok"));
+		professionalRepository.save(new Professional("Bob", "Smith", 25, "mail@at.ok"));
+		professionalRepository.save(new Professional("Jacob", "Smith", 29, "jacobsm@yahop.ok"));
 
 		/*System.out.println("Professionals found with findAll():");
 		System.out.println("-----------------------------------");

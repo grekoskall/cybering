@@ -35,8 +35,11 @@ public class ProfessionalsController {
     @PostMapping("/")
     public AuthToken singIn(@RequestBody SignInfo signInfo) {
         System.out.println("got a request" + signInfo.getEmail());
-        AuthToken authToken = new AuthToken("whatthefuck");
-        validationRepository.save(authToken);
-        return validationRepository.findAll().get(0);
+        if ( professionalRepository.findByEmail(signInfo.getEmail()).isEmpty() ) {
+            return new AuthToken("failed");
+        }
+        return new AuthToken("whatthef3uck");
     }
+
+
 }

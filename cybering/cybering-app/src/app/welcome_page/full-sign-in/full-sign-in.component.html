@@ -1,22 +1,15 @@
 <div class="container base-grid">
-
 	<div class="container login-container">
 		<div class="row">
 			<div class="col">
 				<div class="whitespace">
-
 				</div>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col">
-
 			</div>
 			<div class="col-8">
-
-				
-
 				<div class="row">
 					<div class="col">
 					</div>
@@ -29,17 +22,17 @@
 									</div>
 								</div>
 							</div>
-							<form class="login-form" [formGroup]="signinForm" (ngSubmit)="signinSubmit()">
+							<form class="login-form" [formGroup]="signinForm" (ngSubmit)="signinSubmit()" #signForm="ngForm">
 								<div class="row g-3 align-items-center mb-3">
-									<div class="col-auto mb-3">
+									<div class="col-md-5 mb-3 col-auto">
 										<label for="loginInputEmail" class="form-label">Email</label>
-										<input type="email" class="form-control" id="loginInputEmail" formControlName="emailControl">
+										<input type="email" class="form-control" id="loginInputEmail" formControlName="emailControl" [(ngModel)]="signInInfo.email">
 									</div>
-									<div class="col-2">
+									<div class="col-md-2 col-3">
 									</div>
-									<div class="col-auto mb-3">
+									<div class="col-md-5 mb-3 col-auto">
 										<label for="loginInputPassword" class="form-label">Password</label>
-										<input type="password" class="form-control" id="loginInputPassword" formControlName="passwordControl">
+										<input type="password" class="form-control" id="loginInputPassword" formControlName="passwordControl" [(ngModel)]="signInInfo.password">
 									</div>
 								</div>
 								<div class="row" *ngIf="!this.signinForm.controls.emailControl.errors?.required && this.signinForm.controls.emailControl.errors?.email">
@@ -52,11 +45,18 @@
 										<p class="error-msg">Please provide a password</p>
 									</div>
 								</div>
+								<div class="row" *ngIf="this.signInFailed()">
+									<div class="col">
+										<hr class="error-hr">
+										<p class="error-msg">Log in failed. Please check your credentials</p>
+									</div>
+								</div>
 								<div class="row ">
-									<div class="col"></div>
+									<div class="col">
+									</div>
 									<div class="col">
 										<div class="submit-div">
-											<button type="submit" class="btn btn-primary">Sing in</button>
+											<button type="submit" class="btn btn-primary text-nowrap">Sing in</button>
 										</div>
 									</div>
 									<div class="col">
@@ -66,19 +66,11 @@
 						</div>
 					</div>
 					<div class="col">
-
 					</div>
 				</div>
-
-
 			</div>
 			<div class="col">
-
 			</div>
 		</div>
-
-
 	</div>
-
-
 </div>
