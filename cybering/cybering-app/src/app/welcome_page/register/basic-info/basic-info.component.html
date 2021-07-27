@@ -1,0 +1,129 @@
+<div class="container base-grid">
+	<div class="container login-container">
+		<div class="row">
+			<div class="col">
+				<div class="whitespace">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col-8">
+				<div class="row">
+					<div class="col">
+					</div>
+					<div class="col-10">
+						<figure class="text-end">
+							<blockquote class="blockquote">
+								Apply, Hire, Connect
+							</blockquote>
+							<figcaption class="blockquote-footer">
+								All your work in one place <cite title="Source Title">Fast and Easy</cite>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="col">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+					</div>
+					<div class="col-10">
+						<div class="register-form-div">
+							<div class="row">
+								<div class="col">
+									<div class="register-title">
+										<p class="register-text">Join your <span class="blue-color">Cy</span>bering
+											community</p>
+									</div>
+								</div>
+							</div>
+							<div class="row text-center red-col" *ngIf="this.emailUsed()">
+								<div class="col">
+									<p class="h5">This email address has already been used</p>
+								</div>
+							</div>
+							<div class="row text-center red-col" *ngIf="this.registerFailed()">
+								<div class="col">
+									<p class="h5">This account can't be created</p>
+								</div>
+							</div>
+							<form class="register-form" [formGroup]="registerForm" (ngSubmit)="registerSubmit()" #regForm="ngForm">
+								<div class="row g-3 align-items-center mb-3">
+									<div class="col-auto col-lg-6 mb-3">
+										<label for="registerInputEmail" class="email-label form-label">Email</label>
+										<input type="email" class="form-control" id="registerInputEmail"
+											formControlName="emailControl" [(ngModel)]="this.registerInfo.email">
+									</div>
+									<div class="red-col col-auto mb-3 align-self-end" *ngIf="registerForm.controls.emailControl.invalid && registerForm.controls.emailControl.pristine">
+										Invalid email address
+									</div>
+								</div>
+								<div class="row g-3 align-items-center mb-3">
+									<div class="col-auto mb-3">
+										<label for="registerInputFirstName" class="form-label">First Name</label>
+										<input type="text" class="form-control" id="registerInputFirstName"
+											formControlName="firstNameControl" [(ngModel)]="this.registerInfo.firstName">
+										<div class="red-col err-name" *ngIf="registerForm.controls.firstNameControl.invalid">
+											First name can't be empty
+										</div>
+									</div>
+									<div class="col-auto mb-3">
+										<label for="registerInputLastName" class="form-label">Last Name</label>
+										<input type="text" class="form-control" id="registerInputLastName"
+											formControlName="lastNameControl" [(ngModel)]="this.registerInfo.lastName">
+										<div class="red-col err-name" *ngIf="registerForm.controls.lastNameControl.invalid">
+											Last name can't be empty
+										</div>
+									</div>
+								</div>
+								<div class="pass-fields row g-3 align-items-center mb-3" formGroupName="passFields">
+									<div class="col-auto mb-3 ">
+										<label for="registerInputPassword" class="form-label">Password</label>
+										<input type="password" class="form-control" id="registerInputPassword"
+											formControlName="passwordControl" [(ngModel)]="this.registerInfo.password">
+									</div>
+									<div class="col-auto mb-3 ">
+										<label for="registerInputPasswordValid" class="form-label">Re-type
+											Password</label>
+										<input type="password" class="form-control" id="registerInputPasswordValid"
+											formControlName="passwordValidControl">
+									</div>
+									<div class="col-auto mb-3 align-self-end"
+										*ngIf="registerForm.controls.passFields.invalid && passNotEmpty() && !passLength()">
+										<div class="pass-validation-text" >Verify password</div>
+									</div>
+									<div class="col-auto mb-3 align-self-end"
+										*ngIf="registerForm.controls.passFields.valid && passNotEmpty()  && !passLength()">
+										<i class="green-color bi bi-check-circle-fill"></i>
+									</div>
+									<div class="col-flex mb-3" *ngIf="passNotEmpty()">
+										<div class="red-col" *ngIf="passLength()">
+											Password must be at least 6 characters long
+										</div>
+									</div>
+								</div>
+								<div class="row ">
+									<div class="col"></div>
+									<div class="col">
+										<div class="submit-div">
+											<button type="submit" class="btn btn-primary">Join now</button>
+										</div>
+									</div>
+									<div class="col">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col">
+
+					</div>
+				</div>
+			</div>
+			<div class="col">
+			</div>
+		</div>
+	</div>
+</div>

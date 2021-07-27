@@ -1,6 +1,7 @@
 package com.wabnet.cybering.controller;
 
 
+import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.info.RegisterInfo;
 import com.wabnet.cybering.model.signin.tokens.AuthToken;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
@@ -29,7 +30,7 @@ public class RegisterController {
         this.authTokenMaker = authTokenMaker;
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public AuthToken register(@RequestBody RegisterInfo registerInfo) {
         if ( !professionalRepository.findByEmail(registerInfo.getEmail()).isEmpty() ) {
             System.out.println("Found a user with the same email: " + registerInfo.getEmail());
@@ -46,6 +47,20 @@ public class RegisterController {
         authenticationRepository.save(new Authentication(token, registerInfo.getEmail()));
         professionalRepository.save(new Professional(registerInfo.getFirstName(), registerInfo.getLastName(), 0, registerInfo.getEmail()) );
         return new AuthToken(token);
+    }*/
+
+    @PostMapping("/register")
+    public SimpleString register(@RequestBody SimpleString simpleString) {
+        if ( !professionalRepository.findByEmail(simpleString.getData()).isEmpty() ) {
+            System.out.println("Found a user with the same email: " + simpleString.getData());
+            return new SimpleString("used");
+        }
+
+        String token = authTokenMaker.makeToken(
+                simpleString.getData());
+
+        authenticationRepository.save(new Authentication(token, simpleString.getData()));
+        return new SimpleString(token);
     }
 }
 

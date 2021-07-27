@@ -1,93 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { samePasswordValidator } from 'src/app/validators/same-password.directive';
-import { Authorization } from 'src/app/interfaces/authorization';
-import { CookieService } from 'ngx-cookie-service';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { RegisterService } from 'src/service/register-service/register.service';
-import { Router } from '@angular/router';
+import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { RegisterInfo } from 'src/app/interfaces/professional';
-
-
+import { CookieService } from 'ngx-cookie-service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-basic-info',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
   registerInfo: RegisterInfo;
-  authToken: Authorization;
-
-  registerForm = this.fb.group({
-    emailControl: [''],
-    firstNameControl: [''],
-    lastNameControl: [''],
-    passFields: this.fb.group({
-      passwordControl: [''],
-      passwordValidControl: ['']
-    }, { validators: samePasswordValidator })
-  });
-
+  subscription: Subscription;
 
   constructor(
-    private fb: FormBuilder,
     private cookieService: CookieService,
-    private registerService: RegisterService,
-    private router: Router
-  ) { 
-    this.authToken = new Authorization();
+    private registerService: RegisterService
+  ) {
     this.registerInfo = new RegisterInfo();
-  }
-
-  ngOnInit(): void {
-  }
-
-  registerSubmit() {
-    this.authToken = new Authorization();
-    this.cookieService.deleteAll();
-    this.registerForm = this.fb.group({
-      emailControl: [this.registerForm.controls.emailControl.value, [Validators.required, Validators.email]],
-      firstNameControl: [this.registerForm.controls.firstNameControl.value, Validators.required],
-      lastNameControl: [this.registerForm.controls.lastNameControl.value, Validators.required],
-      passFields: this.fb.group({
-        passwordControl: [(this.registerForm.controls.passFields as FormGroup).controls.passwordControl.value, [Validators.minLength(6), Validators.required]],
-        passwordValidControl: [(this.registerForm.controls.passFields as FormGroup).controls.passwordValidControl.value, [Validators.minLength(6), Validators.required]]
-      }, { validators: samePasswordValidator })
-    });
-
-    if ( this.registerForm.invalid ) {
-      return;
-    }
-
-    // Make an http post request with the register data
-    this.registerService.register(this.registerInfo).subscribe(
-      (result) => {
-        if (!(result.SESSION_TOKEN === 'failed') && !(result.SESSION_TOKEN === 'used')) {
-          this.cookieService.set('ST_TOKEN', result.SESSION_TOKEN, { path: '/' });
-        }
-        this.authToken = result;
-        if(result.SESSION_TOKEN === 'failed' || result.SESSION_TOKEN === 'used') {
-          return;
-        }
-        this.router.navigate(['/add-phone']);
+    this.subscription = this.registerService.oneFinished$.subscribe(
+      regInf => {
+        this.registerInfo = regInf;
       }
     );
   }
 
-  passNotEmpty(): boolean {
-    return ((this.registerForm.controls.passFields as FormGroup).controls.passwordControl.value === '') ? false : true;
+  ngOnInit(): void {
+    this.cookieService.deleteAll();
   }
 
-  passLength(): boolean {
-    return (((this.registerForm.controls.passFields as FormGroup).controls.passwordControl.value as String).length < 6 );
+  updateInfo(registerInfo: RegisterInfo) {
+    this.registerInfo = registerInfo;
   }
 
-  emailUsed():boolean {
-    return this.authToken.SESSION_TOKEN === 'used';
-  }
-
-  registerFailed():boolean {
-    return this.authToken.SESSION_TOKEN === 'failed';
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.subscription.unsubscribe();
   }
 
 }

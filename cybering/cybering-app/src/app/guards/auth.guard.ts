@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -8,8 +8,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private cookieService: CookieService) {
 
+  constructor(
+    private router: Router, 
+    private cookieService: CookieService,
+   
+    ) {
   }
 
   canActivate(
@@ -32,5 +36,7 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/']);
     return false;
   }
+
+
 
 }

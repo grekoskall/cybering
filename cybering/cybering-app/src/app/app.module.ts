@@ -14,7 +14,10 @@ import { SignInService } from 'src/service/sign-in-service/sign-in.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SamePasswordDirective } from './validators/same-password.directive';
-import { AddPhoneComponent } from './welcome_page/register/add-phone/add-phone/add-phone.component';
+import { AddPhoneComponent } from './welcome_page/register/add-phone/add-phone.component';
+import { BasicInfoComponent } from './welcome_page/register/basic-info/basic-info.component';
+import { RegisterService } from 'src/service/register-service/register.service';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { AddPhoneComponent } from './welcome_page/register/add-phone/add-phone/a
     HomePageComponent,
     SamePasswordDirective,
     AddPhoneComponent,
+    BasicInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { AddPhoneComponent } from './welcome_page/register/add-phone/add-phone/a
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SignInService, CookieService],
+  providers: [SignInService, CookieService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

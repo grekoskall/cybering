@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ResetPasswordService } from 'src/service/reset-password-service/reset-password.service';
 import { SimpleString } from 'src/app/interfaces/simplestring';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,15 +18,16 @@ export class ForgotPasswordComponent implements OnInit {
     emailControl: new FormControl('')
   });
 
-  constructor(private resetService: ResetPasswordService) {
+  constructor(private resetService: ResetPasswordService,
+    private cookieService: CookieService) {
     this.data = new SimpleString('');
    }
 
   ngOnInit(): void {
+    this.cookieService.deleteAll();
   }
 
   emailSubmit() {
-
     this.emailGroup = new FormGroup({
       emailControl: new FormControl(this.emailGroup.controls.emailControl.value, [
         Validators.required, Validators.email

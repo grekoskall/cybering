@@ -31,7 +31,7 @@ export class WelcomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.cookieService.deleteAll();
+    this.cookieService.deleteAll();
   }
 
   onSigninSubmit() {

@@ -12,4 +12,10 @@ public class AuthTokenMaker {
         return token2;
     }
 
+    public String makeToken(String email) {
+        String token1 = email.length() + "OrG" + email.toLowerCase().charAt(0);
+        String token2 = token1.repeat(3) + "hashed" + token1.repeat(3);
+        return token2;
+    }
+
 }

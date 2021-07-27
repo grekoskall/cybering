@@ -34,6 +34,7 @@ export class FullSignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cookieService.deleteAll();
   }
 
   signinSubmit() {
