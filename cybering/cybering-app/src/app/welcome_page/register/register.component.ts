@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
   phone: string =  '';
   subscription1: Subscription;
 
-
   constructor(
     private cookieService: CookieService,
     private registerService: RegisterService
