@@ -18,12 +18,12 @@ public class PasswordResetController {
 
     @PostMapping("/forgotpassword")
     public SimpleString getEmail(@RequestBody SimpleString email) {
-
+        System.out.println("Password reset request from: " + email.getData());
         if( professionalRepository.findByEmail(email.getData()).isEmpty() ) {
-            System.out.println("sahfas");
+            System.out.println("\tPassword Reset: email doesn't exist: " + email.getData());
             return new SimpleString("failed");
         }
-        System.out.println("okokok");
+        System.out.println("\tPassword Reset: sent password reset email to :" + email.getData());
         return new SimpleString("success");
     }
 }

@@ -1,0 +1,17 @@
+.whitespace {
+	padding-top: 2%;
+}
+
+.register-form-div {
+	border: 0.2vw solid cornflowerblue;
+	border-radius: 1vw;
+	padding: 1vw;
+}
+
+.ng-invalid .phonenum {
+	border-bottom: 5px solid palevioletred;
+}
+
+.error-phone-text {
+	color: palevioletred;
+}

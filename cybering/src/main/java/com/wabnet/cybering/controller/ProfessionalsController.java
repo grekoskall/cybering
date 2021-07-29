@@ -1,13 +1,12 @@
 package com.wabnet.cybering.controller;
 
+import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.info.SignInfo;
-import com.wabnet.cybering.model.signin.tokens.AuthToken;
+import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
-import com.wabnet.cybering.repository.validation.ValidationRepository;
+import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,30 +14,35 @@ import java.util.Optional;
 public class ProfessionalsController {
 
     private final ProfessionalRepository professionalRepository;
-    private final ValidationRepository validationRepository;
+    private final AuthenticationRepository authenticationRepository;
 
-    public ProfessionalsController(ProfessionalRepository professionalRepository, ValidationRepository validationRepository) {
+    public ProfessionalsController(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository) {
         this.professionalRepository = professionalRepository;
-        this.validationRepository = validationRepository;
-    }
-
-    @GetMapping("/professionals")
-    public List<Professional> getProfessionals() {
-        return professionalRepository.findAll();
-    }
-
-    @PostMapping("/professionals")
-    public void addProfessional(@RequestBody Professional professional) {
-        professionalRepository.save(professional);
+        this.authenticationRepository = authenticationRepository;
     }
 
     @PostMapping("/")
-    public AuthToken singIn(@RequestBody SignInfo signInfo) {
-        System.out.println("got a request" + signInfo.getEmail());
-        if ( professionalRepository.findByEmail(signInfo.getEmail()).isEmpty() ) {
-            return new AuthToken("failed");
+    public SimpleString singIn(@RequestBody SignInfo signInfo) {
+        System.out.println("Sign In request from " + signInfo.getEmail());
+        Optional<Professional> professional = professionalRepository.findByEmail(signInfo.getEmail());
+        if ( professional.isEmpty() ) {
+            System.out.println("\tEmail doesn't exist " + signInfo.getEmail());
+            return new SimpleString("failed");
         }
-        return new AuthToken("whatthef3uck");
+
+        if ( !professional.get().getPassword().equals(signInfo.getPassword())) {
+            System.out.println("\tUser " + signInfo.getEmail() + " provided wrong password");
+            return new SimpleString("failed");
+        }
+
+        Authentication token = this.authenticationRepository.findByEmail(signInfo.getEmail());
+        if ( token == null ) {
+            System.out.println("\tThis email doesn't have a token associated with it, but it exists in database, probably check data tables");
+            return new SimpleString("failed");
+        }
+
+        System.out.println("\tNew Sign in from " + signInfo.getEmail());
+        return new SimpleString(token.getToken());
     }
 
 

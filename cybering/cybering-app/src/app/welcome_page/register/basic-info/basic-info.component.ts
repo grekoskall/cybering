@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { samePasswordValidator } from 'src/app/validators/same-password.directive';
-import { Authorization } from 'src/app/interfaces/authorization';
 import { CookieService } from 'ngx-cookie-service';
 import { RegisterService } from 'src/service/register-service/register.service';
 import { Router } from '@angular/router';
 import { RegisterInfo } from 'src/app/interfaces/professional';
+import { SimpleString } from 'src/app/interfaces/simplestring';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class BasicInfoComponent implements OnInit {
   @Output() registerEvent = new EventEmitter<RegisterInfo>();
 
   registerInfo: RegisterInfo;
-  authToken: Authorization;
+  authToken: SimpleString;
 
   registerForm = this.fb.group({
     emailControl: [''],
@@ -35,16 +35,16 @@ export class BasicInfoComponent implements OnInit {
     private registerService: RegisterService,
     private router: Router
   ) {
-    this.authToken = new Authorization();
+    this.authToken = new SimpleString('');
     this.registerInfo = new RegisterInfo();
   }
 
   ngOnInit(): void {
+    this.cookieService.deleteAll();
   }
 
   registerSubmit() {
-    this.authToken = new Authorization();
-    this.cookieService.deleteAll();
+    this.authToken = new SimpleString('');
     this.registerForm = this.fb.group({
       emailControl: [this.registerForm.controls.emailControl.value, [Validators.required, Validators.email]],
       firstNameControl: [this.registerForm.controls.firstNameControl.value, Validators.required],
@@ -64,7 +64,7 @@ export class BasicInfoComponent implements OnInit {
         if (!(result.data === 'failed') && !(result.data === 'used')) {
           this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
         }
-        this.authToken.SESSION_TOKEN = result.data;
+        this.authToken.data = result.data;
         if (result.data === 'failed' || result.data === 'used') {
           return;
         }
@@ -89,11 +89,11 @@ export class BasicInfoComponent implements OnInit {
   }
 
   emailUsed(): boolean {
-    return this.authToken.SESSION_TOKEN === 'used';
+    return this.authToken.data === 'used';
   }
 
   registerFailed(): boolean {
-    return this.authToken.SESSION_TOKEN === 'failed';
+    return this.authToken.data === 'failed';
   }
 
 }

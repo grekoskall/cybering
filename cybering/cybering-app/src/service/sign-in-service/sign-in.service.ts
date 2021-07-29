@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { Authorization } from 'src/app/interfaces/authorization';
+
 import { SignInInfo } from 'src/app/interfaces/signininfo';
+import { SimpleString } from 'src/app/interfaces/simplestring';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,8 +19,8 @@ export class SignInService {
 
   constructor(private http: HttpClient) { }
 
-  signin(info: SignInInfo): Observable<Authorization> {
-    return this.http.post<Authorization>(this.url, info).pipe(
+  signin(info: SignInInfo): Observable<SimpleString> {
+    return this.http.post<SimpleString>(this.url, info).pipe(
       retry(2),
       catchError(this.handleError)
     );
@@ -41,8 +42,8 @@ export class SignInService {
   }
 
 
-  updateToken(authToken: Authorization) {
-    httpOptions.headers = httpOptions.headers.set('SessionToken', authToken.SESSION_TOKEN);
+  updateToken(authToken: SimpleString) {
+    httpOptions.headers = httpOptions.headers.set('SessionToken', authToken.data);
   }
 
   

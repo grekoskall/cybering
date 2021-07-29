@@ -4,7 +4,7 @@ import { SignInService } from 'src/service/sign-in-service/sign-in.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SignInInfo } from 'src/app/interfaces/signininfo';
-import { Authorization } from 'src/app/interfaces/authorization';
+import { SimpleString } from 'src/app/interfaces/simplestring';
 
 @Component({
   selector: 'app-full-sign-in',
@@ -14,7 +14,7 @@ import { Authorization } from 'src/app/interfaces/authorization';
 export class FullSignInComponent implements OnInit {
 
   signInInfo: SignInInfo;
-  authToken: Authorization;
+  authToken: SimpleString;
 
 
   signinForm = this.fb.group({
@@ -30,7 +30,7 @@ export class FullSignInComponent implements OnInit {
     private router: Router
   ) {
     this.signInInfo = new SignInInfo();
-    this.authToken = new Authorization();
+    this.authToken = new SimpleString('');
   }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class FullSignInComponent implements OnInit {
   }
 
   signinSubmit() {
-    this.authToken = new Authorization();
+    this.authToken = new SimpleString('');
     this.cookieService.deleteAll();
     if (this.signinForm.controls.emailControl.value === '' && this.signinForm.controls.passwordControl.value === '') {
       this.signinForm = this.fb.group({
@@ -58,11 +58,11 @@ export class FullSignInComponent implements OnInit {
 
     this.signInService.signin(this.signInInfo).subscribe(
       (result) => {
-        if (!(result.SESSION_TOKEN === 'failed')) {
-          this.cookieService.set('ST_TOKEN', result.SESSION_TOKEN, { path: '/' });
+        if (!(result.data === 'failed')) {
+          this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
+          this.router.navigate(['/home-page']);
         }
         this.authToken = result;
-        this.router.navigate(['/home-page']);
         this.signinForm = this.fb.group({
           emailControl: [this.signinForm.controls.emailControl.value],
           passwordControl: [this.signinForm.controls.passwordControl.value]
@@ -72,7 +72,7 @@ export class FullSignInComponent implements OnInit {
   }
 
   signInFailed(): boolean {
-    if (this.authToken.SESSION_TOKEN === 'failed') {
+    if (this.authToken.data === 'failed') {
       return true;
     } else {
       return false;

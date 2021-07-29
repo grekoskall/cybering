@@ -1,1 +1,97 @@
-<p>add-phone works!</p>
+<div class="container">
+	<div class="container login-container">
+		<div class="row">
+			<div class="col">
+				<div class="whitespace">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+		</div>
+		<div class="col-8">
+			<div class="row">
+				<div class="col">
+				</div>
+				<div class="col-10">
+					<div class="register-form-div">
+						<div class="row mb-3">
+							<div class="col  text-center">
+								<p class="h4 register-title">Add your photo and phone</p>
+							</div>
+						</div>
+						<form class="oneto-form" [formGroup]="onetoForm" (ngSubmit)="submitOnetoForm()"
+							#ppForm="ngForm">
+							<div class="row">
+								<div class="col">
+									<div class="card mb-3 p-1">
+										<div class="row g-0">
+											<div class="col-md-5 text-center align-self-center">
+												<img [src]="image_url" class="img-fluid rounded-start"
+													alt="Default Profile image">
+											</div>
+											<div class="col-md-7 ">
+												<div class="card-body">
+													<h5 class="card-title text-center mb-3">Profile photo</h5>
+													<hr>
+													<p class="card-text ">We recommend adding a photo to your profile.
+													</p>
+													<p class="card-text ">You may also keep the default one.</p>
+													<div class="text-center mt-5">
+														<div class="input-group mb-3">
+															<input type="file" class="form-control" id="inputGroupFile"
+																(change)="reloadImg($event)" formControlName="photoControl" [(ngModel)]="photo">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-flex">
+									<div class="card mb-3 p-1">
+										<div class="row g-0 ">
+											<div class="col-md">
+												<div class="card-body ">
+													<h5 class="card-title text-center">Phone number</h5>
+													<hr>
+													<p class="card-text text-center">Please type the phone number you
+														will
+														be using for
+														business matters:</p>
+													<div class="row d-flex justify-content-center">
+														<div class="col-auto">
+															<div class="input-group mb-3">
+																<span class="input-group-text">Phone:</span>
+																<input type="text" class="form-control phonenum" formControlName="phoneControl" [(ngModel)]="phone">
+															</div>
+															<div class="err-phone text-center" *ngIf="this.onetoForm.invalid">
+																<span class="error-phone-text">
+																	Incorrect phone number
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row d-flex justify-content-center">
+								<div class="col-auto">
+									<button type="submit" class="btn btn-secondary">Continue</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col">
+				</div>
+			</div>
+		</div>
+		<div class="col">
+		</div>
+	</div>
+</div>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 import { RegisterInfo } from '../../app/interfaces/professional';
-import { Authorization } from 'src/app/interfaces/authorization';
 import { Observable, Subject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { SimpleString } from 'src/app/interfaces/simplestring';
@@ -10,31 +9,104 @@ import { SimpleString } from 'src/app/interfaces/simplestring';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService extends BaseService{
+export class RegisterService extends BaseService {
   private oneFinishedSource = new Subject<RegisterInfo>();
-  private twoFinishedSource = new Subject<SimpleString>();
-  private thrFinishedSource = new Subject<SimpleString>();
+  private twoFinishedSource = new Subject<File>();
+  private thrFinishedSource = new Subject<string>();
 
   oneFinished$ = this.oneFinishedSource.asObservable();
+  twoFinished$ = this.twoFinishedSource.asObservable();
+  thrFinished$ = this.thrFinishedSource.asObservable();
+
+  registerInfo: RegisterInfo = new RegisterInfo();
 
   constructor(private http: HttpClient) {
     super();
   }
 
-  register(registerInfo: RegisterInfo): Observable<Authorization> {
-    return this.http.post<Authorization>(this.extendurl('register'), registerInfo).pipe(
+  register(registerInfo: RegisterInfo): Observable<SimpleString> {
+    return this.http.post<SimpleString>(this.extendurl('register'), registerInfo).pipe(
       retry(2),
       catchError(this.handleError)
     );
   }
 
   registerStep1(registerInfo: RegisterInfo): Observable<SimpleString> {
+    this.registerInfo = registerInfo;
     let ss: SimpleString = new SimpleString(registerInfo.email);
     return this.simpleRequest(ss, 'register', this.http);
   }
 
   updateStep1(registerInfo: RegisterInfo) {
     this.oneFinishedSource.next(registerInfo);
+  }
+
+  updateStep2(file: File) {
+    this.twoFinishedSource.next(file);
+  }
+
+  updateStep3(phone: string) {
+    this.thrFinishedSource.next(phone);
+  }
+
+  uploadProfilePhoto(photoToUpload: File,  cookie: string): Observable<SimpleString> {
+    const formData: FormData = new FormData();
+    formData.append('file', photoToUpload, photoToUpload.name);
+    return this.http
+      .post<SimpleString>
+      (
+        this.extendurl('register/add-phone'),
+        formData,
+        { 
+          headers: {
+            'Cookies': cookie,
+            'action': "add-photo"
+          }
+        }
+      ).pipe
+      (
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
+  sendPhone(phone: string, cookie: string): Observable<SimpleString> {
+    const phoneNumber: SimpleString = new SimpleString(phone);
+    return this.http
+      .post<SimpleString>
+      (
+        this.extendurl('register/add-phone'),
+        phoneNumber,
+        { 
+          headers: {
+            'Cookies': cookie,
+            'action': "add-phone"
+          }
+        }
+      ).pipe
+      (
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
+  sendInfo(registerInfo: RegisterInfo, cookie: string): Observable<SimpleString> {
+    return this.http
+      .post<SimpleString>
+      (
+        this.extendurl('register/add-phone'),
+        registerInfo,
+        { 
+          headers: {
+            'Cookies': cookie,
+            'action': "add-info"
+          }
+        }
+      ).pipe
+      (
+        retry(2),
+        catchError(this.handleError)
+      );
   }
 
 }

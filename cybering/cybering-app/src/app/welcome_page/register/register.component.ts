@@ -13,14 +13,17 @@ import { Subscription } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
   registerInfo: RegisterInfo;
-  subscription: Subscription;
+  photoToUpload: File | null = null;
+  phone: string =  '';
+  subscription1: Subscription;
+
 
   constructor(
     private cookieService: CookieService,
     private registerService: RegisterService
   ) {
     this.registerInfo = new RegisterInfo();
-    this.subscription = this.registerService.oneFinished$.subscribe(
+    this.subscription1 = this.registerService.oneFinished$.subscribe(
       regInf => {
         this.registerInfo = regInf;
       }
@@ -37,7 +40,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
+    this.subscription1.unsubscribe();
+
   }
 
 }

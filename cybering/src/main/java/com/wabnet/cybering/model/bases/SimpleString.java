@@ -23,4 +23,11 @@ public class SimpleString {
     public void setData(String data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "SimpleString{" +
+                "data='" + data + '\'' +
+                '}';
+    }
 }

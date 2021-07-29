@@ -1,3 +1,24 @@
+<div class="container navbar-container">
+	<div class="row align-items-center mt-3">
+		<div class="col-4 text-nowrap">
+			<div class="logo-img-div ml">
+				<a class="navbar-logo-link " href="/">
+					<img class="logo-img mb-1" src="favicon.ico" alt="logo" width="35px" height="35px">
+					<p class="logo-text-ring d-inline">bering</p>
+				</a>	
+			</div>
+		</div>
+		<div class="col-5"></div>
+		<div class="col-3 d-flex justify-content-end align-items-center">
+				<div class="register-div">
+					<a class="btn btn-outline-light regbtn text-nowrap" href="/register" role="button">Join now</a>
+				</div>
+				<div class="fullsign-div">
+					<a class="btn btn-outline-primary signbtn text-nowrap" href="/fullsignin" role="button">Sign in</a>
+				</div>
+		</div>
+	</div>
+</div>
 <div class="container base-grid">
 	<div class="container login-container">
 		<div class="row">
@@ -18,31 +39,40 @@
 							<div class="row">
 								<div class="col">
 									<div class="login-title">
-										<p class="login-text">Log in to your <span class="blue-color">Cy</span>bering community</p>
+										<p class="login-text">Log in to your <span class="blue-color">Cy</span>bering
+											community</p>
 									</div>
 								</div>
 							</div>
-							<form class="login-form" [formGroup]="signinForm" (ngSubmit)="signinSubmit()" #signForm="ngForm">
+							<form class="login-form" [formGroup]="signinForm" (ngSubmit)="signinSubmit()"
+								#signForm="ngForm">
 								<div class="row g-3 align-items-center mb-3">
 									<div class="col-md-5 mb-3 col-auto">
 										<label for="loginInputEmail" class="form-label">Email</label>
-										<input type="email" class="form-control" id="loginInputEmail" formControlName="emailControl" [(ngModel)]="signInInfo.email">
+										<input type="email" class="form-control" id="loginInputEmail"
+											formControlName="emailControl" [(ngModel)]="signInInfo.email">
 									</div>
 									<div class="col-md-2 col-3">
 									</div>
 									<div class="col-md-5 mb-3 col-auto">
 										<label for="loginInputPassword" class="form-label">Password</label>
-										<input type="password" class="form-control" id="loginInputPassword" formControlName="passwordControl" [(ngModel)]="signInInfo.password">
+										<input type="password" class="form-control" id="loginInputPassword"
+											formControlName="passwordControl" [(ngModel)]="signInInfo.password">
 									</div>
 								</div>
-								<div class="row" *ngIf="!this.signinForm.controls.emailControl.errors?.required && this.signinForm.controls.emailControl.errors?.email">
+								<div class="row"
+									*ngIf="!this.signinForm.controls.emailControl.errors?.required && this.signinForm.controls.emailControl.errors?.email">
 									<div class="col" *ngIf="!this.signinForm.controls.passwordControl.errors?.required">
 										<hr class="error-hr">
 										<p class="error-msg">Please provide a valid email address</p>
 									</div>
-									<div class="col" *ngIf="this.signinForm.controls.passwordControl.errors?.required">
+
+								</div>
+								<div class="row" *ngIf="this.signinForm.controls.passwordControl.errors?.required">
+									<div class="col">
 										<hr class="error-hr">
 										<p class="error-msg">Please provide a password</p>
+
 									</div>
 								</div>
 								<div class="row" *ngIf="this.signInFailed()">

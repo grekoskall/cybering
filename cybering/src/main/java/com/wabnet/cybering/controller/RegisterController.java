@@ -2,10 +2,7 @@ package com.wabnet.cybering.controller;
 
 
 import com.wabnet.cybering.model.bases.SimpleString;
-import com.wabnet.cybering.model.signin.info.RegisterInfo;
-import com.wabnet.cybering.model.signin.tokens.AuthToken;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
-import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.AuthTokenMaker;
@@ -23,43 +20,26 @@ public class RegisterController {
     @Autowired
     private final AuthTokenMaker authTokenMaker;
 
-
     public RegisterController(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, AuthTokenMaker authTokenMaker) {
         this.professionalRepository = professionalRepository;
         this.authenticationRepository = authenticationRepository;
         this.authTokenMaker = authTokenMaker;
     }
 
-    /*@PostMapping("/register")
-    public AuthToken register(@RequestBody RegisterInfo registerInfo) {
-        if ( !professionalRepository.findByEmail(registerInfo.getEmail()).isEmpty() ) {
-            System.out.println("Found a user with the same email: " + registerInfo.getEmail());
-            return new AuthToken("used");
-        }
-
-        String token = authTokenMaker.makeToken(
-                registerInfo.getEmail(),
-                registerInfo.getFirstName(),
-                registerInfo.getLastName(),
-                registerInfo.getPassword()
-        );
-
-        authenticationRepository.save(new Authentication(token, registerInfo.getEmail()));
-        professionalRepository.save(new Professional(registerInfo.getFirstName(), registerInfo.getLastName(), 0, registerInfo.getEmail()) );
-        return new AuthToken(token);
-    }*/
-
     @PostMapping("/register")
     public SimpleString register(@RequestBody SimpleString simpleString) {
-        if ( !professionalRepository.findByEmail(simpleString.getData()).isEmpty() ) {
-            System.out.println("Found a user with the same email: " + simpleString.getData());
+        System.out.println("Register request from: " + simpleString.getData());
+        if (professionalRepository.findByEmail(simpleString.getData()).isPresent()) {
+            System.out.println("\tFound a user with the same email: " + simpleString.getData());
             return new SimpleString("used");
         }
 
-        String token = authTokenMaker.makeToken(
-                simpleString.getData());
+        String token = authTokenMaker.makeToken(simpleString.getData());
+        if ( authenticationRepository.existsById(token) ) {
+            token = token.replaceAll(token.substring(2,5), token.substring(1,4));
+        }
 
-        authenticationRepository.save(new Authentication(token, simpleString.getData()));
+        authenticationRepository.save(new Authentication(token, simpleString.getData(), false));
         return new SimpleString(token);
     }
 }

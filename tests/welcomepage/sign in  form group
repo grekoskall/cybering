@@ -1,0 +1,26 @@
+this.fb.group({
+      emailControl: [this.registerForm.controls.emailControl.value, [Validators.required, Validators.email]],
+      firstNameControl: [this.registerForm.controls.firstNameControl.value, Validators.required],
+      lastNameControl: [this.registerForm.controls.lastNameControl.value, Validators.required],
+      passFields: this.fb.group({
+        passwordControl: [this.registerForm.controls.passwordControl.value, Validators.required],
+        passwordValidControl: [this.registerForm.controls.passwordValidControl.value, [Validators.required, Validators.minLength(6)]]
+      }, { validators: samePasswordValidator })
+    });
+
+
+    this.fb.group({
+    emailControl: [''],
+    firstNameControl: [''],
+    lastNameControl: [''],
+    passFields: this.fb.group({
+      passwordControl: [''],
+      passwordValidControl: ['']
+    }, { validators: samePasswordValidator })
+  });
+
+
+  this.signInForm = this.fb.group({
+    emailControl: [this.signInForm.controls.emailControl.value, [Validators.required, Validators.email]],
+    passwordControl: [this.signInForm.controls.passwordControl.value, Validators.required]
+  });

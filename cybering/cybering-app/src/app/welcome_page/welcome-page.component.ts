@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SignInInfo } from '../interfaces/signininfo';
 import { SignInService } from 'src/service/sign-in-service/sign-in.service';
-import { Authorization } from '../interfaces/authorization';
+
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { SimpleString } from '../interfaces/simplestring';
 
 @Component({
   selector: 'app-welcome-page',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class WelcomePageComponent implements OnInit {
 
   signInInfo: SignInInfo;
-  authToken: Authorization;
+  authToken: SimpleString;
 
   signInForm = this.fb.group({
     emailControl: [''],
@@ -27,7 +28,7 @@ export class WelcomePageComponent implements OnInit {
     private cookieService: CookieService,
     private router: Router) {
     this.signInInfo = new SignInInfo();
-    this.authToken = new Authorization();
+    this.authToken = new SimpleString('');
   }
 
   ngOnInit(): void {
@@ -42,7 +43,7 @@ export class WelcomePageComponent implements OnInit {
     // If the response is negative (NO )
     // Show error message above submit button
     // Reset form validator group at empty values
-     this.authToken = new Authorization();
+     this.authToken = new SimpleString('');
      this.cookieService.deleteAll();
     if (this.signInForm.controls.emailControl.value === '' && this.signInForm.controls.passwordControl.value === '') {
       this.signInForm = this.fb.group({
@@ -64,8 +65,8 @@ export class WelcomePageComponent implements OnInit {
     // Make an http request and get Session token and redirect
     this.signInService.signin(this.signInInfo).subscribe(
       (result) => {
-        if (!(result.SESSION_TOKEN === 'failed')) {
-          this.cookieService.set('ST_TOKEN', result.SESSION_TOKEN, { path: '/' });
+        if (!(result.data === 'failed')) {
+          this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
         }
         this.authToken = result;
         this.router.navigate(['/home-page']);
@@ -74,6 +75,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   signInFailed():boolean {
-    return this.authToken.SESSION_TOKEN === 'failed';
+    return this.authToken.data === 'failed';
   }
 }
