@@ -60,7 +60,7 @@ export class FullSignInComponent implements OnInit {
       (result) => {
         if (!(result.data === 'failed')) {
           this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
-          this.router.navigate(['/home-page']);
+          this.router.navigate(['/cybering/home-page']);
         }
         this.authToken = result;
         this.signinForm = this.fb.group({

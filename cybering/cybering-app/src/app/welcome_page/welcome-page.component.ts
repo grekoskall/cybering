@@ -69,7 +69,7 @@ export class WelcomePageComponent implements OnInit {
           this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
         }
         this.authToken = result;
-        this.router.navigate(['/home-page']);
+        this.router.navigate(['/cybering/home-page']);
       }
     );
   }

@@ -101,7 +101,7 @@ export class AddPhoneComponent implements OnInit {
                       if (result.data != 'failed') {
                         this.response = 'phone sent ok';
                         this.cookieService.set('ST_TOKEN', result.data);
-                        this.router.navigate(['/home-page']);
+                        this.router.navigate(['/cybering/home-page']);
                       } else {
                         this.response = 'phone sent no';
                         return;

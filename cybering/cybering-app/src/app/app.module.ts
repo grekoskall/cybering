@@ -12,11 +12,18 @@ import { FullSignInComponent } from './welcome_page/full-sign-in/full-sign-in.co
 import { ForgotPasswordComponent } from './welcome_page/forgot-password/forgot-password.component';
 import { SignInService } from 'src/service/sign-in-service/sign-in.service';
 import { CookieService } from 'ngx-cookie-service';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './cybering/home-page/home-page.component';
 import { SamePasswordDirective } from './validators/same-password.directive';
 import { AddPhoneComponent } from './welcome_page/register/add-phone/add-phone.component';
 import { BasicInfoComponent } from './welcome_page/register/basic-info/basic-info.component';
 import { RegisterService } from 'src/service/register-service/register.service';
+import { CyberingComponent } from './cybering/cybering.component';
+import { NetworkComponent } from './cybering/network/network.component';
+import { AdvertisementsComponent } from './cybering/advertisements/advertisements.component';
+import { DiscussionsComponent } from './cybering/discussions/discussions.component';
+import { NotificationsComponent } from './cybering/notifications/notifications.component';
+import { PersonalinfoComponent } from './cybering/personalinfo/personalinfo.component';
+import { SettingsComponent } from './cybering/settings/settings.component';
 
 
 @NgModule({
@@ -31,6 +38,13 @@ import { RegisterService } from 'src/service/register-service/register.service';
     SamePasswordDirective,
     AddPhoneComponent,
     BasicInfoComponent,
+    CyberingComponent,
+    NetworkComponent,
+    AdvertisementsComponent,
+    DiscussionsComponent,
+    NotificationsComponent,
+    PersonalinfoComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

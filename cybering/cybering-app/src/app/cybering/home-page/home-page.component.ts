@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from '../../service/auth-service/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  home_url = 'http://localhost:8080/home-page';
+  home_url = 'http://localhost:8080/cybering/home-page';
 
   constructor(
     private cookieService: CookieService,
-    private authService: AuthService,
     private router: Router) {
 
   }

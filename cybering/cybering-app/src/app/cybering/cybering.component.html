@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+		</div>
+	</div>
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
+		<div class="container-fluid ">
+			<a class="navbar-brand" href="/cybering"><img class="logo-img" src="favicon.ico" alt="logo"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+				aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+				<div class="navbar-nav me-auto mb-2 mb-lg-0 ">
+					<a class="nav-link active" aria-current="page" routerLink="/cybering/home-page"
+						routerLinkActive="active-link">Home</a>
+					<a class="nav-link" routerLink="/cybering/network" routerLinkActive="active-link">Network</a>
+					<a class="nav-link" routerLink="/cybering/advertisements" routerLinkActive="active-link">Advertisements</a>
+					<a class="nav-link" routerLink="/cybering/discussions" routerLinkActive="active-link">Discussions</a>
+					<a class="nav-link" routerLink="/cybering/notifications" routerLinkActive="active-link">Notifications</a>
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Account
+							<i class="bi bi-gear-wide-connected"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" routerLink="/cybering/personalinfo" routerLinkActive="active-link">Personal Info</a>
+							<a class="dropdown-item" routerLink="/cybering/settings" routerLinkActive="active-link">Settings</a>
+							<a class="dropdown-item" href="/">Log out</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</div>
+
+
+<router-outlet></router-outlet>
