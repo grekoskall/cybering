@@ -120,7 +120,7 @@ public class FileUploadController {
             return new SimpleString("failed");
         }
 
-        this.professionalRepository.save(new Professional(registerInfo.getFirstName(), registerInfo.getLastName(), registerInfo.getEmail(), registerInfo.getPassword(), file_path));
+        this.professionalRepository.save(new Professional(registerInfo.getEmail(), registerInfo.getFirstName(), registerInfo.getLastName(), file_path, registerInfo.getPassword()));
         System.out.println("\tRequest to add register info completed successfully");
         return new SimpleString("ok");
     }
@@ -183,7 +183,7 @@ public class FileUploadController {
         authenticationRepository.save(authentication);
         this.authenticationRepository.flushRepository();
         System.out.println("\tRequest to add a phone completed successfully");
-        System.out.println("Registration completed: " + professional.toString() + " | " + authentication.toString());
+        System.out.println("Registration completed: " + professional + " | " + authentication);
         return new SimpleString(newToken);
     }
 

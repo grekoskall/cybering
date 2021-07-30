@@ -24,6 +24,11 @@ import { DiscussionsComponent } from './cybering/discussions/discussions.compone
 import { NotificationsComponent } from './cybering/notifications/notifications.component';
 import { PersonalinfoComponent } from './cybering/personalinfo/personalinfo.component';
 import { SettingsComponent } from './cybering/settings/settings.component';
+import { NetworkListComponent } from './cybering/home-page/network-list/network-list.component';
+import { TimelineComponent } from './cybering/home-page/timeline/timeline.component';
+import { TimelinePostComponent } from './cybering/home-page/timeline/timeline-post/timeline-post.component';
+import { PersonalinfoListComponent } from './cybering/home-page/personalinfo-list/personalinfo-list.component';
+import { ProfileInfoService } from 'src/service/profile-info-service/profile-info.service';
 
 
 @NgModule({
@@ -45,6 +50,10 @@ import { SettingsComponent } from './cybering/settings/settings.component';
     NotificationsComponent,
     PersonalinfoComponent,
     SettingsComponent,
+    NetworkListComponent,
+    TimelineComponent,
+    TimelinePostComponent,
+    PersonalinfoListComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,7 @@ import { SettingsComponent } from './cybering/settings/settings.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SignInService, CookieService, RegisterService],
+  providers: [SignInService, CookieService, RegisterService, ProfileInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

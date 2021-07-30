@@ -4,67 +4,61 @@ package com.wabnet.cybering.model.users;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.annotation.processing.Generated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
+import java.util.Arrays;
 
 
 @Document
 
 public class Professional {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private String id;
+    private String email;
     private String firstName;
     private String lastName;
-    private Integer age;
-    private String email;
-    private String password;
-    private String photo;
+    private String age;
     private String phone;
-
+    private String photo;
+    private String workPosition;
+    private String workPlace;
+    private String bio;
+    private String[] workExperience;
+    private String[] education;
+    private String[] skills;
+    private String password;
 
     public Professional() {
     }
 
-    public Professional(String firstName, String lastName, String email, String password) {
+    public Professional(String email, String firstName, String lastName, String password) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = 0;
-        this.email = email;
         this.password = password;
-        this.photo = "default";
-        this.phone = "empty";
     }
 
-    public Professional(String firstName, String lastName, Integer age, String email, String password) {
+
+    public Professional(String email, String firstName, String lastName, String age, String phone, String photo, String workPosition, String workPlace, String bio, String[] workExperience, String[] education, String[] skills, String password) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.email = email;
-        this.password = password;
-        this.photo = "default";
-        this.phone = "empty";
-    }
-
-    public Professional(String firstName, String lastName, Integer age, String email, String password, String photo, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
-        this.password = password;
-        this.photo = photo;
         this.phone = phone;
+        this.photo = photo;
+        this.workPosition = workPosition;
+        this.workPlace = workPlace;
+        this.bio = bio;
+        this.workExperience = workExperience;
+        this.education = education;
+        this.skills = skills;
+        this.password = password;
     }
 
-    public Professional(String firstName, String lastName, String email, String password, String photo) {
+    public Professional(String email, String firstName, String lastName, String photo, String password) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = 0;
-        this.email = email;
-        this.password = password;
         this.photo = photo;
-        this.phone = "empty";
+        this.password = password;
     }
 
     public String getEmail() {
@@ -73,22 +67,6 @@ public class Professional {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getFirstName() {
@@ -107,20 +85,12 @@ public class Professional {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAge() {
+        return age;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getPhone() {
@@ -131,17 +101,86 @@ public class Professional {
         this.phone = phone;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getWorkPosition() {
+        return workPosition;
+    }
+
+    public void setWorkPosition(String workPosition) {
+        this.workPosition = workPosition;
+    }
+
+    public String getWorkPlace() {
+        return workPlace;
+    }
+
+    public void setWorkPlace(String workPlace) {
+        this.workPlace = workPlace;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String[] getWorkExperience() {
+        return workExperience;
+    }
+
+    public void setWorkExperience(String[] workExperience) {
+        this.workExperience = workExperience;
+    }
+
+    public String[] getEducation() {
+        return education;
+    }
+
+    public void setEducation(String[] education) {
+        this.education = education;
+    }
+
+    public String[] getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String[] skills) {
+        this.skills = skills;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Professional{" +
-                "id='" + id + '\'' +
+                "email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", photo='" + photo + '\'' +
+                ", age='" + age + '\'' +
                 ", phone='" + phone + '\'' +
+                ", photo='" + photo + '\'' +
+                ", workPosition='" + workPosition + '\'' +
+                ", workPlace='" + workPlace + '\'' +
+                ", bio='" + bio + '\'' +
+                ", workExperience=" + Arrays.toString(workExperience) +
+                ", education=" + Arrays.toString(education) +
+                ", skills=" + Arrays.toString(skills) +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
