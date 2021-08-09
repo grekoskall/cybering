@@ -29,6 +29,7 @@ import { TimelineComponent } from './cybering/home-page/timeline/timeline.compon
 import { TimelinePostComponent } from './cybering/home-page/timeline/timeline-post/timeline-post.component';
 import { PersonalinfoListComponent } from './cybering/home-page/personalinfo-list/personalinfo-list.component';
 import { ProfileInfoService } from 'src/service/profile-info-service/profile-info.service';
+import { NetworkService } from 'src/service/network-list-service/network.service';
 
 
 @NgModule({
@@ -62,7 +63,7 @@ import { ProfileInfoService } from 'src/service/profile-info-service/profile-inf
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SignInService, CookieService, RegisterService, ProfileInfoService],
+  providers: [SignInService, CookieService, RegisterService, ProfileInfoService, NetworkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

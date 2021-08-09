@@ -1,13 +1,18 @@
 package com.wabnet.cybering;
 
 import com.wabnet.cybering.model.signin.tokens.Authentication;
+import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.HashMap;
+import java.util.LinkedList;
 
 
 @SpringBootApplication
@@ -17,10 +22,13 @@ public class CyberingApplication implements CommandLineRunner {
 	private final ProfessionalRepository professionalRepository;
 	@Autowired
 	private final AuthenticationRepository authenticationRepository;
+	@Autowired
+	private final ConnectionRepository connectionRepository;
 
-	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository) {
+	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository) {
 		this.professionalRepository = professionalRepository;
 		this.authenticationRepository = authenticationRepository;
+		this.connectionRepository = connectionRepository;
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -31,6 +39,7 @@ public class CyberingApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		professionalRepository.deleteAll();
 		authenticationRepository.deleteAll();
+		connectionRepository.deleteAll();
 		professionalRepository.save(
 				new Professional(
 						"alicesm@yahop.ok",
@@ -72,7 +81,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"+3069723227",
 						"default",
 						"Recruiter",
-						"Loopster",
+						"Loopsterdam",
 						"Keeping an eye out for upcoming talents.",
 						new String[] {""},
 						new String[] {"Bachelors Degree", "Deree College"},
@@ -80,10 +89,28 @@ public class CyberingApplication implements CommandLineRunner {
 						"jacob")
 		);
 
-
 		authenticationRepository.save(new Authentication("alices_token", "alicesm@yahop.ok", true));
 		authenticationRepository.save(new Authentication("bobs_token", "mail@at.ok", true));
 		authenticationRepository.save(new Authentication("jacobs_token", "jacobsm@yahop.ok", true));
+
+
+		LinkedList<String> connections = new LinkedList<>();
+		connections.add("jacobsm@yahop.ok");
+		connections.add("alicesm@yahop.ok");
+		Connections entity = new Connections("mail@at.ok", connections);
+		connectionRepository.save(entity);
+
+		LinkedList<String> connections2 = new LinkedList<>();
+		connections2.add("jacobsm@yahop.ok");
+		connections2.add("mail@at.ok");
+		Connections entity2 = new Connections("alicesm@yahop.ok", connections2);
+		connectionRepository.save(entity2);
+
+		LinkedList<String> connections3 = new LinkedList<>();
+		connections3.add("alicesm@yahop.ok");
+		connections3.add("mail@at.ok");
+		Connections entity3 = new Connections("jacobsm@yahop.ok", connections3);
+		connectionRepository.save(entity3);
 	}
 
 }

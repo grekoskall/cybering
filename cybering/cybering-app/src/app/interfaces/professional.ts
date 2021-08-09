@@ -19,5 +19,15 @@ export class Professional {
 	education!: String[];
 	skills!: String[];
 	password!: String;
+}
 
+export class PersonalInfoList {
+	firstName !: String;
+	lastName !: String;
+	phone !: String;
+	photo_url !: String;
+	bio !: String;
+	workPosition !: String;
+	workPlace !: String;
+	skills !: String[];
 }

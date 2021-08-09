@@ -1,1 +1,38 @@
-<p>network-list works!</p>
+<div class="container m-0 p-0">
+	<div class="row">
+		<div class="col-8">
+			<div class="card" style="max-width: 540px;">
+				<div class="row pt-3 g-0 d-flex justify-content-center">
+					<div class="col-flex text-center">
+						<p class="title h5 mb-1">
+							Connections
+						</p>
+						<hr class="m-2 p-0 mb-3">
+					</div>
+					<div class="col-flex ">
+						<div class="empty"
+							*ngIf="connection_list === null || connection_list === undefined || connection_list.length === 0">
+							<p class="text-center">
+								No connections
+							</p>
+						</div>
+						<div class="not-empty"
+							*ngIf="connection_list != null && connection_list != undefined && connection_list.length != 0 ">
+							<div class="row m-1 ">
+								<div class="col-flex d-flex inline mb-2 mr-1"
+									*ngFor="let connection of connection_list; index as i;">
+									<a href="/cybering/profile/{{connection[2]}}" class="a">
+										<img src="{{connection[3]}}" class="prof " *ngIf="connection[3] != 'default'">
+										<img src="/assets/dpp.jpg" class="prof inline"
+											*ngIf="connection[3] === 'default'">
+										<span class="name inline m-2">{{connection[0]}} {{connection[1]}}</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

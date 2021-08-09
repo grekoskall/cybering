@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -52,17 +53,34 @@ public class FileUploadController {
 
         String file_path = "C:/tmp/" + "PROFILE_PHOTO" + "_" + cookie.substring(0,5);
         File photo = new File(file_path);
-        try {
-            profilePhoto.transferTo(photo);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("\tError while transferring to file: " + photo.getPath());
-            if ( photo.exists() && !photo.delete() ) {
-                System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
+        if ( profilePhoto.getName().equals("dpp.jpg") || profilePhoto.getOriginalFilename() == null) {
+            try {
+                profilePhoto.transferTo(photo);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("\tError while transferring to file: " + photo.getPath());
+                if ( photo.exists() && !photo.delete() ) {
+                    System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
+                }
+                this.authenticationRepository.flushRepository();
+                return new SimpleString("failed");
             }
-            this.authenticationRepository.flushRepository();
-            return new SimpleString("failed");
+        } else {
+            try {
+                FileWriter writer = new FileWriter(file_path);
+                writer.write(profilePhoto.getOriginalFilename());
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("\tError while writing to file: " + photo.getPath());
+                if ( photo.exists() && !photo.delete() ) {
+                    System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
+                }
+                this.authenticationRepository.flushRepository();
+                return new SimpleString("failed");
+            }
         }
+
         System.out.println("\tRequest to add a photo completed successfully");
         return new SimpleString("ok");
     }
@@ -120,7 +138,8 @@ public class FileUploadController {
             return new SimpleString("failed");
         }
 
-        this.professionalRepository.save(new Professional(registerInfo.getEmail(), registerInfo.getFirstName(), registerInfo.getLastName(), file_path, registerInfo.getPassword()));
+        this.professionalRepository.save(
+                new Professional(registerInfo.getEmail(), registerInfo.getFirstName(), registerInfo.getLastName(), file_path, registerInfo.getPassword()));
         System.out.println("\tRequest to add register info completed successfully");
         return new SimpleString("ok");
     }

@@ -4,38 +4,50 @@
 			<div class="card mb-3" style="max-width: 540px;">
 				<div class="row g-0 d-flex justify-content-center">
 					<div class="col-10">
-						<img src="{{img_url}}" class="img-fluid rounded-start pt-3" alt="profile photo">
+						<img src="{{img_url}}" class="img-fluid rounded-start pt-3">
 					</div>
 					<div class="col-flex">
 						<div class="card-body">
-							<h5 class="card-title">{{ professional.firstName}} {{ professional.lastName}}</h5>
-
-							<p class="work-position card-text m-0"></p>
+							<hr class="m-1">
+							<h5 class="card-title">{{ info.firstName}} {{ info.lastName}}</h5>
+							<p class="work-position card-text m-0">
+								{{info.workPosition}}
+							</p>
 							<p class="work-place card-text m-0">
 								<small class="text-muted">At: </small>
+								<span class="work-exists" *ngIf="info.workPlace != undefined ">
+									{{info.workPlace}}
+								</span>
+								<span class="work-doesnt" *ngIf="info.workPlace === (undefined || null)">
+									not-set
+								</span>
 							</p>
 							<p class="phone card-text m-0">
 								<small class="text-muted">Phone: </small>
-								{{professional.phone}}
+								{{info.phone}}
 							</p>
-
-							<div class="bio-div">
-								<p class="bio card-text m-0">
-
+							<hr class="m-1">
+							<div class="bio-div ">
+								<small class="text-muted">Bio: </small>
+								<p class="bio card-text m-0 text-center">
+									{{ info.bio }}
 								</p>
 							</div>
-
-							<div class="work-experience">
-
+							<hr class="m-1">
+							<div class="skills " *ngIf="info.skills != undefined">
+								<small class="text-muted">
+									Skills:
+								</small>
+								<ul class="list">
+									<li class="skill-list" *ngFor="let skill of info.skills; index as i;">
+										{{skill}}
+									</li>
+								</ul>
 							</div>
-							<div class="education">
-
+							<hr class="m-1" *ngIf="info.skills != undefined">
+							<div class="edit">
+								<a href="/cybering/personalinfo">Edit info</a>
 							</div>
-
-							<div class="skills">
-
-							</div>
-
 						</div>
 					</div>
 				</div>

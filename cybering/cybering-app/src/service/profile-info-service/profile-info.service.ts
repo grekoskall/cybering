@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BaseService } from '../base.service';
 import { catchError, retry } from 'rxjs/operators';
-import { Professional } from 'src/app/interfaces/professional';
+import { Professional, PersonalInfoList } from 'src/app/interfaces/professional';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +15,14 @@ export class ProfileInfoService extends BaseService {
     super();
   }
 
-  getProfileInfo(cookie: string): Observable<Professional> {
-    return this.http.post<Professional>(
+  getProfileInfo(cookie: string): Observable<PersonalInfoList> {
+    return this.http.post<PersonalInfoList>(
       this.extendurl('cybering/home-page'),
       null,
       {
         headers: {
           'Cookies': cookie,
-          'action': "profile-info"
+          'action': "profile-info-list"
         }
       }
     ).pipe(
@@ -30,6 +30,7 @@ export class ProfileInfoService extends BaseService {
       catchError(this.handleError)
     );
   }
+
 
 
 }

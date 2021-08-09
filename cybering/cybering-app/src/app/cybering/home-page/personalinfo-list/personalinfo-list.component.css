@@ -1,0 +1,15 @@
+.img-fluid {
+	width: 540px;
+	height: 250px;
+}
+
+.list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	padding-left: 1rem;
+}
+
+.card {
+	border-color: cornflowerblue;
+}

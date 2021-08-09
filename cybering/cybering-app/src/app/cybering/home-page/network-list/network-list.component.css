@@ -1,0 +1,28 @@
+.card {
+	border-color: cornflowerblue;
+}
+
+.title {
+	color: black;
+
+}
+
+.prof {
+	width: 3rem;
+	height: 3rem;
+}
+
+.not-empty {
+	max-height: 15rem;
+	overflow-y: scroll;
+}
+
+.a {
+	text-decoration: none;
+	color: black;
+}
+
+.a:hover {
+	color: cornflowerblue;
+	background-color: aliceblue;
+}
