@@ -22,20 +22,23 @@ export class PersonalinfoListComponent implements OnInit {
     this.profileInfoService.getProfileInfo(this.cookieService.get('ST_TOKEN')).subscribe(
       result => {
         this.info = result;
-        if ( this.info.photo_url === '' && this.info.firstName === '') {
-          router.navigate(['/']);
+        if (this.info.photo_url === '' && this.info.firstName === '') {
+          this.router.navigate(['/']);
         }
         if (this.info.photo_url != 'default' && this.info.photo_url != '') {
           this.img_url = 'assets/' + this.info.photo_url;
         } else {
           this.img_url = 'assets/dpp.jpg';
         }
+        if (this.img_url === '') {
+          this.router.navigate(['/']);
+        }
       }
     );
   }
 
   ngOnInit(): void {
-    
+
   }
 
 }
