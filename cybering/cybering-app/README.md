@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
 
+This project uses ngx-cookie-service to manage user cookies. Please make sure the service is included in the node_modules by running the following command:
+  npm install ngx-cookie-service --save
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
