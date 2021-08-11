@@ -9,6 +9,7 @@
   The project structure follows the convention to keep the client and server sides separated. Consequentially, the project is divided as follows:
    * Inside the 'cybering' folder resides the back-end server side and this is the folder that will be opened with IntelliJ IDEA. This folder also contains the 'cybering-app' folder in which the front-end client side is present.
    * Inside the 'cybering-app' folder resides the front-end client side and this is the folder that will be opened with Angular IDE.
+ 
   Both folders contain a 'src' folder in which the whole logic of each side is contained.
 
 # Adding the node-modules:
