@@ -1,15 +1,20 @@
-<div class="row g-0 m-0 p-0">
-	<div class="col-4 m-0 p-0">
+<div class="row g-0 m-0 p-0 cont-sticky">
+	<div class="col-4 m-0 p-0 cont-sticky">
 		<div class="row m-0 p-0">
-			<div class="col-flex">
+			<div class="col-flex ">
 				<app-personalinfo-list></app-personalinfo-list>
 			</div>
-			<div class="col-flex">
+			<div class="col-flex  ">
 				<app-network-list></app-network-list>
 			</div>
 		</div>
 	</div>
-	<div class="col-8 m-0 p-3">
+	<div class="col-7 m-0 p-3">
 		<app-timeline></app-timeline>
 	</div>
+	<div class="col-1 m-0 p-0 cont-sticky text-end">
+		<button type="button" (click)="topFunction()" id="btN" class="btn btn-link"><i class="bi bi-caret-up"></i>Top</button>
+		<app-timeline-post></app-timeline-post>
+	</div>
 </div>
+

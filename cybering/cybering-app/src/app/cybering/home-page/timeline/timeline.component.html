@@ -11,7 +11,7 @@
 					<p class="h3">
 						Your Timeline
 					</p>
-					<hr class="mt-0">
+
 				</div>
 				<div class="col-1">
 				</div>
@@ -82,21 +82,35 @@
 												&& article.media != null && article.media != undefined">
 													<div class="for-media-div">
 														<div class=" row">
-															<div class="col" *ngFor="let media of article.media; index as i">
-																<div class="if-media-div" *ngIf="media[0] === 'video'">
-																	<iframe class="video-frame" [src]="sanitizer.sanitize(media[1])" allowfullscreen> </iframe>
-																<iframe src="{{sanitizer.sanitize(media[1])}}" allowfullscreen></iframe>
+															<div class="col"
+																*ngFor="let media of article.media; index as i">
+																<div class="if-media-div text-center"
+																	*ngIf="media[0] === 'video'">
+																	<iframe class="video-frame"
+																		[src]="sanitizer.bypassSecurityTrustResourceUrl(media[1].toString())"
+																		frameborder="0" allowfullscreen> </iframe>
+
 																</div>
 
+																<div class="if-media-div text-center"
+																	*ngIf="media[0] === 'image'">
+																	<img class="video-frame"
+																		[src]="sanitizer.bypassSecurityTrustUrl(media[1].toString())">
+
+																</div>
+
+
 															</div>
+
+
 														</div>
 
 													</div>
-												</div> 
-												
+												</div>
+
 											</div>
 											<div class="col-1">
-												
+
 											</div>
 
 
@@ -106,22 +120,33 @@
 									</div>
 
 								</div>
-								<div class="row">
-
+								<div class="row mt-3">
 									<div class="col-flex d-flex inline mt-1">
-										<div class="row ">
-											<div class="col-auto d-flex inline">
-												<p class="d-flex inline likecount">
-													<i class="bi bi-check2-circle"></i> <span
-														class="likes">{{article.likes.length}}</span>
-												</p>
+										<div class="row g-0 ">
+											<div class="col-auto d-flex inline"
+												*ngIf="article != null && article != undefined">
+												<div class="likecount">
+													<button id="cmntBtn" type="button" class="btn btn-link ">
+														<i class="bi bi-check2-circle"></i>
+														<span class="likes">{{article.likes.length}}</span>
+													</button>
+												</div>
+
+												<div id="cmntModal" class="modal">
+													<div class="modal-content">
+														<span class="close">&times;</span>
+														<p> Some text in the Modal...</p>
+													</div>
+												</div>
+
 											</div>
+
+
 											<div class="col-auto if-exists-categories d-flex inline"
 												*ngIf="article != null && article != undefined && article.categories != null && article.categories != undefined">
 												<div class="row g-0 d-flex inline">
 													<div class="col-auto d-flex inline"
 														*ngFor="let category of article.categories; index as i;">
-
 														<p class="category">
 															{{category}}
 														</p>
@@ -155,10 +180,11 @@
 
 													</div>
 													<div class="col-10 comment-col">
-														<a class="comment-name" href="/cyberin/profile/{{comment[0]}}_{{comment[1]}}">
+														<a class="comment-name"
+															href="/cyberin/profile/{{comment[0]}}_{{comment[1]}}">
 															{{comment[0]}} {{comment[1]}}
 														</a>
-														
+
 														<div class="row">
 															<div class="col-1">
 
@@ -166,7 +192,7 @@
 															<div class="col-11">
 																<p class="comment-text">{{comment[2]}}</p>
 															</div>
-															
+
 														</div>
 
 													</div>
@@ -198,12 +224,9 @@
 			</div>
 
 
-			<div class="row">
 
-				<div class="col-flex">
-					<app-timeline-post></app-timeline-post>
-				</div>
-			</div>
+
+
 
 		</div>
 

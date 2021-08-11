@@ -148,7 +148,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"\"Beauty lies in the hands of the codeholder\"\n\nToday marks the start of the Intrawebel Annual Code Marathon(ACM), we will be accepting applicants until 18/8.\n\nThe theme this year will be an application that can help better the environment and urge people to become more environment friendly!\n\nWe are looking forward to the new applications this year, have fun coding!",
 						new String[][] {new String[] {"mail@at.ok", "This is a great opportunity and a great theme. I am up to the challenge :)"}, new String[] {"jacobsm@yahop.ok", "What a perfect way to show concern about the environment and promote talent, keep being awesome!"} },
 						new String[] {"jacobsm@yahop.ok", "mail@at.ok"},
-						new String[][] {new String[] {"image", "article_img1.png"}}
+						new String[][] {new String[] {"image", "/assets/foxwhite.jpg"}}
 				)
 		);
 		Likes like3 = likesRepository.findById("jacobsm@yahop.ok").get();
@@ -168,7 +168,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"I am announcing that the recruiting process for the summer season has ended, all applicants that passed will be privately messaged at the first week of September.\n\nCongratulations to all applicants and have a great summer holiday.",
 						new String[][] {new String[] {"mail@at.ok", "Congratulations to all applicants! I am looking forward to the results."}},
 						new String[] {"alicesm@yahop.ok", "mail@at.ok"},
-						new String[][] {new String[] {"video", "https://www.youtube.com/watch?v=1Bix44C1EzY"}}
+						new String[][] {new String[] {"video", "https://www.youtube-nocookie.com/embed/1Bix44C1EzY"}}
 				)
 		);
 
