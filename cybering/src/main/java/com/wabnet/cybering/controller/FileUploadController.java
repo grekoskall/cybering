@@ -1,9 +1,11 @@
 package com.wabnet.cybering.controller;
 
+import com.wabnet.cybering.model.articles.Likes;
 import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.info.RegisterInfo;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.posts.LikesRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.AuthTokenMaker;
@@ -15,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -23,12 +27,14 @@ import java.util.Optional;
 public class FileUploadController {
     private final AuthenticationRepository authenticationRepository;
     private final ProfessionalRepository professionalRepository;
+    private final LikesRepository likesRepository;
     @Autowired
     private final AuthTokenMaker authTokenMaker;
 
-    public FileUploadController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, AuthTokenMaker authTokenMaker) {
+    public FileUploadController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, LikesRepository likesRepository, AuthTokenMaker authTokenMaker) {
         this.authenticationRepository = authenticationRepository;
         this.professionalRepository = professionalRepository;
+        this.likesRepository = likesRepository;
         this.authTokenMaker = authTokenMaker;
     }
 
@@ -137,9 +143,22 @@ public class FileUploadController {
             this.authenticationRepository.flushRepository();
             return new SimpleString("failed");
         }
+        List<Professional> name_check = this.professionalRepository.findByFirstName(registerInfo.getFirstName());
+        if ( !name_check.isEmpty() ) {
+            for (Professional prof_check :
+                    name_check) {
+                if (prof_check.getLastName().equals(registerInfo.getLastName())) {
+                    System.out.println("\tError: found professional with same First and Last name");
+                    return new SimpleString("failed");
+                }
+                }
+        }
 
         this.professionalRepository.save(
                 new Professional(registerInfo.getEmail(), registerInfo.getFirstName(), registerInfo.getLastName(), file_path, registerInfo.getPassword()));
+        this.likesRepository.save(
+                new Likes(registerInfo.getEmail(), new LinkedList<>())
+        );
         System.out.println("\tRequest to add register info completed successfully");
         return new SimpleString("ok");
     }

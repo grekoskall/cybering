@@ -114,7 +114,7 @@ public class ProfessionalsController {
 
         Optional<Connections> connections = connectionRepository.findById(professional.get().getEmail());
         if ( connections.isEmpty() ) {
-            System.out.println("\tThis user doens't have any connections: " + token.getEmail());
+            System.out.println("\tThis user doesn't have any connections: " + token.getEmail());
             return null;
         }
 

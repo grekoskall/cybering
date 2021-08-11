@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SignInInfo } from '../interfaces/signininfo';
 import { SignInService } from 'src/service/sign-in-service/sign-in.service';
-
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SimpleString } from '../interfaces/simplestring';

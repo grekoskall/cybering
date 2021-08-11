@@ -17,12 +17,181 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-flex">
-					<div class="article">
+			<div class="row article-row">
+				<div class="col-1">
 
+				</div>
+				<div class="col-10 article-col">
+					<div class="article" *ngIf="articles_list != null && articles_list != undefined">
+
+						<div class="row small-article-row" *ngFor="let article of articles_list; index as i;">
+							<div class="col-1">
+
+							</div>
+							<div class="col-10 small-article-col">
+								<div class="row">
+									<div class="col-flex ">
+										<div class="row g-1">
+											<div class="col-auto">
+												<a href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
+													<img class="article-profile-image"
+														src="assets/{{article.photo_url}}">
+												</a>
+											</div>
+											<div class="col-auto m-0 text-wrap">
+												<a class="article-link"
+													href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
+
+													<p class="article-title m-0 ">
+														{{article.firstName}} {{article.lastName}}
+
+													</p>
+												</a>
+												<a class="article-small-link"
+													href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
+
+													<p class="article-title-small text-muted m-0 ">{{article.title}}</p>
+
+												</a>
+												<p class="article-time">
+
+													{{article.timestamp}}
+												</p>
+
+
+
+											</div>
+
+
+
+										</div>
+									</div>
+								</div>
+								<div class="row">
+
+									<div class="col-flex mt-3">
+										<div class="row">
+											<div class="col-1">
+
+											</div>
+											<div class="col-10">
+												<p>
+													{{article.text}}
+												</p>
+												<div class="media-div" *ngIf="article != null && article != undefined 
+												&& article.media != null && article.media != undefined">
+													<div class="for-media-div">
+														<div class=" row">
+															<div class="col" *ngFor="let media of article.media; index as i">
+																<div class="if-media-div" *ngIf="media[0] === 'video'">
+																	<iframe class="video-frame" [src]="sanitizer.sanitize(media[1])" allowfullscreen> </iframe>
+																<iframe src="{{sanitizer.sanitize(media[1])}}" allowfullscreen></iframe>
+																</div>
+
+															</div>
+														</div>
+
+													</div>
+												</div> 
+												
+											</div>
+											<div class="col-1">
+												
+											</div>
+
+
+										</div>
+
+
+									</div>
+
+								</div>
+								<div class="row">
+
+									<div class="col-flex d-flex inline mt-1">
+										<div class="row ">
+											<div class="col-auto d-flex inline">
+												<p class="d-flex inline likecount">
+													<i class="bi bi-check2-circle"></i> <span
+														class="likes">{{article.likes.length}}</span>
+												</p>
+											</div>
+											<div class="col-auto if-exists-categories d-flex inline"
+												*ngIf="article != null && article != undefined && article.categories != null && article.categories != undefined">
+												<div class="row g-0 d-flex inline">
+													<div class="col-auto d-flex inline"
+														*ngFor="let category of article.categories; index as i;">
+
+														<p class="category">
+															{{category}}
+														</p>
+
+													</div>
+												</div>
+											</div>
+											<div class="col-auto">
+
+											</div>
+
+
+										</div>
+
+
+									</div>
+
+								</div>
+								<div class="row ">
+
+									<div class="col">
+
+										<hr>
+
+										<div class="row ">
+
+											<div class="col"
+												*ngIf="article != null && article != undefined && article.comments != null && article.comments != undefined">
+												<div class="row " *ngFor="let comment of article.comments; index as i;">
+													<div class="col-1">
+
+													</div>
+													<div class="col-10 comment-col">
+														<a class="comment-name" href="/cyberin/profile/{{comment[0]}}_{{comment[1]}}">
+															{{comment[0]}} {{comment[1]}}
+														</a>
+														
+														<div class="row">
+															<div class="col-1">
+
+															</div>
+															<div class="col-11">
+																<p class="comment-text">{{comment[2]}}</p>
+															</div>
+															
+														</div>
+
+													</div>
+													<div class="col-1">
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+									</div>
+								</div>
+
+							</div>
+							<div class="col-1">
+
+							</div>
+						</div>
 
 					</div>
+
+				</div>
+				<div class="col-1">
 
 				</div>
 
