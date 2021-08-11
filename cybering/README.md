@@ -37,4 +37,5 @@
   In order to have a better overview of the database, use MongoDB Compass with the following connection string:
       
     localhost:27017
-      
+     
+  The database for the application is under the name 'cybering' and should be viewable after running the Server Side.
