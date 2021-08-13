@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timeline-post.component.css']
 })
 export class TimelinePostComponent implements OnInit {
-
+  showPostArticle: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  postArticle():void {
+    this.showPostArticle = !this.showPostArticle;
   }
 
 }

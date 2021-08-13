@@ -7,10 +7,20 @@
   /* <-- this is the fix */
 }
 
+.reply-post{
+  border: 0.04rem solid cornflowerblue;
+  border-radius: 0.14rem;
+  padding: 1rem;
+  margin: 1rem;
+}
 .article-profile-image {
   width: 69px;
   height: 69px;
 
+}
+
+.reply {
+  margin-right: 1rem;
 }
 
 .small-article-col {
@@ -86,9 +96,10 @@
   text-decoration: none;
 }
 
-.video-frame {
+.image-frame {
   width: 50%;
   height: 10%;
+
 }
 
 

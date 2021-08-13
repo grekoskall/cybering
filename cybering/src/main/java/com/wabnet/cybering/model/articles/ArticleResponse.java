@@ -16,8 +16,14 @@ public class ArticleResponse {
     String[][] comments;
     String[] likes;
     String[][] media;
+    Boolean interested;
 
-    public ArticleResponse() {
+    public Boolean getInterested() {
+        return interested;
+    }
+
+    public void setInterested(Boolean interested) {
+        this.interested = interested;
     }
 
     @Override
@@ -34,7 +40,26 @@ public class ArticleResponse {
                 ", comments=" + Arrays.toString(comments) +
                 ", likes=" + Arrays.toString(likes) +
                 ", media=" + Arrays.toString(media) +
+                ", interested=" + interested +
                 '}';
+    }
+
+    public ArticleResponse() {
+    }
+
+    public ArticleResponse(String id, String title, String firstName, String lastName, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media, Boolean interested) {
+        this.id = id;
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.photo_url = photo_url;
+        this.timestamp = timestamp;
+        this.categories = categories;
+        this.text = text;
+        this.comments = comments;
+        this.likes = likes;
+        this.media = media;
+        this.interested = interested;
     }
 
     public ArticleResponse(String id, String title, String firstName, String lastName, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media) {

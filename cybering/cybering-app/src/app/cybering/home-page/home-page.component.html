@@ -1,5 +1,5 @@
 <div class="row g-0 m-0 p-0 cont-sticky">
-	<div class="col-4 m-0 p-0 cont-sticky">
+	<div class="col-3 m-0 p-0 cont-sticky">
 		<div class="row m-0 p-0">
 			<div class="col-flex ">
 				<app-personalinfo-list></app-personalinfo-list>
@@ -12,9 +12,12 @@
 	<div class="col-7 m-0 p-3">
 		<app-timeline></app-timeline>
 	</div>
-	<div class="col-1 m-0 p-0 cont-sticky text-end">
-		<button type="button" (click)="topFunction()" id="btN" class="btn btn-link"><i class="bi bi-caret-up"></i>Top</button>
+	<div class="col-2 m-0 p-0 cont-sticky ">
+		<div class="text-end">
+			<button type="button" (click)="topFunction()" id="btN" class="btn btn-link "><i
+					class="bi bi-caret-up"></i>Top</button>
+
+		</div>
 		<app-timeline-post></app-timeline-post>
 	</div>
 </div>
-

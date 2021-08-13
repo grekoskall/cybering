@@ -124,6 +124,14 @@ public class ArticleController {
                 Optional<Professional> prof2 = this.professionalRepository.findByEmail(comment[0]);
                 prof2.ifPresent(value -> articleComments.add(new String[]{value.getFirstName(), value.getLastName(), comment[1]}));
             }
+            boolean likes = false;
+            for ( String email: asas.getLikes() ) {
+                if ( email.equals(token.getEmail()) ) {
+                    likes = true;
+                    break;
+                }
+            }
+            Boolean finalLikes = likes;
             prof.ifPresent(value -> articleResponseList.add(
                     new ArticleResponse(
                             asas.getId(),
@@ -136,7 +144,8 @@ public class ArticleController {
                             asas.getText(),
                             articleComments.toArray(new String[0][]),
                             articleLikes.toArray(new String[0]),
-                            asas.getMedia()
+                            asas.getMedia(),
+                            finalLikes
                     )
             ));
         }

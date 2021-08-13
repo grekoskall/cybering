@@ -24,7 +24,7 @@
 				<div class="col-10 article-col">
 					<div class="article" *ngIf="articles_list != null && articles_list != undefined">
 
-						<div class="row small-article-row" *ngFor="let article of articles_list; index as i;">
+						<div class="row small-article-row" *ngFor="let article of articles_list; index as i_article;">
 							<div class="col-1">
 
 							</div>
@@ -67,9 +67,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row mb-0">
 
-									<div class="col-flex mt-3">
+									<div class="col-flex mt-3 mb-0">
 										<div class="row">
 											<div class="col-1">
 
@@ -86,15 +86,15 @@
 																*ngFor="let media of article.media; index as i">
 																<div class="if-media-div text-center"
 																	*ngIf="media[0] === 'video'">
-																	<iframe class="video-frame"
+																	<iframe class="image-frame"
 																		[src]="sanitizer.bypassSecurityTrustResourceUrl(media[1].toString())"
-																		frameborder="0" allowfullscreen> </iframe>
+																		allowfullscreen> </iframe>
 
 																</div>
 
 																<div class="if-media-div text-center"
 																	*ngIf="media[0] === 'image'">
-																	<img class="video-frame"
+																	<img class="image-frame"
 																		[src]="sanitizer.bypassSecurityTrustUrl(media[1].toString())">
 
 																</div>
@@ -121,13 +121,68 @@
 
 								</div>
 								<div class="row mt-3">
+									<div class="col-flex text-end m-0 ">
+										<div class="reply">
+											<button class="btn" (click)="changeReply(i_article)"><i
+													class="bi bi-reply"></i>Reply</button>
+										</div>
+									</div>
+									<div class="col-flex mb-3">
+										<div class="reply-post" *ngIf="comment_list[i_article]">
+											<div class="row">
+												<div class="col-1">
+
+												</div>
+												<div class="col-10">
+													<div class="row">
+														<div class="col-flex">
+															<p class="reply-explain mb-3">
+																Replying to {{article.firstName}}
+																{{article.lastName}}'s article:
+															</p>
+														</div>
+
+													</div>
+
+													<form>
+														<div class="row">
+															<div class="col-flex">
+																<textarea class="form-control"></textarea>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-auto">
+																<button class="btn btn-secondary mt-2"
+																	(click)="changeReply(i_article)">
+																	Cancel
+																</button>
+															</div>
+															<div class="col-auto text-end">
+																<button type="submit"
+																	class="btn btn-primary mt-2 ">Comment</button>
+
+															</div>
+
+														</div>
+													</form>
+
+												</div>
+												<div class="col-1">
+
+												</div>
+											</div>
+										</div>
+									</div>
+
 									<div class="col-flex d-flex inline mt-1">
 										<div class="row g-0 ">
 											<div class="col-auto d-flex inline"
 												*ngIf="article != null && article != undefined">
 												<div class="likecount">
 													<button id="cmntBtn" type="button" class="btn btn-link ">
-														<i class="bi bi-check2-circle"></i>
+														<i class="bi bi-check2-circle" *ngIf="!article.interested"></i>
+														<i class="bi bi-patch-check-fill"
+															*ngIf="article.interested"></i>
 														<span class="likes">{{article.likes.length}}</span>
 													</button>
 												</div>
@@ -161,11 +216,12 @@
 
 									<div class="col">
 
+
 										<hr>
 
-										<div class="row ">
+										<div class="row mb-2">
 
-											<div class="col"
+											<div class="col-flex"
 												*ngIf="article != null && article != undefined && article.comments != null && article.comments != undefined">
 												<div class="row " *ngFor="let comment of article.comments; index as i;">
 													<div class="col-1">
@@ -193,6 +249,7 @@
 													</div>
 												</div>
 											</div>
+
 										</div>
 
 

@@ -10,4 +10,5 @@ export class Article {
 	comments !: String[][];
 	likes !: String[];
 	media !: String[][];
+	interested !: boolean;
 }

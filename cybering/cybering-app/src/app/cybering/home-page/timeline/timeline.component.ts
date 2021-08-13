@@ -13,6 +13,7 @@ export class TimelineComponent implements OnInit {
   articles_list !: Article[];
   firstName !: String;
   lastName !: String;
+  comment_list: boolean[] = [];
 
 
   constructor(
@@ -24,7 +25,9 @@ export class TimelineComponent implements OnInit {
     this.articleService.getArticlesList(this.cookieService.get('ST_TOKEN')).subscribe(
       result => {
         this.articles_list = result as Article[];
-        
+        for(let article of this.articles_list) {
+          this.comment_list.push(false);
+        }
       }
     );
    }
@@ -32,6 +35,10 @@ export class TimelineComponent implements OnInit {
    
 
   ngOnInit(): void {
+  }
+
+  changeReply(index: number) {
+    this.comment_list[index] = !this.comment_list[index];
   }
 
 }

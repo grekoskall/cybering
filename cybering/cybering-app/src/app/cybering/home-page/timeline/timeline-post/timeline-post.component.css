@@ -1,0 +1,15 @@
+.container {
+	border: 0.04rem solid cornflowerblue;
+	padding: 1rem;
+	border-radius: 0.14rem;
+}
+
+.corn {
+	color: blue;
+}
+.post {
+	color: black;
+	background-color: white;
+	border: 0.04rem solid cornflowerblue;
+	padding: 1rem;
+}
