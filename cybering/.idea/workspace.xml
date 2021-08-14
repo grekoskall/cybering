@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/articlereply.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/articles/ArticleReply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/home-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/home-page.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/network-list/network-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/network-list/network-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/personalinfo-list/personalinfo-list.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/personalinfo-list/personalinfo-list.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline-post/timeline-post.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline-post/timeline-post.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline-post/timeline-post.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline-post/timeline-post.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline-post/timeline-post.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline-post/timeline-post.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/home-page/timeline/timeline.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/interfaces/article.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/article.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/articles-service/article.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/articles-service/article.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/ArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/articles/ArticleResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/articles/ArticleResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

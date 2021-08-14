@@ -19,6 +19,17 @@
 
 }
 
+.comt-msg {
+  margin-bottom: 0.5rem;
+  margin-left: 1.4rem;
+  color: palevioletred;
+}
+
+
+.color-red {
+  color: palevioletred;
+}
+
 .reply {
   margin-right: 1rem;
 }

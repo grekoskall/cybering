@@ -2,8 +2,10 @@ package com.wabnet.cybering.controller;
 
 
 import com.wabnet.cybering.model.articles.Article;
+import com.wabnet.cybering.model.articles.ArticleReply;
 import com.wabnet.cybering.model.articles.ArticleResponse;
 import com.wabnet.cybering.model.articles.Likes;
+import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
@@ -13,13 +15,12 @@ import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.DateComparator;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -152,5 +153,109 @@ public class ArticleController {
 
         System.out.println("\tReturning a article list.");
         return articleResponseList.toArray();
+    }
+
+
+    @PostMapping(value = "/cybering/home-page", headers = "action=reply-article")
+    public SimpleString replyArticle(@RequestHeader HttpHeaders httpHeaders, @RequestBody ArticleReply articleReply) {
+        System.out.println("Got a request to comment to an article: " + articleReply.getAid() + " | " + articleReply.getReply());
+        if ( articleReply.getAid() == null || articleReply.getReply() == null ) {
+            return new SimpleString("failed");
+        }
+        String cookie = httpHeaders.getFirst("Cookies");
+        if ( cookie == null ) {
+            System.out.println("\tCookie header is empty");
+            return new SimpleString("failed");
+        }
+        Authentication token = this.authenticationRepository.findByToken(cookie);
+        if (token == null) {
+            System.out.println("\tThe cookie doesn't match the records");
+            return new SimpleString("failed");
+        }
+        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        if ( professional.isEmpty() ) {
+            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            return new SimpleString("failed");
+        }
+        Optional<Article> article = this.articlesRepository.findById(articleReply.getAid());
+        if ( article.isEmpty() ) {
+            System.out.println("\tThe article ID doesn't exist in the records: " + articleReply.getAid());
+            return new SimpleString("failed");
+        }
+
+        if ( articleReply.getReply().replaceAll("[ \n\t]", "").length() == 0 ) {
+            System.out.println("\tThe reply given is empty: " + articleReply.getReply());
+            return new SimpleString("failed");
+        }
+
+
+        String[][] comms = article.get().getComments();
+        LinkedList<String[]> strings = new LinkedList<>(Arrays.stream(comms).toList());
+
+        strings.add(new String[] {professional.get().getEmail(), articleReply.getReply()});
+        article.get().setComments(strings.toArray(new String[0][]));
+        articlesRepository.save(article.get());
+        return new SimpleString("success");
+    }
+
+
+
+    @PostMapping(value = "/cybering/home-page", headers = "action=interest-article")
+    public SimpleString replyArticle(@RequestHeader HttpHeaders httpHeaders, @RequestBody SimpleString simpleString) {
+        System.out.println("Got a request to change interest to an article: " + simpleString.getData());
+        if ( simpleString.getData() == null) {
+            return new SimpleString("failed");
+        }
+        String cookie = httpHeaders.getFirst("Cookies");
+        if ( cookie == null ) {
+            System.out.println("\tCookie header is empty");
+            return new SimpleString("failed");
+        }
+        Authentication token = this.authenticationRepository.findByToken(cookie);
+        if (token == null) {
+            System.out.println("\tThe cookie doesn't match the records");
+            return new SimpleString("failed");
+        }
+        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        if ( professional.isEmpty() ) {
+            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            return new SimpleString("failed");
+        }
+        Optional<Article> article = this.articlesRepository.findById(simpleString.getData());
+        if ( article.isEmpty() ) {
+            System.out.println("\tThe article ID doesn't exist in the records: " + simpleString.getData());
+            return new SimpleString("failed");
+        }
+
+        LinkedList<String> likes = new LinkedList<String>(Arrays.stream(article.get().getLikes()).toList());
+
+        if ( likes.removeIf(email -> email.equals(professional.get().getEmail())) ) {
+            Optional<Likes> likesOptional = this.likesRepository.findById(professional.get().getEmail());
+            if ( likesOptional.isEmpty()) {
+                System.out.println("\tNo likes table found for the email!");
+                return new SimpleString("failed");
+            }
+            LinkedList<String> articleIds = likesOptional.get().getArticle_ids();
+            if ( !articleIds.removeIf(id -> id.equals(simpleString.getData()) ) ) {
+                System.out.println("\tThe article wasn't found in the likes table!");
+                return new SimpleString("failed");
+            }
+            this.likesRepository.save(likesOptional.get());
+            System.out.println("\tChanged article from liked to unliked");
+        } else {
+            likes.add(professional.get().getEmail());
+            Optional<Likes> optionalLikes = this.likesRepository.findById(professional.get().getEmail());
+            if ( optionalLikes.isEmpty() )  {
+                System.out.println("\tNo likes table found for the email!");
+                return new SimpleString("failed");
+            }
+            LinkedList<String> articleIds = optionalLikes.get().getArticle_ids();
+            articleIds.add(simpleString.getData());
+            this.likesRepository.save(optionalLikes.get());
+            System.out.println("\tChanged article from unliked to liked");
+        }
+        article.get().setLikes(likes.toArray(new String[0]));
+        this.articlesRepository.save(article.get());
+        return new SimpleString("success");
     }
 }

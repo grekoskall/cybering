@@ -7,7 +7,25 @@
 				<div class="col-1 ">
 
 				</div>
-				<div class="col-10 text-center ">
+				<div class="col-10 text-center">
+					<div class="comment-message" *ngIf="comment_success === -1">
+						<p class="h5 color- red">
+							Your comment couldn't be sent, please retry
+
+							<button class="btn comt-msg" (click)="resetCommentMessage()">
+								X
+							</button>
+						</p>
+					</div>
+					<div class="comment-message" *ngIf="interest_success === -1">
+						<p class="color-red ">
+							Your comment couldn't be sent, please retry
+
+							<button class="btn comt-msg" (click)="resetInterestSuccess()">
+								X
+							</button>
+						</p>
+					</div>
 					<p class="h3">
 						Your Timeline
 					</p>
@@ -144,10 +162,12 @@
 
 													</div>
 
-													<form>
+													<form [formGroup]="replyForm"
+														(ngSubmit)="reply(article.id, i_article)">
 														<div class="row">
 															<div class="col-flex">
-																<textarea class="form-control"></textarea>
+																<textarea class="form-control"
+																	formControlName="replyText"></textarea>
 															</div>
 														</div>
 														<div class="row">
@@ -179,7 +199,7 @@
 											<div class="col-auto d-flex inline"
 												*ngIf="article != null && article != undefined">
 												<div class="likecount">
-													<button id="cmntBtn" type="button" class="btn btn-link ">
+													<button id="cmntBtn" type="button" class="btn btn-link" (click)="changeInterest(article.id, i_article)">
 														<i class="bi bi-check2-circle" *ngIf="!article.interested"></i>
 														<i class="bi bi-patch-check-fill"
 															*ngIf="article.interested"></i>
