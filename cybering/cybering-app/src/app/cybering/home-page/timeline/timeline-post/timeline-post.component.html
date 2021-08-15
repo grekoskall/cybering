@@ -1,6 +1,21 @@
 <div class="container1 mt-5 text-center">
+	<div class="row" *ngIf="postSuccess === 1">
+		<div class="col-flex">
+			<p class="success">
+				New article posted successfully.
+			</p>
+		</div>
+	</div>
+	<div class="row" *ngIf="postSuccess === -1">
+		<div class="col-flex">
+			<p class="failed">
+				There was an error posting the article.
+			</p>
+		</div>
+	</div>
 	<button class="post h5 " (click)="postArticle()" *ngIf="!showPostArticle">Post new Article</button>
 	<div class="container" *ngIf="showPostArticle">
+		
 		<div class="row">
 			<div class="col-flex text-center">
 				<p class="h5">
@@ -9,54 +24,44 @@
 				<hr class="corn">
 			</div>
 		</div>
-		<form>
+		<form [formGroup]="articleForm" (ngSubmit)="post()">
 			<div class="row">
 				<div class="col-flex">
-
-					<div class="form-group">
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="11"></textarea>
+					<div class="text-area-div">
+						<textarea class="form-control" formControlName="articleText" id="articleText" rows="8"
+							placeholder="Write your post"></textarea>
 					</div>
-
-
 				</div>
 			</div>
-
 			<div class="row mt-3 g-0">
-
 				<div class="col-auto">
-
-					<div class="form-group">
-
-						<select class="form-control form-select" id="exampleFormControlSelect1">
+					<div class="select-media-div">
+						<select class="form-control form-select" formControlName="articleMediaType"
+							id="idarticleMediaType">
 							<option>Embed Media</option>
 							<option>Video</option>
 							<option>Url</option>
 							<option>Image</option>
 						</select>
 					</div>
-
+				</div>
+				<div class="col-flex mt-2 text-start">
+					<input type="text" class="media-url" formControlName="articleMediaUrl" id="idarticleMediaUrl"
+						placeholder="Enter url">
 				</div>
 				<div class="col-flex mt-2">
-					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter url">
+					<textarea class="media-url" formControlName="articleCategories" id="idarticleCategories"
+						placeholder="Type categories, separated by space" rows="2"></textarea>
 				</div>
 			</div>
-
 			<div class="row mt-3 text-center">
 				<div class="col-auto">
 					<button class="btn btn-secondary cancel" (click)="postArticle()">Cancel</button>
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary mb-2">Post</button>
-
 				</div>
-
 			</div>
-
-
-
 		</form>
-
 	</div>
-
-
 </div>

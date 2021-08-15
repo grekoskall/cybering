@@ -59,38 +59,25 @@
 											<div class="col-auto m-0 text-wrap">
 												<a class="article-link"
 													href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
-
 													<p class="article-title m-0 ">
 														{{article.firstName}} {{article.lastName}}
-
 													</p>
 												</a>
 												<a class="article-small-link"
 													href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
-
 													<p class="article-title-small text-muted m-0 ">{{article.title}}</p>
-
 												</a>
 												<p class="article-time">
-
 													{{article.timestamp}}
 												</p>
-
-
-
 											</div>
-
-
-
 										</div>
 									</div>
 								</div>
 								<div class="row mb-0">
-
 									<div class="col-flex mt-3 mb-0">
 										<div class="row">
 											<div class="col-1">
-
 											</div>
 											<div class="col-10">
 												<p>
@@ -103,40 +90,25 @@
 															<div class="col"
 																*ngFor="let media of article.media; index as i">
 																<div class="if-media-div text-center"
-																	*ngIf="media[0] === 'video'">
+																	*ngIf="media[0].toString() === 'video'">
 																	<iframe class="image-frame"
 																		[src]="sanitizer.bypassSecurityTrustResourceUrl(media[1].toString())"
 																		allowfullscreen> </iframe>
-
 																</div>
-
 																<div class="if-media-div text-center"
-																	*ngIf="media[0] === 'image'">
+																	*ngIf="media[0].toString() === 'image'">
 																	<img class="image-frame"
 																		[src]="sanitizer.bypassSecurityTrustUrl(media[1].toString())">
-
 																</div>
-
-
 															</div>
-
-
 														</div>
-
 													</div>
 												</div>
-
 											</div>
 											<div class="col-1">
-
 											</div>
-
-
 										</div>
-
-
 									</div>
-
 								</div>
 								<div class="row mt-3">
 									<div class="col-flex text-end m-0 ">
@@ -167,7 +139,7 @@
 														<div class="row">
 															<div class="col-flex">
 																<textarea class="form-control"
-																	formControlName="replyText"></textarea>
+																	formControlName="replyText" placeholder="Type your comment"></textarea>
 															</div>
 														</div>
 														<div class="row">

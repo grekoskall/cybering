@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { SimpleString } from 'src/app/interfaces/simplestring';
 import { ArticleReply } from 'src/app/interfaces/articlereply';
+import { ArticlePost } from 'src/app/interfaces/articlepost';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,27 @@ export class ArticleService extends BaseService {
     );
   }
 
+  postArticle(cookie: string, text: string, media: string, url: string, categories: string): Observable<SimpleString> {
+    let ap = new ArticlePost();
+    ap.articleText = text;
+    ap.articleMedia = media;
+    ap.articleUrl = url;
+    ap.articleCategories = categories;
+    return this.http.post<SimpleString>(
+      this.extendurl('cybering/home-page'),
+      ap,
+      {
+        headers: {
+          'Cookies': cookie,
+          'action': "post-article"
+        }
+      }
+    ).pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  }
+
   replyToArticle(cookie: string, ad: ArticleReply): Observable<SimpleString> {
     return this.http.post<SimpleString>(
       this.extendurl('cybering/home-page'),
@@ -49,7 +71,7 @@ export class ArticleService extends BaseService {
   }
 
   changeInterestToArticle(cookie: string, id: SimpleString): Observable<SimpleString> {
-        return this.http.post<SimpleString>(
+    return this.http.post<SimpleString>(
       this.extendurl('cybering/home-page'),
       id,
       {

@@ -92,8 +92,13 @@ export class TimelineComponent implements OnInit {
     ).subscribe(
       result => {
         if (result.data != "failed") {
-          this.articles_list[index].interested = !this.articles_list[index].interested;
           this.interest_success = 1;
+          if(this.articles_list[index].interested) {
+            this.articles_list[index].likes.length = this.articles_list[index].likes.length - 1;
+          } else {
+            this.articles_list[index].likes.length = this.articles_list[index].likes.length + 1;
+          }
+          this.articles_list[index].interested = !this.articles_list[index].interested;
         } else {
           this.interest_success = -1;
         }

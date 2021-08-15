@@ -1,10 +1,7 @@
 package com.wabnet.cybering.controller;
 
 
-import com.wabnet.cybering.model.articles.Article;
-import com.wabnet.cybering.model.articles.ArticleReply;
-import com.wabnet.cybering.model.articles.ArticleResponse;
-import com.wabnet.cybering.model.articles.Likes;
+import com.wabnet.cybering.model.articles.*;
 import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
@@ -20,10 +17,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -201,7 +197,7 @@ public class ArticleController {
 
 
     @PostMapping(value = "/cybering/home-page", headers = "action=interest-article")
-    public SimpleString replyArticle(@RequestHeader HttpHeaders httpHeaders, @RequestBody SimpleString simpleString) {
+    public SimpleString interestArticle(@RequestHeader HttpHeaders httpHeaders, @RequestBody SimpleString simpleString) {
         System.out.println("Got a request to change interest to an article: " + simpleString.getData());
         if ( simpleString.getData() == null) {
             return new SimpleString("failed");
@@ -227,7 +223,7 @@ public class ArticleController {
             return new SimpleString("failed");
         }
 
-        LinkedList<String> likes = new LinkedList<String>(Arrays.stream(article.get().getLikes()).toList());
+        LinkedList<String> likes = new LinkedList<>(Arrays.stream(article.get().getLikes()).toList());
 
         if ( likes.removeIf(email -> email.equals(professional.get().getEmail())) ) {
             Optional<Likes> likesOptional = this.likesRepository.findById(professional.get().getEmail());
@@ -258,4 +254,57 @@ public class ArticleController {
         this.articlesRepository.save(article.get());
         return new SimpleString("success");
     }
+
+    @PostMapping(value = "/cybering/home-page", headers = "action=post-article")
+    public SimpleString postArticle(@RequestHeader HttpHeaders httpHeaders, @RequestBody ArticlePost articlePost) {
+        System.out.println("Got a request to post an article: " + articlePost.toString());
+        if ( articlePost.getArticleText() == null ) {
+            return new SimpleString("failed");
+        }
+        if ( articlePost.getArticleText().replaceAll("[ \n\t]", "").equals("") ) {
+            System.out.println("\tGiven post text is empty");
+        }
+        String cookie = httpHeaders.getFirst("Cookies");
+        if ( cookie == null ) {
+            System.out.println("\tCookie header is empty");
+            return new SimpleString("failed");
+        }
+        Authentication token = this.authenticationRepository.findByToken(cookie);
+        if (token == null) {
+            System.out.println("\tThe cookie doesn't match the records");
+            return new SimpleString("failed");
+        }
+        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        if ( professional.isEmpty() ) {
+            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            return new SimpleString("failed");
+        }
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String[] categories = articlePost.getArticleCategories().split(" ");
+        String image = new String();
+        if ( professional.get().getPhoto().equals("default") ) {
+            image = "dpp.jpg";
+        } else {
+            image = professional.get().getPhoto();
+        }
+
+        this.articlesRepository.save(
+                new Article(
+                        professional.get().getWorkPosition() + " at " + professional.get().getWorkPlace(),
+                        professional.get().getEmail(),
+                        image,
+                        dateTimeFormatter.format(localDateTime),
+                        categories,
+                        articlePost.getArticleText(),
+                        new String[0][],
+                        new String[0],
+                        new String[][] {new String[] {articlePost.getArticleMedia().toLowerCase(), articlePost.getArticleUrl()}}
+                )
+        );
+        return new SimpleString("success");
+    }
+
+
 }
