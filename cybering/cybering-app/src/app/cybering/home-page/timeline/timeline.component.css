@@ -16,7 +16,11 @@
 .article-profile-image {
   width: 69px;
   height: 69px;
+}
 
+.link {
+  text-decoration: none;
+  
 }
 
 .comt-msg {

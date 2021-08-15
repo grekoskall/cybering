@@ -17,3 +17,7 @@
 .media-url {
 	width: 100%;
 }
+
+.failed {
+	color: palevioletred;
+}

@@ -100,6 +100,13 @@
 																	<img class="image-frame"
 																		[src]="sanitizer.bypassSecurityTrustUrl(media[1].toString())">
 																</div>
+																<div class="if-media-div text-end"
+																	*ngIf="media[0].toString() === 'url'">
+																	<a href="{{media[1].toString()}}" class="link">
+																		<i class="bi bi-link-45deg"></i>
+																		Link here
+																	</a>
+																</div>
 															</div>
 														</div>
 													</div>

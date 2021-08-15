@@ -66,8 +66,7 @@ export class TimelineComponent implements OnInit {
         this.server_reply = result;
         if (this.server_reply.data != 'failed') {
           this.comment_success = 1;
-          this.router.onSameUrlNavigation = "reload";
-          this.router.navigate([this.router.url]);
+          window.location.reload();
         } else {
           this.comment_success = -1;
           this.replyForm = this.fb.group({
@@ -99,6 +98,7 @@ export class TimelineComponent implements OnInit {
             this.articles_list[index].likes.length = this.articles_list[index].likes.length + 1;
           }
           this.articles_list[index].interested = !this.articles_list[index].interested;
+          
         } else {
           this.interest_success = -1;
         }

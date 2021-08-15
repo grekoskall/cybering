@@ -55,13 +55,13 @@ export class TimelinePostComponent implements OnInit {
         } else {
           this.postSuccess = 1;
           this.postArticle();
+          window.location.reload();
         }
         this.articleForm = this.fb.group({
           articleText: [''],
           articleMediaType: [''],
           articleMediaUrl: ['']
         });
-        
       }
     );
   }
