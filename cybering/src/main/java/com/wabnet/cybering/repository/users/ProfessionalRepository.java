@@ -18,6 +18,10 @@ public interface ProfessionalRepository extends MongoRepository<Professional, St
     @RestResource(path = "firstnames", rel = "First Names")
     List<Professional> findByFirstName(@Param("firstName") String firstName);
 
+    @RestResource(path = "lastnames", rel = "Last Names")
+    List<Professional> findByLastName(@Param("lastName") String lastName);
+
+
     @RestResource(path = "emails", rel="Emails")
     Optional<Professional> findByEmail(@Param("email") String email);
 

@@ -1,0 +1,24 @@
+.ml {
+	margin-left: 1rem;
+}
+
+.con-img {
+	width: 69px;
+	height: 69px;
+}
+
+.con-div, .search-div {
+	border: 0.04rem solid cornflowerblue;
+	border-radius: 0.14rem;
+	padding: 1rem;
+}
+
+.con-name {
+	color: black;
+	text-decoration: none;
+}
+
+.search-img {
+	width: 56px;
+	height: 56px;
+}

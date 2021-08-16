@@ -1,1 +1,102 @@
-<p>network works!</p>
+<div class="row mt-3">
+	<div class="col-1">
+	</div>
+	<div class="col-10 text-center mt-3" *ngIf="networkArray===null">
+		No connections...
+	</div>
+	<div class="col-10" >
+		<div class="row mb-2">
+			<div class="col-8">
+				<p class="h5">
+					Your connections:
+				</p>
+			</div>
+			<div class="col-4">
+				<p class="h5">
+					Search:
+				</p>
+			</div>
+		</div>
+		<div class="row ml" >
+			<div class="col-8 mb-2" *ngIf="networkArray!=null && networkArray!=undefined">
+				<div class="con-div mt-2" *ngFor="let connection of networkArray; index as i">
+					<div class="row">
+						<div class="col-auto">
+							<a class="con-a h5"
+								href="/cybering/profile/{{connection.firstName}}_{{connection.lastName}}">
+								<img src="/assets/{{connection.photo}}" class="con-img">
+							</a>
+						</div>
+						<div class="col">
+							<div class="row">
+								<div class="col text-nowrap">
+									<a class="con-name h4"
+										href="/cybering/profile/{{connection.firstName}}_{{connection.lastName}}">
+										{{connection.firstName}} {{connection.lastName}}
+									</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-auto">
+									<p class="h5">
+										<span class="text-muted">Workplace:</span> {{connection.workPlace}}
+									</p>
+								</div>
+								<div class="col">
+									<p class="h5">
+										<span class="text-muted">Workposition:</span>
+										{{connection.workPosition}}
+									</p>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a class="h5"
+										href="/cybering/profile/{{connection.firstName}}_{{connection.lastName}}">
+										Check profile
+									</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="input-group ml ">
+					<input #ss type="text" class="form-control" placeholder="Search network" aria-label="Search network"
+						aria-describedby="button-addon2">
+					<button class="btn btn-outline-secondary" type="button" id="button-addon2"
+						(click)="search(ss.value)"> <i class="bi bi-search"></i></button>
+				</div>
+				<div class="row ml"
+					*ngIf="searchArray!=null&&searchArray!=undefined&&searchArray.length>0">
+					<div class="col-flex" *ngFor="let search of searchArray; index as i">
+						<div class="search-div mt-2">
+							<div class="row ">
+								<div class="col-auto">
+									<a class="search-a h5" href="/cybering/profile/{{search[0]}}_{{search[1]}}">
+										<img src="/assets/{{search[2]}}" class="search-img">
+									</a>
+								</div>
+								<div class="col-auto">
+									<a class="con-name h4" href="/cybering/profile/{{search[0]}}_{{search[1]}}">
+										{{search[0]}} {{search[1]}}
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" *ngIf="searchArray===null">
+					<div class="col-flex mt-4 text-center">
+						No results...
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-1"></div>
+</div>

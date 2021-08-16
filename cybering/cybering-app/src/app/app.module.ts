@@ -35,7 +35,6 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageComponent } from './admin/manage/manage.component';
 import { ExportComponent } from './admin/export/export.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

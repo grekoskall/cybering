@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class NetworkListComponent implements OnInit {
   connection_list !: String[][];
 
-
   constructor(
     cookieService: CookieService,
     networkService: NetworkService,

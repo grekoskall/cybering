@@ -224,8 +224,6 @@ public class ArticleController {
         return new SimpleString("success");
     }
 
-
-
     @PostMapping(value = "/cybering/home-page", headers = "action=interest-article")
     public SimpleString interestArticle(@RequestHeader HttpHeaders httpHeaders, @RequestBody SimpleString simpleString) {
         System.out.println("Got a request to change interest to an article: " + simpleString.getData());
