@@ -58,11 +58,13 @@ export class FullSignInComponent implements OnInit {
 
     this.signInService.signin(this.signInInfo).subscribe(
       (result) => {
-        if (!(result.data === 'failed')) {
-          this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
+        if (!(result.token === 'failed')) {
+          this.cookieService.set('ST_TOKEN', result.token, { path: '/' });
+          if ( result.role === 'admin') {
+            this.router.navigate(['/admin/cybering']);
+          }
           this.router.navigate(['/cybering/home-page']);
         }
-        this.authToken = result;
         this.signinForm = this.fb.group({
           emailControl: [this.signinForm.controls.emailControl.value],
           passwordControl: [this.signinForm.controls.passwordControl.value]

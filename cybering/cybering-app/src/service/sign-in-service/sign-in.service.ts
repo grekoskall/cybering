@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 
 import { SignInInfo } from 'src/app/interfaces/signininfo';
 import { SimpleString } from 'src/app/interfaces/simplestring';
+import { SignInReply } from 'src/app/interfaces/signinreply';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,8 +20,8 @@ export class SignInService {
 
   constructor(private http: HttpClient) { }
 
-  signin(info: SignInInfo): Observable<SimpleString> {
-    return this.http.post<SimpleString>(this.url, info).pipe(
+  signin(info: SignInInfo): Observable<SignInReply> {
+    return this.http.post<SignInReply>(this.url, info).pipe(
       retry(2),
       catchError(this.handleError)
     );

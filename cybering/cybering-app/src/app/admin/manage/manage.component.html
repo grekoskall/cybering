@@ -1,0 +1,64 @@
+
+<div class="row mt-5">
+	<div class="col" *ngIf="professionalArray != undefined && professionalArray != null">
+		<div class="row">
+			<div class="col">
+				Name
+			</div>
+			<div class="col">
+				Email
+			</div>
+			<div class="col">
+				Password
+			</div>
+			<div class="col">
+				Age
+			</div>
+			<div class="col">
+				Phone
+			</div>
+			<div class="col">
+				Position
+			</div>
+			<div class="col">
+				Workplace
+			</div>
+			<div class="col">
+				Link
+			</div>
+			<hr class="hr">
+		</div>
+		<div class="prof-div" *ngFor="let professional of professionalArray; index as i">
+
+			<div class="row mb-2">
+				<div class="col">
+					{{professional.firstName}} {{professional.lastName}}
+				</div>
+				<div class="col">
+					{{professional.email}}
+				</div>
+				<div class="col">
+					{{professional.password}}
+				</div>
+				<div class="col">
+					{{professional.age}}
+				</div>
+				<div class="col">
+					{{professional.phone}}
+				</div>
+				<div class="col">
+					{{professional.workPosition}}
+				</div>
+				<div class="col">
+					{{professional.workPlace}}
+				</div>
+				<div class="col">
+					<a href="/cybering/profile/{{professional.firstName}}_{{professional.lastName}}">
+						Info page
+					</a>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>

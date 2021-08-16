@@ -1,0 +1,43 @@
+<div class="container back" *ngIf="canObserve">
+	<div class="row mb-3">
+		<div class="col-flex text-center">
+			<p class="h3 admin-colr">
+				Administration Desk
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-auto">
+			<button class="btn btn-primary" routerLink="/admin/cybering/manage" routerLinkActive="active-link active">
+				Manage
+			</button>
+			
+		</div>
+		<div class="col-auto">
+			<button class="btn btn-primary" routerLink="/admin/cybering/export" routerLinkActive="active-link active">
+				Export Data
+			</button>
+		</div>
+		<div class="col text-end">
+			<button class="btn btn-secondary" (click)="logout()">Log Out</button>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col-10">
+			<router-outlet></router-outlet>
+		</div>
+		
+	</div>
+</div>
+<div class="container mt-5" *ngIf="!canObserve">
+	<div class="row mt-5">
+		<div class="col-2">
+		</div>
+		<div class="col-8 mt-5 text-center">
+			<div class="spinner-grow" role="status">
+			</div>
+		</div>
+		<div class="col-2">
+		</div>
+	</div>
+</div>

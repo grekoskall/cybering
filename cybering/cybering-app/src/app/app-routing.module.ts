@@ -17,6 +17,9 @@ import { DiscussionsComponent } from './cybering/discussions/discussions.compone
 import { NotificationsComponent } from './cybering/notifications/notifications.component';
 import { PersonalinfoComponent } from './cybering/personalinfo/personalinfo.component';
 import { SettingsComponent } from './cybering/settings/settings.component';
+import { AdminComponent } from './admin/admin.component';
+import { ManageComponent } from './admin/manage/manage.component';
+import { ExportComponent } from './admin/export/export.component';
 
 
 @NgModule({
@@ -24,6 +27,11 @@ import { SettingsComponent } from './cybering/settings/settings.component';
     BrowserModule,
     RouterModule.forRoot([
       { path: '', component: WelcomePageComponent },
+      { path: 'admin/cybering', component: AdminComponent, canActivate: [AuthGuard], children: [
+        { path: '', component: ManageComponent, canActivate: [AuthGuard] },
+        { path: 'manage', component: ManageComponent, canActivate: [AuthGuard] },
+        { path: 'export', component: ExportComponent, canActivate: [AuthGuard] },
+      ]},
       {
         path: 'cybering', component: CyberingComponent, canActivate: [AuthGuard], children: [
           { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
@@ -46,7 +54,6 @@ import { SettingsComponent } from './cybering/settings/settings.component';
 
         ]
       },
-
       { path: '**', component: PageNotFoundComponent }
     ]),
   ],

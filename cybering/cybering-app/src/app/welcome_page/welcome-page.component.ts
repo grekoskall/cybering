@@ -28,6 +28,7 @@ export class WelcomePageComponent implements OnInit {
     private router: Router) {
     this.signInInfo = new SignInInfo();
     this.authToken = new SimpleString('');
+    this.cookieService.deleteAll();
   }
 
   ngOnInit(): void {
@@ -42,8 +43,8 @@ export class WelcomePageComponent implements OnInit {
     // If the response is negative (NO )
     // Show error message above submit button
     // Reset form validator group at empty values
-     this.authToken = new SimpleString('');
-     this.cookieService.deleteAll();
+    this.authToken = new SimpleString('');
+    this.cookieService.deleteAll();
     if (this.signInForm.controls.emailControl.value === '' && this.signInForm.controls.passwordControl.value === '') {
       this.signInForm = this.fb.group({
         emailControl: [''],
@@ -64,16 +65,22 @@ export class WelcomePageComponent implements OnInit {
     // Make an http request and get Session token and redirect
     this.signInService.signin(this.signInInfo).subscribe(
       (result) => {
-        if (!(result.data === 'failed')) {
-          this.cookieService.set('ST_TOKEN', result.data, { path: '/' });
+        if (!(result.token === 'failed')) {
+          this.cookieService.set('ST_TOKEN', result.token, { path: '/' });
+        } else {
+          this.authToken.data = "failed";
+          return;
         }
-        this.authToken = result;
-        this.router.navigate(['/cybering/home-page']);
+        if (result.role === 'admin') {
+          this.router.navigate(['/admin/cybering/manage']);
+        } else {
+          this.router.navigate(['/cybering/home-page']);
+        }
       }
     );
   }
 
-  signInFailed():boolean {
+  signInFailed(): boolean {
     return this.authToken.data === 'failed';
   }
 }

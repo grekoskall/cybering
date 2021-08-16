@@ -31,6 +31,9 @@ import { PersonalinfoListComponent } from './cybering/home-page/personalinfo-lis
 import { ProfileInfoService } from 'src/service/profile-info-service/profile-info.service';
 import { NetworkService } from 'src/service/network-list-service/network.service';
 import { ArticleService } from 'src/service/articles-service/article.service';
+import { AdminComponent } from './admin/admin.component';
+import { ManageComponent } from './admin/manage/manage.component';
+import { ExportComponent } from './admin/export/export.component';
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { ArticleService } from 'src/service/articles-service/article.service';
     TimelineComponent,
     TimelinePostComponent,
     PersonalinfoListComponent,
+    AdminComponent,
+    ManageComponent,
+    ExportComponent,
   ],
   imports: [
     BrowserModule,

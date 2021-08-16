@@ -1,12 +1,16 @@
 package com.wabnet.cybering;
 
 import com.wabnet.cybering.model.articles.Article;
+import com.wabnet.cybering.model.articles.Comments;
 import com.wabnet.cybering.model.articles.Likes;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
+import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.posts.ArticlesRepository;
+import com.wabnet.cybering.repository.posts.CommentsRepository;
 import com.wabnet.cybering.repository.posts.LikesRepository;
+import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
@@ -15,8 +19,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Collections;
 import java.util.LinkedList;
-
+import java.util.List;
 
 
 @SpringBootApplication
@@ -32,13 +37,19 @@ public class CyberingApplication implements CommandLineRunner {
 	private final ArticlesRepository articlesRepository;
 	@Autowired
 	private final LikesRepository likesRepository;
+	@Autowired
+	private final AdminRepository adminRepository;
+	@Autowired
+	private final CommentsRepository commentsRepository;
 
-	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository) {
+	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository) {
 		this.professionalRepository = professionalRepository;
 		this.authenticationRepository = authenticationRepository;
 		this.connectionRepository = connectionRepository;
 		this.articlesRepository = articlesRepository;
 		this.likesRepository = likesRepository;
+		this.adminRepository = adminRepository;
+		this.commentsRepository = commentsRepository;
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -52,6 +63,10 @@ public class CyberingApplication implements CommandLineRunner {
 		connectionRepository.deleteAll();
 		articlesRepository.deleteAll();
 		likesRepository.deleteAll();
+		adminRepository.deleteAll();
+		adminRepository.save(
+				new Admins("admin@mail.ko", "admin")
+		);
 		professionalRepository.save(
 				new Professional(
 						"alicesm@yahop.ok",
@@ -113,6 +128,7 @@ public class CyberingApplication implements CommandLineRunner {
 				})
 		);
 
+		authenticationRepository.save(new Authentication("admin_token", "admin@mail.ko", true));
 		authenticationRepository.save(new Authentication("alices_token", "alicesm@yahop.ok", true));
 		authenticationRepository.save(new Authentication("bobs_token", "mail@at.ok", true));
 		authenticationRepository.save(new Authentication("jacobs_token", "jacobsm@yahop.ok", true));
@@ -153,6 +169,7 @@ public class CyberingApplication implements CommandLineRunner {
 		Likes like3 = likesRepository.findById("jacobsm@yahop.ok").get();
 		like3.getArticle_ids().add("1");
 		likesRepository.save(like3);
+
 		Likes like4 = likesRepository.findById("mail@at.ok").get();
 		like4.getArticle_ids().add("1");
 		likesRepository.save(like4);
@@ -196,6 +213,24 @@ public class CyberingApplication implements CommandLineRunner {
 		like.getArticle_ids().add("3");
 		likesRepository.save(like);
 
+		commentsRepository.save(
+				new Comments(
+						"mail@at.ok",
+						new LinkedList<String>(List.of(new String[]{"1", "2"}))
+				)
+		);
+		commentsRepository.save(
+				new Comments(
+						"alicesm@yahop.ok",
+						new LinkedList<String>(List.of(new String[]{"3"}))
+				)
+		);
+		commentsRepository.save(
+				new Comments(
+						"jacobsm@yahop.ok",
+						new LinkedList<String>(List.of(new String[]{"1"}))
+				)
+		);
 
 	}
 

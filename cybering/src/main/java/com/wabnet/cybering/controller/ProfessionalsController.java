@@ -1,11 +1,13 @@
 package com.wabnet.cybering.controller;
 
-import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.info.PersonalInfoList;
 import com.wabnet.cybering.model.signin.info.SignInfo;
+import com.wabnet.cybering.model.signin.response.SignInResponse;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
+import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
@@ -25,35 +27,43 @@ public class ProfessionalsController {
     private final ProfessionalRepository professionalRepository;
     private final AuthenticationRepository authenticationRepository;
     private final ConnectionRepository connectionRepository;
+    private final AdminRepository adminRepository;
 
-    public ProfessionalsController(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository) {
+    public ProfessionalsController(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, AdminRepository adminRepository) {
         this.professionalRepository = professionalRepository;
         this.authenticationRepository = authenticationRepository;
         this.connectionRepository = connectionRepository;
+        this.adminRepository = adminRepository;
     }
 
     @PostMapping("/")
-    public SimpleString singIn(@RequestBody SignInfo signInfo) {
+    public SignInResponse singIn(@RequestBody SignInfo signInfo) {
         System.out.println("Sign In request from " + signInfo.getEmail());
         Optional<Professional> professional = professionalRepository.findByEmail(signInfo.getEmail());
-        if ( professional.isEmpty() ) {
+        Optional<Admins> admins = adminRepository.findById(signInfo.getEmail());
+        if (professional.isEmpty() && admins.isEmpty()) {
             System.out.println("\tEmail doesn't exist " + signInfo.getEmail());
-            return new SimpleString("failed");
+            return new SignInResponse("failed", "failed");
         }
-
-        if ( !professional.get().getPassword().equals(signInfo.getPassword())) {
-            System.out.println("\tUser " + signInfo.getEmail() + " provided wrong password");
-            return new SimpleString("failed");
-        }
-
         Authentication token = this.authenticationRepository.findByEmail(signInfo.getEmail());
-        if ( token == null ) {
+        if (token == null) {
             System.out.println("\tThis email doesn't have a token associated with it, but it exists in database, probably check data tables");
-            return new SimpleString("failed");
+            return new SignInResponse("failed", "failed");
         }
-
+        if (professional.isPresent()) {
+            if (!professional.get().getPassword().equals(signInfo.getPassword())) {
+                System.out.println("\tUser " + signInfo.getEmail() + " provided wrong password");
+                return new SignInResponse("failed", "failed");
+            }
+            System.out.println("\tNew Sign in from " + signInfo.getEmail());
+            return new SignInResponse(token.getToken(), "professional");
+        }
+        if (!admins.get().getPassword().equals(signInfo.getPassword())) {
+            System.out.println("\tUser " + signInfo.getEmail() + " provided wrong password");
+            return new SignInResponse("failed", "failed");
+        }
         System.out.println("\tNew Sign in from " + signInfo.getEmail());
-        return new SimpleString(token.getToken());
+        return new SignInResponse(token.getToken(), "admin");
     }
 
     @PostMapping(value = "/cybering/home-page", headers = "action=profile-info-list")
@@ -66,7 +76,7 @@ public class ProfessionalsController {
         }
         Authentication token = this.authenticationRepository.findByToken(cookie);
         if(token == null) {
-            System.out.println("\tThe cookie doesn't match the records");
+            System.out.println("\tThe cookie doesn't match the records: " + cookie);
             return new PersonalInfoList();
         }
         Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());

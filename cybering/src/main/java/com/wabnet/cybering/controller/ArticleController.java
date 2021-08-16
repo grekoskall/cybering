@@ -7,12 +7,13 @@ import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.posts.ArticlesRepository;
+import com.wabnet.cybering.repository.posts.CommentsRepository;
 import com.wabnet.cybering.repository.posts.LikesRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.DateComparator;
-import org.springframework.hateoas.Link;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,13 +30,15 @@ public class ArticleController {
     private final ProfessionalRepository professionalRepository;
     private final ConnectionRepository connectionRepository;
     private final LikesRepository likesRepository;
+    private final CommentsRepository commentsRepository;
 
-    public ArticleController(AuthenticationRepository authenticationRepository, ArticlesRepository articlesRepository, ProfessionalRepository professionalRepository, ConnectionRepository connectionRepository, LikesRepository likesRepository) {
+    public ArticleController(AuthenticationRepository authenticationRepository, ArticlesRepository articlesRepository, ProfessionalRepository professionalRepository, ConnectionRepository connectionRepository, LikesRepository likesRepository, CommentsRepository commentsRepository) {
         this.authenticationRepository = authenticationRepository;
         this.articlesRepository = articlesRepository;
         this.professionalRepository = professionalRepository;
         this.connectionRepository = connectionRepository;
         this.likesRepository = likesRepository;
+        this.commentsRepository = commentsRepository;
     }
 
 
@@ -191,6 +194,33 @@ public class ArticleController {
         strings.add(new String[] {professional.get().getEmail(), articleReply.getReply()});
         article.get().setComments(strings.toArray(new String[0][]));
         articlesRepository.save(article.get());
+
+        Optional<Comments> comments = this.commentsRepository.findById(professional.get().getEmail());
+        if ( comments.isEmpty() ) {
+            LinkedList<String> aids = new LinkedList<>();
+            aids.push(article.get().getId());
+            this.commentsRepository.save(
+                    new Comments(
+                            professional.get().getEmail(),
+                            aids
+                    )
+            );
+        } else {
+            LinkedList<String> aids = comments.get().getArticle_ids();
+            boolean flag = false;
+            for (String aid :
+                    aids) {
+                if(aid.equals(article.get().getId())) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                aids.push(article.get().getId());
+            }
+            comments.get().setArticle_ids(aids);
+            this.commentsRepository.save(comments.get());
+        }
         return new SimpleString("success");
     }
 
@@ -283,7 +313,7 @@ public class ArticleController {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
         LocalDateTime localDateTime = LocalDateTime.now();
         String[] categories = articlePost.getArticleCategories().split(" ");
-        String image = new String();
+        String image;
         if ( professional.get().getPhoto().equals("default") ) {
             image = "dpp.jpg";
         } else {
