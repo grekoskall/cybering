@@ -20,6 +20,9 @@ import { SettingsComponent } from './cybering/settings/settings.component';
 import { AdminComponent } from './admin/admin.component';
 import { ManageComponent } from './admin/manage/manage.component';
 import { ExportComponent } from './admin/export/export.component';
+import { AdvertisementPostComponent } from './cybering/advertisements/advertisement-post/advertisement-post.component';
+import { AdvertisementsApplicationsComponent } from './cybering/advertisements/advertisements-applications/advertisements-applications.component';
+import { AdvertisementsHomeComponent } from './cybering/advertisements/advertisements-home/advertisements-home.component';
 
 
 @NgModule({
@@ -37,7 +40,11 @@ import { ExportComponent } from './admin/export/export.component';
           { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
           { path: 'home-page', component: HomePageComponent, canActivate: [AuthGuard] },
           { path: 'network', component: NetworkComponent, canActivate: [AuthGuard] },
-          { path: 'advertisements', component: AdvertisementsComponent, canActivate: [AuthGuard] },
+          { path: 'advertisements', component: AdvertisementsComponent, canActivate: [AuthGuard], children: [
+            { path: 'home', component: AdvertisementsHomeComponent, canActivate: [AuthGuard] },
+            { path: 'post', component: AdvertisementPostComponent, canActivate: [AuthGuard]},
+            { path: 'applications', component: AdvertisementsApplicationsComponent, canActivate: [AuthGuard]}
+          ] },
           { path: 'discussions', component: DiscussionsComponent, canActivate: [AuthGuard] },
           { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
           { path: 'personalinfo', component: PersonalinfoComponent, canActivate: [AuthGuard] },
@@ -50,8 +57,6 @@ import { ExportComponent } from './admin/export/export.component';
         path: 'register', component: RegisterComponent, children: [
           { path: '', component: BasicInfoComponent },
           { path: 'add-phone', component: AddPhoneComponent, canActivate: [AuthGuard] },
-
-
         ]
       },
       { path: '**', component: PageNotFoundComponent }

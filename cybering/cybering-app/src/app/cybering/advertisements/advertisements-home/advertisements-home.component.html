@@ -1,0 +1,93 @@
+<div class="container">
+	<div class="row" *ngIf="applicationSuccess">
+		<div class="col-flex text-center">
+			<p class="h5 success">
+				Application successful!
+			</p>
+		</div>
+	</div>
+	<div class="row" *ngIf="applicationSuccess===false">
+		<div class="col-flex text-center">
+			<p class="h5 failed">
+				Application failed!
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-1">
+		</div>
+		<div class="col-10">
+			<div class="ad-div" *ngIf="advertisementArray!=null&&advertisementArray!=undefined">
+				<div class="row advrt" *ngFor="let adv of advertisementArray; index as i">
+					<div class="col-2">
+						<p class="h5">
+							<span class="text-muted">
+								Posted by:
+							</span>
+							{{adv.firstName}} {{adv.lastName}}
+						</p>
+						<p class="h5">
+							{{adv.workPosition}}
+							<span class="text-muted">
+								at
+							</span>
+							{{adv.workPlace}}
+						</p>
+					</div>
+					<div class="col-7">
+						<p class="h4">
+							{{adv.title}}
+						</p>
+						<p class="h5">
+							<span class="text-muted">
+								From:
+							</span>
+							{{adv.startDate}}
+							<span class="text-muted">
+								Until:
+							</span>
+							{{adv.endDate}}
+						</p>
+						<div class="desc">
+							<p class="h5">
+								<span class="text-muted">
+									Description:
+								</span>
+							</p>
+							<p class="h5">
+								{{adv.description}}
+							</p>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="skills-div" *ngIf="adv.skills!=undefined&&adv.skills!=null&&adv.skills.length>0">
+							<div class="row">
+								<p class="h5">
+									Required skills:
+								</p>
+								<div class="col-auto" *ngFor="let skill of adv.skills;index as j">
+									{{skill}}
+								</div>
+							</div>
+						</div>
+						<div class="skills-div" *ngIf="adv.skills===null || adv.skills.length===0">
+							<div class="row">
+								<p class="h5">
+									No needed requirements.
+								</p>
+							</div>
+						</div>
+						<div class="row g-3">
+						
+							<div class="col-auto text-center">
+								<button class="btn btn-primary" (click)="apply(adv.id)">Apply</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-1">
+		</div>
+	</div>
+</div>

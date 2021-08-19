@@ -1,0 +1,13 @@
+.advrt {
+	border: 0.04rem solid cornflowerblue;
+	border-radius: 0.14rem;
+	padding: 1rem;
+}
+
+.success {
+	color: teal;
+}
+
+.failed {
+	color: palevioletred;
+}

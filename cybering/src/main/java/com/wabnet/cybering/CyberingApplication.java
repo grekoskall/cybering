@@ -7,9 +7,7 @@ import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
-import com.wabnet.cybering.repository.posts.ArticlesRepository;
-import com.wabnet.cybering.repository.posts.CommentsRepository;
-import com.wabnet.cybering.repository.posts.LikesRepository;
+import com.wabnet.cybering.repository.posts.*;
 import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
@@ -19,7 +17,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,8 +38,11 @@ public class CyberingApplication implements CommandLineRunner {
 	private final AdminRepository adminRepository;
 	@Autowired
 	private final CommentsRepository commentsRepository;
+	@Autowired
+	private final AdvertisementsRepository advertisementsRepository;
 
-	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository) {
+
+	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository) {
 		this.professionalRepository = professionalRepository;
 		this.authenticationRepository = authenticationRepository;
 		this.connectionRepository = connectionRepository;
@@ -50,6 +50,8 @@ public class CyberingApplication implements CommandLineRunner {
 		this.likesRepository = likesRepository;
 		this.adminRepository = adminRepository;
 		this.commentsRepository = commentsRepository;
+		this.advertisementsRepository = advertisementsRepository;
+
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -64,6 +66,8 @@ public class CyberingApplication implements CommandLineRunner {
 		articlesRepository.deleteAll();
 		likesRepository.deleteAll();
 		adminRepository.deleteAll();
+		commentsRepository.deleteAll();
+		advertisementsRepository.deleteAll();
 		adminRepository.save(
 				new Admins("admin@mail.ko", "admin")
 		);

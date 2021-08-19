@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="row" *ngIf="adForm.invalid">
+		<div class="col-flex text-center">
+			<p class="h5 failed">
+				Please fill the advertisement form to submit.
+			</p>
+		</div>
+	</div>
+	<div class="row" *ngIf="postFailed">
+		<div class="col-flex text-center">
+			<p class="h5 failed">
+				Problem posting new advertisement.
+			</p>
+		</div>
+	</div>
+	<div class="row" *ngIf="postFailed===false">
+		<div class="col-flex text-center">
+			<p class="h5 success">
+				Posted successfully!
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+		</div>
+		<div class="col-8">
+			<div class="row">
+				<form [formGroup]="adForm" (ngSubmit)="post()">
+					<div class="col-flex text-center mb-2">
+						<div class="input-group">
+							<input  type="text" class="form-control" placeholder="Title" formControlName="adTitle">
+						</div>
+					</div>
+					<div class="col-flex text-center m-2">
+						<textarea placeholder="Description" class="form-control" formControlName="adDesc" rows="11"
+							cols="76"></textarea>
+					</div>
+					<div class="col-flex m-2">
+						<div class="input-group">
+							<span class="input-group-text">Skills </span>
+							<textarea class="form-control" aria-label="With textarea"
+								placeholder="Skills (separated by space)" formControlName="adSkills"></textarea>
+						</div>
+					</div>
+					<div class="col-flex m-2">
+						<label for="date">End Date:</label>
+						<input type="date" id="date" class="form-control" formControlName="adEnd">
+					</div>
+
+					<div class="col-flex mt-3 text-center">
+						<button type="submit" class="btn btn-primary">Submit new advertisement</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-2">
+
+		</div>
+
+	</div>
+</div>

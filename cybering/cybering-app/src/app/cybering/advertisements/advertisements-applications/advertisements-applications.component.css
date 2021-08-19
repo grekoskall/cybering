@@ -1,0 +1,10 @@
+.advrt {
+	border: 0.04rem solid cornflowerblue;
+	border-radius: 0.14rem;
+	padding: 1rem;
+}
+
+.link {
+	color: black;
+	text-decoration: none;
+}

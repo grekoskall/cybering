@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="row">
+		<div class="col-flex" *ngIf="applicationsArray!=null&&applicationsArray!=undefined&&applicationsArray.length>0">
+			<div class="row advrt" *ngFor="let application of applicationsArray; index as i">
+				<div class="col-flex text-center mb-1">
+					<p class="h4">
+						{{application.title}}
+					</p>
+					<p class="h5">
+						<span class="text-muted">
+							From: 
+						</span>
+						{{application.startDate}}
+						<span class="text-muted">
+							 Until:
+						</span>
+						{{application.endDate}}
+					</p>
+				</div>
+				<div class="col-flex mb-1">
+					<p class="h5">
+						{{application.description}}
+					</p>
+				</div>
+				<div class="col-flex mb-1">
+					<p class="h5">
+						{{application.skills}}
+					</p>
+				</div>
+				<div class="col-flex mb-1">
+					<p class="h4">
+						Applicants:
+					</p>
+					<div class="row" *ngIf="application.applicants!=null&&application.applicants!=undefined&&application.applicants.length>0">
+						<div class="col-auto" *ngFor="let applicant of application.applicants; index as j">
+							<a href="/cybering/profile/{{applicant[0]}}_{{applicant[1]}}" class="link">
+							{{applicant[0]}} {{applicant[1]}}
+							</a>
+						</div>
+					</div>
+					<div class="row" *ngIf="application.applicants.length===0">
+						<p class="h5">
+							No applications yet.
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

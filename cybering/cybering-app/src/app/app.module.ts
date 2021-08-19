@@ -34,6 +34,10 @@ import { ArticleService } from 'src/service/articles-service/article.service';
 import { AdminComponent } from './admin/admin.component';
 import { ManageComponent } from './admin/manage/manage.component';
 import { ExportComponent } from './admin/export/export.component';
+import { AdvertisementPostComponent } from './cybering/advertisements/advertisement-post/advertisement-post.component';
+import { AdvertisementsApplicationsComponent } from './cybering/advertisements/advertisements-applications/advertisements-applications.component';
+import { AdvertisementsHomeComponent } from './cybering/advertisements/advertisements-home/advertisements-home.component';
+import { AdvertService } from 'src/service/advert-service/advert.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,9 @@ import { ExportComponent } from './admin/export/export.component';
     AdminComponent,
     ManageComponent,
     ExportComponent,
+    AdvertisementPostComponent,
+    AdvertisementsApplicationsComponent,
+    AdvertisementsHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +76,7 @@ import { ExportComponent } from './admin/export/export.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ArticleService, SignInService, CookieService, RegisterService, ProfileInfoService, NetworkService],
+  providers: [ArticleService, SignInService, CookieService, RegisterService, ProfileInfoService, NetworkService, AdvertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
