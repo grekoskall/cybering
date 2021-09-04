@@ -5,44 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisement-post/advertisement-post.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisement-post/advertisement-post.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisement-post/advertisement-post.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisement-post/advertisement-post.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-applications/advertisements-applications.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-applications/advertisements-applications.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-applications/advertisements-applications.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-applications/advertisements-applications.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/advertisement.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/advert-service/advert.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/advert-service/advert.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/network-service/network.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/AdvertisementsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/advertisements/Advertisement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/advertisements/AdvertisementApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/advertisements/AdvertisementFull.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/advertisements/AdvertisementPost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/advertisements/Applications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/posts/AdvertisementsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/posts/ApplicationsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/utilities/AdComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/discussion.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/discussions-service/discussion.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cybering-app/src/service/discussions-service/discussion.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/DiscussionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/discussions/DiscussionReply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/utilities/DiscussionComparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/cybering.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/cybering.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/network/network.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/network/network.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cybering.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/posts/ArticlesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/posts/ArticlesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,11 +78,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.23055555" />
     <property name="project.structure.side.proportion" value="0.42716858" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -136,8 +123,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626268210225</updated>
+      <workItem from="1630602968900" duration="4339000" />
+      <workItem from="1630612720214" duration="2359000" />
+      <workItem from="1630753857114" duration="16534000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -25,6 +25,7 @@ public class Professional {
     private String[] education;
     private String[] skills;
     private String password;
+    private String lastDiscussionOpen;
 
     public Professional() {
     }
@@ -59,6 +60,23 @@ public class Professional {
         this.lastName = lastName;
         this.photo = photo;
         this.password = password;
+    }
+
+    public Professional(String email, String firstName, String lastName, String age, String phone, String photo, String workPosition, String workPlace, String bio, String[] workExperience, String[] education, String[] skills, String password, String lastDiscussionOpen) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.phone = phone;
+        this.photo = photo;
+        this.workPosition = workPosition;
+        this.workPlace = workPlace;
+        this.bio = bio;
+        this.workExperience = workExperience;
+        this.education = education;
+        this.skills = skills;
+        this.password = password;
+        this.lastDiscussionOpen = lastDiscussionOpen;
     }
 
     public String getEmail() {
@@ -165,6 +183,14 @@ public class Professional {
         this.password = password;
     }
 
+    public String getLastDiscussionOpen() {
+        return lastDiscussionOpen;
+    }
+
+    public void setLastDiscussionOpen(String lastDiscussionOpen) {
+        this.lastDiscussionOpen = lastDiscussionOpen;
+    }
+
     @Override
     public String toString() {
         return "Professional{" +
@@ -181,6 +207,7 @@ public class Professional {
                 ", education=" + Arrays.toString(education) +
                 ", skills=" + Arrays.toString(skills) +
                 ", password='" + password + '\'' +
+                ", lastDiscussionOpen='" + lastDiscussionOpen + '\'' +
                 '}';
     }
 }

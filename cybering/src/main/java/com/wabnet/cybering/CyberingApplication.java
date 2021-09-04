@@ -3,10 +3,13 @@ package com.wabnet.cybering;
 import com.wabnet.cybering.model.articles.Article;
 import com.wabnet.cybering.model.articles.Comments;
 import com.wabnet.cybering.model.articles.Likes;
+import com.wabnet.cybering.model.discussions.Discussion;
+import com.wabnet.cybering.model.discussions.Message;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.discussions.DiscussionsRepository;
 import com.wabnet.cybering.repository.posts.*;
 import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
@@ -17,6 +20,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,9 +44,11 @@ public class CyberingApplication implements CommandLineRunner {
 	private final CommentsRepository commentsRepository;
 	@Autowired
 	private final AdvertisementsRepository advertisementsRepository;
+	@Autowired
+	private final DiscussionsRepository discussionsRepository;
 
 
-	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository) {
+	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository, DiscussionsRepository discussionsRepository) {
 		this.professionalRepository = professionalRepository;
 		this.authenticationRepository = authenticationRepository;
 		this.connectionRepository = connectionRepository;
@@ -51,7 +57,7 @@ public class CyberingApplication implements CommandLineRunner {
 		this.adminRepository = adminRepository;
 		this.commentsRepository = commentsRepository;
 		this.advertisementsRepository = advertisementsRepository;
-
+		this.discussionsRepository = discussionsRepository;
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -68,6 +74,7 @@ public class CyberingApplication implements CommandLineRunner {
 		adminRepository.deleteAll();
 		commentsRepository.deleteAll();
 		advertisementsRepository.deleteAll();
+		discussionsRepository.deleteAll();
 		adminRepository.save(
 				new Admins("admin@mail.ko", "admin")
 		);
@@ -85,7 +92,8 @@ public class CyberingApplication implements CommandLineRunner {
 						new String[] {"Lead Producer", "Elixir of Life", "School Teacher", "Private School of Economics"},
 						new String[] {"Masters Degree", "Business Management", "Bachelors Degree", "Cambridge Economics"},
 						new String[] {"Leadership", "Marketing", "Human Resources", "Business Management", "Design", "Product Development"},
-						"alice")
+						"alice",
+						"1")
 		);
 		likesRepository.save(
 				new Likes("alicesm@yahop.ok", new LinkedList<>() {
@@ -105,7 +113,8 @@ public class CyberingApplication implements CommandLineRunner {
 						new String[] {"IT Support", "Gougle360"},
 						new String[] {"Bachelors Degree", "National and Kapodistrian University of Athens"},
 						new String[] {"Unix", "C++", "Java"},
-						"bob")
+						"bob",
+						"1")
 		);
 		likesRepository.save(
 				new Likes("mail@at.ok", new LinkedList<>() {
@@ -236,6 +245,33 @@ public class CyberingApplication implements CommandLineRunner {
 				)
 		);
 
+		Message message1 = new Message("11/08/2021 11:33", "mail@at.ok", "Hello Alice! How are you today? :)");
+		Message message2 = new Message("11/08/2021 11:35", "alicesm@yahop.ok", "Aloha. I'm fine, just a bit tired. Hbu?");
+		Message message3 = new Message("11/08/2021 11:36", "mail@at.ok", "Fixing some API issues rn. Just go home and get some sleep then. See you tomorrow...");
+		Message[] messageArray = new Message[]{message1, message2, message3};
+
+		discussionsRepository.save(
+				new Discussion(
+						"1",
+						"mail@at.ok",
+						"alicesm@yahop.ok",
+						messageArray
+				)
+		);
+
+		message1 = new Message("11/08/2021 11:33", "mail@at.ok", "Hello Jacob! How are you today? :)");
+		message2 = new Message("11/08/2021 11:35", "jacobsm@yahop.ok", "Aloha Bob. I'm fine, just a bit high on coke, bitch. Hbu?");
+		message3 = new Message("11/08/2021 11:42", "mail@at.ok", "Fixing some API issues rn. Just go home and get some sleep then. See you tomorrow...");
+		messageArray = new Message[]{message1, message2, message3};
+
+		discussionsRepository.save(
+				new Discussion(
+						"2",
+						"jacobsm@yahop.ok",
+						"mail@at.ok",
+						messageArray
+				)
+		);
 	}
 
 }

@@ -1,1 +1,76 @@
-<p>discussions works!</p>
+<div class="container">
+	<div class="row" *ngIf="discussionsExist===0">
+		<div class="col text-center">
+			<div class="spinner-border" role="status">
+				<!-- <span class="sr-only">Loading...</span> -->
+			</div>
+		</div>
+	</div>
+	<div class="row" *ngIf="discussionsExist===1">
+		<div class="col-4">
+			<div class="row" *ngFor="let discussion of discussionsArray; index as i">
+				<div class="col max">
+					<button [ngClass]="{'btn btn-light selections max' : true, 'selectedRow' : isSelectedArray[i]}"
+						(click)="onSelect(i)">
+						<div class="row">
+							| {{discussion.participant2}}
+						</div>
+						<div class="row">
+							<span class="msgPreview">
+								{{discussion.messagesArray[discussion.messagesArray.length-1].message.slice(0, 20) + "..."}}
+							</span>
+						</div>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="mainPanel">
+				<div class="row" *ngFor="let message of discussionsArray[selectedDiscussion].messagesArray; index as j">
+					<div class="col">
+						<div class="row">
+							<p class="h3 participantName">
+								{{message.sender}}
+							</p>
+						</div>
+						<div class="row">
+							<p class="h5 msgTimeStamp">
+								{{message.timeStamp}}
+							</p>
+						</div>
+						<div class="row">
+							<p class="h4 messageBox">
+								{{message.message}}
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<form [formGroup]="discussionForm" (ngSubmit)="onPost()">
+				<div class="row">
+					<div class="col-flex">
+						<div class="text-area">
+							<input type="text" class="reply" formControlName="discussionReply" placeholder="Enter a message ...">
+						</div>
+					</div>
+					<div class="col">
+						<button type="submit" class="btn btn-primary mb-2">
+							Send
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<div class="row" *ngIf="discussionsExist===-1">
+		<div class="col text-center">
+			<p class="h3 failed">
+				You have no messages yet.
+			</p>
+
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,38 @@
+.spinner-border {
+	width: 14rem;
+	height: 14rem;
+	margin-top: 10rem;
+}
+
+.selectedRow {
+	background-color: lightskyblue;
+}
+
+.selections{
+	padding-left: 2rem;
+	padding-right: 2rem;
+	border: 0.14rem solid cornflowerblue;
+}
+
+.max {
+	width: 15rem;
+}
+
+.msgPreview {
+	color: gray;
+	text-align: left;
+}
+
+.mainPanel {
+	margin: 1rem;
+	border: 0.14rem solid cornflowerblue;
+	padding: 1rem;
+}
+
+.msgTimeStamp {
+
+}
+
+.messageBox {
+	padding: 1.96rem;
+}
