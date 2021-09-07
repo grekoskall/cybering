@@ -13,7 +13,7 @@ import java.util.List;
 public interface AdvertisementsRepository extends MongoRepository<AdvertisementFull, String> {
 
     @RestResource(path = "advertisements", rel="Advertisements")
-    List<AdvertisementFull> findAllByEmail(@Param("email") String email);
+    List<AdvertisementFull> findAllByProfid(@Param("profid") String profid);
 
 
 }

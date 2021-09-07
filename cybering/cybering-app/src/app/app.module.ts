@@ -38,6 +38,7 @@ import { AdvertisementPostComponent } from './cybering/advertisements/advertisem
 import { AdvertisementsApplicationsComponent } from './cybering/advertisements/advertisements-applications/advertisements-applications.component';
 import { AdvertisementsHomeComponent } from './cybering/advertisements/advertisements-home/advertisements-home.component';
 import { AdvertService } from 'src/service/advert-service/advert.service';
+import { ProfileComponent } from './cybering/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { AdvertService } from 'src/service/advert-service/advert.service';
     AdvertisementPostComponent,
     AdvertisementsApplicationsComponent,
     AdvertisementsHomeComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

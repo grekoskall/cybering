@@ -5,14 +5,14 @@ import org.springframework.data.annotation.Id;
 public class Authentication {
     @Id
     private String token;
-    private String email;
+    private String profid;
     private boolean registered;
 
     public Authentication() {
     }
-    public Authentication(String token, String email, boolean registered) {
+    public Authentication(String token, String profid, boolean registered) {
         this.token = token;
-        this.email = email;
+        this.profid = profid;
         this.registered = registered;
     }
 
@@ -24,12 +24,21 @@ public class Authentication {
         this.token = TOKEN;
     }
 
-    public String getEmail() {
-        return email;
+    public String getProfid() {
+        return profid;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public String toString() {
+        return "Authentication{" +
+                "token='" + token + '\'' +
+                ", profid='" + profid + '\'' +
+                ", registered=" + registered +
+                '}';
+    }
+
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
     public boolean isRegistered() {
@@ -40,12 +49,4 @@ public class Authentication {
         this.registered = registered;
     }
 
-    @Override
-    public String toString() {
-        return "Authentication{" +
-                "token='" + token + '\'' +
-                ", email='" + email + '\'' +
-                ", registered=" + registered +
-                '}';
-    }
 }

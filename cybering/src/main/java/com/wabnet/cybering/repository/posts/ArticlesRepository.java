@@ -13,7 +13,7 @@ import java.util.List;
 public interface ArticlesRepository  extends MongoRepository<Article, String> {
 
     @RestResource(path = "articles", rel="Articles")
-    List<Article> findAllByEmail(@Param("email") String email);
+    List<Article> findAllByProfid(@Param("profid") String profid);
 
 
 }

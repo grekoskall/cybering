@@ -55,31 +55,31 @@ public class ArticleController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
-        Optional<Connections> connections = connectionRepository.findById(professional.get().getEmail());
+        Optional<Connections> connections = connectionRepository.findById(professional.get().getId());
 
         // Find articles the user posted
-        List<Article> articleList =  articlesRepository.findAllByEmail(token.getEmail());
+        List<Article> articleList =  articlesRepository.findAllByProfid(token.getProfid());
         // Find articles the user's connections posted and merge
         if ( connections.isEmpty() ) {
-            System.out.println("\tThis user doesn't have any connections: " + token.getEmail());
+            System.out.println("\tThis user doesn't have any connections: " + token.getProfid());
         } else {
-            for (String connection_email: connections.get().getList() ) {
+            for (String connection_profid: connections.get().getList() ) {
                 articleList.addAll(
-                        articlesRepository.findAllByEmail(connection_email)
+                        articlesRepository.findAllByProfid(connection_profid)
                 );
             }
         }
         // articles of non-connections that connections have shown interest
         if ( connections.isEmpty() ) {
-            System.out.println("\tThis user doesn't have any connections: " + token.getEmail());
+            System.out.println("\tThis user doesn't have any connections: " + token.getProfid());
         } else {
-            for (String connection_email: connections.get().getList() ) {
-                Optional<Likes> articles = likesRepository.findById(connection_email);
+            for (String connection_profid: connections.get().getList() ) {
+                Optional<Likes> articles = likesRepository.findById(connection_profid);
                 if ( articles.isEmpty() ) {
                     continue;
                 }
@@ -111,22 +111,22 @@ public class ArticleController {
 
         for (Article asas :
                 articleList) {
-            Optional<Professional> prof = this.professionalRepository.findByEmail(asas.getEmail());
+            Optional<Professional> prof = this.professionalRepository.findById(asas.getProfid());
             LinkedList<String> articleLikes = new LinkedList<>();
-            for ( String like_email : asas.getLikes() ) {
-                Optional<Professional> prof2 = this.professionalRepository.findByEmail(like_email);
+            for ( String like_profid : asas.getLikes() ) {
+                Optional<Professional> prof2 = this.professionalRepository.findById(like_profid);
                 prof2.ifPresent(value -> articleLikes.add(
                         value.getFirstName() + " " + value.getLastName()
                 ));
             }
             LinkedList<String[]> articleComments = new LinkedList<>();
             for ( String[] comment : asas.getComments() ) {
-                Optional<Professional> prof2 = this.professionalRepository.findByEmail(comment[0]);
-                prof2.ifPresent(value -> articleComments.add(new String[]{value.getFirstName(), value.getLastName(), comment[1]}));
+                Optional<Professional> prof2 = this.professionalRepository.findById(comment[0]);
+                prof2.ifPresent(value -> articleComments.add(new String[]{value.getFirstName(), value.getLastName(), comment[1], value.getId()}));
             }
             boolean likes = false;
-            for ( String email: asas.getLikes() ) {
-                if ( email.equals(token.getEmail()) ) {
+            for ( String profid: asas.getLikes() ) {
+                if ( profid.equals(token.getProfid()) ) {
                     likes = true;
                     break;
                 }
@@ -138,6 +138,7 @@ public class ArticleController {
                             asas.getTitle(),
                             value.getFirstName(),
                             value.getLastName(),
+                            asas.getProfid(),
                             asas.getPhoto_url(),
                             asas.getTimestamp(),
                             asas.getCategories(),
@@ -171,9 +172,9 @@ public class ArticleController {
             System.out.println("\tThe cookie doesn't match the records");
             return new SimpleString("failed");
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return new SimpleString("failed");
         }
         Optional<Article> article = this.articlesRepository.findById(articleReply.getAid());
@@ -191,17 +192,17 @@ public class ArticleController {
         String[][] comms = article.get().getComments();
         LinkedList<String[]> strings = new LinkedList<>(Arrays.stream(comms).toList());
 
-        strings.add(new String[] {professional.get().getEmail(), articleReply.getReply()});
+        strings.add(new String[] {professional.get().getId(), articleReply.getReply()});
         article.get().setComments(strings.toArray(new String[0][]));
         articlesRepository.save(article.get());
 
-        Optional<Comments> comments = this.commentsRepository.findById(professional.get().getEmail());
+        Optional<Comments> comments = this.commentsRepository.findById(professional.get().getId());
         if ( comments.isEmpty() ) {
             LinkedList<String> aids = new LinkedList<>();
             aids.push(article.get().getId());
             this.commentsRepository.save(
                     new Comments(
-                            professional.get().getEmail(),
+                            professional.get().getId(),
                             aids
                     )
             );
@@ -240,9 +241,9 @@ public class ArticleController {
             System.out.println("\tThe cookie doesn't match the records");
             return new SimpleString("failed");
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return new SimpleString("failed");
         }
         Optional<Article> article = this.articlesRepository.findById(simpleString.getData());
@@ -253,8 +254,8 @@ public class ArticleController {
 
         LinkedList<String> likes = new LinkedList<>(Arrays.stream(article.get().getLikes()).toList());
 
-        if ( likes.removeIf(email -> email.equals(professional.get().getEmail())) ) {
-            Optional<Likes> likesOptional = this.likesRepository.findById(professional.get().getEmail());
+        if ( likes.removeIf(profid -> profid.equals(professional.get().getId())) ) {
+            Optional<Likes> likesOptional = this.likesRepository.findById(professional.get().getId());
             if ( likesOptional.isEmpty()) {
                 System.out.println("\tNo likes table found for the email!");
                 return new SimpleString("failed");
@@ -267,8 +268,8 @@ public class ArticleController {
             this.likesRepository.save(likesOptional.get());
             System.out.println("\tChanged article from liked to unliked");
         } else {
-            likes.add(professional.get().getEmail());
-            Optional<Likes> optionalLikes = this.likesRepository.findById(professional.get().getEmail());
+            likes.add(professional.get().getId());
+            Optional<Likes> optionalLikes = this.likesRepository.findById(professional.get().getId());
             if ( optionalLikes.isEmpty() )  {
                 System.out.println("\tNo likes table found for the email!");
                 return new SimpleString("failed");
@@ -302,13 +303,13 @@ public class ArticleController {
             System.out.println("\tThe cookie doesn't match the records");
             return new SimpleString("failed");
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return new SimpleString("failed");
         }
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime localDateTime = LocalDateTime.now();
         String[] categories = articlePost.getArticleCategories().split(" ");
         String image;
@@ -321,7 +322,7 @@ public class ArticleController {
         this.articlesRepository.save(
                 new Article(
                         professional.get().getWorkPosition() + " at " + professional.get().getWorkPlace(),
-                        professional.get().getEmail(),
+                        professional.get().getId(),
                         image,
                         dateTimeFormatter.format(localDateTime),
                         categories,

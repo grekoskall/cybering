@@ -13,7 +13,7 @@ public class DateComparator implements Comparator<Article> {
         String s1 = article1.getTimestamp();
         String s2 = article2.getTimestamp();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date1, date2;
         try {
             date1 = dateFormat.parse(s1);

@@ -12,7 +12,7 @@ public class AdvertisementFull {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     String id;
-    String email;
+    String profid;
     String startDate;
     String endDate;
     String title;
@@ -20,8 +20,22 @@ public class AdvertisementFull {
     LinkedList<String> skills;
     LinkedList<String[]> applicants;
 
-    public AdvertisementFull(String email, String startDate, String endDate, String title, String description, LinkedList<String> skills, LinkedList<String[]> applicants) {
-        this.email = email;
+    @Override
+    public String toString() {
+        return "AdvertisementFull{" +
+                "id='" + id + '\'' +
+                ", profid='" + profid + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", skills=" + skills +
+                ", applicants=" + applicants +
+                '}';
+    }
+
+    public AdvertisementFull(String profid, String startDate, String endDate, String title, String description, LinkedList<String> skills, LinkedList<String[]> applicants) {
+        this.profid = profid;
         this.startDate = startDate;
         this.endDate = endDate;
         this.title = title;
@@ -41,26 +55,12 @@ public class AdvertisementFull {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "AdvertisementFull{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", skills=" + skills +
-                ", applicants=" + applicants +
-                '}';
+    public String getProfid() {
+        return profid;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
     public String getStartDate() {
@@ -111,9 +111,9 @@ public class AdvertisementFull {
         this.applicants = applicants;
     }
 
-    public AdvertisementFull(String id, String email, String startDate, String endDate, String title, String description, LinkedList<String> skills, LinkedList<String[]> applicants) {
+    public AdvertisementFull(String id, String profid, String startDate, String endDate, String title, String description, LinkedList<String> skills, LinkedList<String[]> applicants) {
         this.id = id;
-        this.email = email;
+        this.profid = profid;
         this.startDate = startDate;
         this.endDate = endDate;
         this.title = title;

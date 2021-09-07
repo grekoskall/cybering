@@ -95,10 +95,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"alice",
 						"1")
 		);
-		likesRepository.save(
-				new Likes("alicesm@yahop.ok", new LinkedList<>() {
-				})
-		);
+
 		professionalRepository.save(
 				new Professional(
 						"mail@at.ok",
@@ -116,10 +113,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"bob",
 						"1")
 		);
-		likesRepository.save(
-				new Likes("mail@at.ok", new LinkedList<>() {
-				})
-		);
+
 		professionalRepository.save(
 				new Professional(
 						"jacobsm@yahop.ok",
@@ -136,139 +130,155 @@ public class CyberingApplication implements CommandLineRunner {
 						new String[] {"Recruiting", "Motivating", "Inspiring"},
 						"jacob")
 		);
+
+		String aliceId = this.professionalRepository.findByEmail("alicesm@yahop.ok").get().getId();
+		String bobId = this.professionalRepository.findByEmail("mail@at.ok").get().getId();
+		String jacobId = this.professionalRepository.findByEmail("jacobsm@yahop.ok").get().getId();
+
+
 		likesRepository.save(
-				new Likes("jacobsm@yahop.ok", new LinkedList<>() {
+				new Likes(aliceId, new LinkedList<>() {
+				})
+		);
+
+		likesRepository.save(
+				new Likes(bobId, new LinkedList<>() {
+				})
+		);
+
+		likesRepository.save(
+				new Likes(jacobId, new LinkedList<>() {
 				})
 		);
 
 		authenticationRepository.save(new Authentication("admin_token", "admin@mail.ko", true));
-		authenticationRepository.save(new Authentication("alices_token", "alicesm@yahop.ok", true));
-		authenticationRepository.save(new Authentication("bobs_token", "mail@at.ok", true));
-		authenticationRepository.save(new Authentication("jacobs_token", "jacobsm@yahop.ok", true));
+		authenticationRepository.save(new Authentication("alices_token", aliceId, true));
+		authenticationRepository.save(new Authentication("bobs_token", bobId, true));
+		authenticationRepository.save(new Authentication("jacobs_token", jacobId, true));
 
 
 		LinkedList<String> connections = new LinkedList<>();
-		connections.add("jacobsm@yahop.ok");
-		connections.add("alicesm@yahop.ok");
-		Connections entity = new Connections("mail@at.ok", connections);
+		connections.add(jacobId);
+		connections.add(aliceId);
+		Connections entity = new Connections(bobId, connections);
 		connectionRepository.save(entity);
 
 		LinkedList<String> connections2 = new LinkedList<>();
-		connections2.add("jacobsm@yahop.ok");
-		connections2.add("mail@at.ok");
-		Connections entity2 = new Connections("alicesm@yahop.ok", connections2);
+		connections2.add(jacobId);
+		connections2.add(bobId);
+		Connections entity2 = new Connections(aliceId, connections2);
 		connectionRepository.save(entity2);
 
 		LinkedList<String> connections3 = new LinkedList<>();
-		connections3.add("alicesm@yahop.ok");
-		connections3.add("mail@at.ok");
-		Connections entity3 = new Connections("jacobsm@yahop.ok", connections3);
+		connections3.add(aliceId);
+		connections3.add(bobId);
+		Connections entity3 = new Connections(jacobId, connections3);
 		connectionRepository.save(entity3);
 
 		articlesRepository.save(
 				new Article(
 						"1",
 						"CEO at Intrawebel",
-						"alicesm@yahop.ok",
+						aliceId,
 						"dpp.jpg",
 						"11/08/2021 11:13",
 						new String[] {"Technology", "Environment", "Code Marathon"},
 						"\"Beauty lies in the hands of the codeholder\"\n\nToday marks the start of the Intrawebel Annual Code Marathon(ACM), we will be accepting applicants until 18/8.\n\nThe theme this year will be an application that can help better the environment and urge people to become more environment friendly!\n\nWe are looking forward to the new applications this year, have fun coding!",
-						new String[][] {new String[] {"mail@at.ok", "This is a great opportunity and a great theme. I am up to the challenge :)"}, new String[] {"jacobsm@yahop.ok", "What a perfect way to show concern about the environment and promote talent, keep being awesome!"} },
-						new String[] {"jacobsm@yahop.ok", "mail@at.ok"},
+						new String[][] {new String[] {bobId, "This is a great opportunity and a great theme. I am up to the challenge :)"}, new String[] {jacobId, "What a perfect way to show concern about the environment and promote talent, keep being awesome!"} },
+						new String[] {jacobId, bobId},
 						new String[][] {new String[] {"image", "/assets/foxwhite.jpg"}}
 				)
 		);
-		Likes like3 = likesRepository.findById("jacobsm@yahop.ok").get();
+		Likes like3 = likesRepository.findById(jacobId).get();
 		like3.getArticle_ids().add("1");
 		likesRepository.save(like3);
 
-		Likes like4 = likesRepository.findById("mail@at.ok").get();
+		Likes like4 = likesRepository.findById(bobId).get();
 		like4.getArticle_ids().add("1");
 		likesRepository.save(like4);
 		articlesRepository.save(
 				new Article(
 						"2",
 						"Recruiter at Loopsterdam",
-						"jacobsm@yahop.ok",
+						jacobId,
 						"dpp.jpg",
 						"11/08/2021 11:27",
 						new String[] {"Recruiting"},
 						"I am announcing that the recruiting process for the summer season has ended, all applicants that passed will be privately messaged at the first week of September.\n\nCongratulations to all applicants and have a great summer holiday.",
-						new String[][] {new String[] {"mail@at.ok", "Congratulations to all applicants! I am looking forward to the results."}},
-						new String[] {"alicesm@yahop.ok", "mail@at.ok"},
+						new String[][] {new String[] {bobId, "Congratulations to all applicants! I am looking forward to the results."}},
+						new String[] {aliceId, bobId},
 						new String[][] {new String[] {"video", "https://www.youtube-nocookie.com/embed/1Bix44C1EzY"}}
 				)
 		);
 
-		Likes like1 = likesRepository.findById("alicesm@yahop.ok").get();
+		Likes like1 = likesRepository.findById(aliceId).get();
 		like1.getArticle_ids().add("2");
 		likesRepository.save(like1);
-		likesRepository.findById("mail@at.ok").get().getArticle_ids().add("2");
-		Likes like2 = likesRepository.findById("mail@at.ok").get();
+		likesRepository.findById(bobId).get().getArticle_ids().add("2");
+		Likes like2 = likesRepository.findById(bobId).get();
 		like2.getArticle_ids().add("2");
 		likesRepository.save(like2);
 		articlesRepository.save(
 				new Article(
 						"3",
 						"Junior Programmer at Intrawebex",
-						"mail@at.ok",
+						bobId,
 						"dpp.jpg",
 						"11/08/2021 11:33",
 						new String[] {"Technology"},
 						"I have made my very own coding language! :^)\n\nCheck it out: codewithpopstar",
-						new String[][] {new String[] {"alicesm@yahop.ok", "Very creative and innovative!"}},
-						new String[] {"alicesm@yahop.ok"},
+						new String[][] {new String[] {aliceId, "Very creative and innovative!"}},
+						new String[] {aliceId},
 						new String[][] {new String[] {"", ""}}
 				)
 		);
-		Likes like = likesRepository.findById("alicesm@yahop.ok").get();
+		Likes like = likesRepository.findById(aliceId).get();
 		like.getArticle_ids().add("3");
 		likesRepository.save(like);
 
 		commentsRepository.save(
 				new Comments(
-						"mail@at.ok",
+						bobId,
 						new LinkedList<String>(List.of(new String[]{"1", "2"}))
 				)
 		);
 		commentsRepository.save(
 				new Comments(
-						"alicesm@yahop.ok",
+						aliceId,
 						new LinkedList<String>(List.of(new String[]{"3"}))
 				)
 		);
 		commentsRepository.save(
 				new Comments(
-						"jacobsm@yahop.ok",
+						jacobId,
 						new LinkedList<String>(List.of(new String[]{"1"}))
 				)
 		);
 
-		Message message1 = new Message("11/08/2021 11:33", "mail@at.ok", "Hello Alice! How are you today? :)");
-		Message message2 = new Message("11/08/2021 11:35", "alicesm@yahop.ok", "Aloha. I'm fine, just a bit tired. Hbu?");
-		Message message3 = new Message("11/08/2021 11:36", "mail@at.ok", "Fixing some API issues rn. Just go home and get some sleep then. See you tomorrow...");
+		Message message1 = new Message("11/08/2021 11:33", bobId, "Hello Alice! How are you today? :)");
+		Message message2 = new Message("11/08/2021 21:35", aliceId, "Aloha. I'm fine, just a bit tired. Hbu?");
+		Message message3 = new Message("11/08/2021 21:36", bobId, "Fixing some API issues rn. Just go home and get some sleep then. See you tomorrow...");
 		Message[] messageArray = new Message[]{message1, message2, message3};
 
 		discussionsRepository.save(
 				new Discussion(
 						"1",
-						"mail@at.ok",
-						"alicesm@yahop.ok",
+						bobId,
+						aliceId,
 						messageArray
 				)
 		);
 
-		message1 = new Message("11/08/2021 11:33", "mail@at.ok", "Hello Jacob! How are you today? :)");
-		message2 = new Message("11/08/2021 11:35", "jacobsm@yahop.ok", "Aloha Bob. I'm fine, just a bit high on coke, bitch. Hbu?");
-		message3 = new Message("11/08/2021 11:42", "mail@at.ok", "Fixing some API issues rn. Just go home and get some sleep then. See you tomorrow...");
+		message1 = new Message("11/08/2021 11:33", bobId, "Hello Jacob! How are you today? :)");
+		message2 = new Message("11/08/2021 18:35", jacobId, "Aloha Bob. I'm fine, just a bit high on coke, bitch. Hbu?");
+		message3 = new Message("11/08/2021 19:42", bobId, "Fixing some API issues rn. Just go home and get some sleep then. See you tomorrow...");
 		messageArray = new Message[]{message1, message2, message3};
 
 		discussionsRepository.save(
 				new Discussion(
 						"2",
-						"jacobsm@yahop.ok",
-						"mail@at.ok",
+						jacobId,
+						bobId,
 						messageArray
 				)
 		);

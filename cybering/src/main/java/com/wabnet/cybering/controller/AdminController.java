@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +41,9 @@ public class AdminController {
             System.out.println("\tThe cookie doesn't match the records in admin page");
             return new SimpleString("no");
         }
-        Optional<Admins> admins = this.adminRepository.findById(token.getEmail());
+        Optional<Admins> admins = this.adminRepository.findById(token.getProfid());
         if ( admins.isEmpty() ) {
-            System.out.println("\tAttempt to visit admin page from: " + token.getEmail());
+            System.out.println("\tAttempt to visit admin page from: " + token.getProfid());
             return new SimpleString("no");
         }
         return new SimpleString("ok");
@@ -63,9 +62,9 @@ public class AdminController {
             System.out.println("\tThe cookie doesn't match the records in admin page");
             return null;
         }
-        Optional<Admins> admins = this.adminRepository.findById(token.getEmail());
+        Optional<Admins> admins = this.adminRepository.findById(token.getProfid());
         if ( admins.isEmpty() ) {
-            System.out.println("\tAttempt to visit admin page from: " + token.getEmail());
+            System.out.println("\tAttempt to visit admin page from: " + token.getProfid());
             return null;
         }
 

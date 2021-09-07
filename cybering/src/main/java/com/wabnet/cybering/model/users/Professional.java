@@ -1,10 +1,13 @@
 package com.wabnet.cybering.model.users;
 
 
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Arrays;
 
 
@@ -12,6 +15,8 @@ import java.util.Arrays;
 
 public class Professional {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
     private String email;
     private String firstName;
     private String lastName;
@@ -77,6 +82,14 @@ public class Professional {
         this.skills = skills;
         this.password = password;
         this.lastDiscussionOpen = lastDiscussionOpen;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -194,7 +207,8 @@ public class Professional {
     @Override
     public String toString() {
         return "Professional{" +
-                "email='" + email + '\'' +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age='" + age + '\'' +

@@ -51,20 +51,20 @@
 									<div class="col-flex ">
 										<div class="row g-1">
 											<div class="col-auto">
-												<a href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
+												<a href="cybering/profile?id={{article.profid}}">
 													<img class="article-profile-image"
 														src="assets/{{article.photo_url}}">
 												</a>
 											</div>
 											<div class="col-auto m-0 text-wrap">
 												<a class="article-link"
-													href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
+													href="cybering/profile?id={{article.profid}}">
 													<p class="article-title m-0 ">
 														{{article.firstName}} {{article.lastName}}
 													</p>
 												</a>
 												<a class="article-small-link"
-													href="cybering/profile/{{article.firstName}}_{{article.lastName}}">
+													href="cybering/profile?id={{article.profid}}">
 													<p class="article-title-small text-muted m-0 ">{{article.title}}</p>
 												</a>
 												<p class="article-time">
@@ -228,7 +228,7 @@
 													</div>
 													<div class="col-10 comment-col">
 														<a class="comment-name"
-															href="/cybering/profile/{{comment[0]}}_{{comment[1]}}">
+													href="/cybering/profile?id={{comment[3]}}">
 															{{comment[0]}} {{comment[1]}}
 														</a>
 

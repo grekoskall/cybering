@@ -8,28 +8,28 @@ import java.util.LinkedList;
 @Document
 public class Comments {
     @Id
-    String email;
+    String profid;
     LinkedList<String> article_ids;
 
-    public Comments(String email, LinkedList<String> article_ids) {
-        this.email = email;
+    public Comments(String profid, LinkedList<String> article_ids) {
+        this.profid = profid;
         this.article_ids = article_ids;
+    }
+
+    public String getProfid() {
+        return profid;
     }
 
     @Override
     public String toString() {
         return "Comments{" +
-                "email='" + email + '\'' +
+                "profid='" + profid + '\'' +
                 ", article_ids=" + article_ids +
                 '}';
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
     public LinkedList<String> getArticle_ids() {

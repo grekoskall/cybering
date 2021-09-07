@@ -9,6 +9,7 @@ public class ArticleResponse {
     String title;   // followers if org/business, workposition if user, etc.
     String firstName;
     String lastName;
+    String profid;
     String photo_url;
     String timestamp;
     String[] categories;
@@ -18,30 +19,28 @@ public class ArticleResponse {
     String[][] media;
     Boolean interested;
 
+    public ArticleResponse(String id, String title, String firstName, String lastName, String profid, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media, Boolean interested) {
+        this.id = id;
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profid = profid;
+        this.photo_url = photo_url;
+        this.timestamp = timestamp;
+        this.categories = categories;
+        this.text = text;
+        this.comments = comments;
+        this.likes = likes;
+        this.media = media;
+        this.interested = interested;
+    }
+
     public Boolean getInterested() {
         return interested;
     }
 
     public void setInterested(Boolean interested) {
         this.interested = interested;
-    }
-
-    @Override
-    public String toString() {
-        return "ArticleResponse{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", photo_url='" + photo_url + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", categories=" + Arrays.toString(categories) +
-                ", text='" + text + '\'' +
-                ", comments=" + Arrays.toString(comments) +
-                ", likes=" + Arrays.toString(likes) +
-                ", media=" + Arrays.toString(media) +
-                ", interested=" + interested +
-                '}';
     }
 
     public ArticleResponse() {
@@ -106,6 +105,33 @@ public class ArticleResponse {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getProfid() {
+        return profid;
+    }
+
+    public void setProfid(String profid) {
+        this.profid = profid;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleResponse{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", profid='" + profid + '\'' +
+                ", photo_url='" + photo_url + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", categories=" + Arrays.toString(categories) +
+                ", text='" + text + '\'' +
+                ", comments=" + Arrays.toString(comments) +
+                ", likes=" + Arrays.toString(likes) +
+                ", media=" + Arrays.toString(media) +
+                ", interested=" + interested +
+                '}';
     }
 
     public String getPhoto_url() {

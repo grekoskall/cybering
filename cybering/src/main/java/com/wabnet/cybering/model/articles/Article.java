@@ -14,7 +14,7 @@ public class Article {
     String id;
 
     String title;   // followers if org/business, workposition if user, etc.
-    String email;
+    String profid;
     String photo_url;
     String timestamp;
     String[] categories;
@@ -23,10 +23,26 @@ public class Article {
     String[] likes;
     String[][] media;
 
-    public Article(String id, String title, String email, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media) {
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", profid='" + profid + '\'' +
+                ", photo_url='" + photo_url + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", categories=" + Arrays.toString(categories) +
+                ", text='" + text + '\'' +
+                ", comments=" + Arrays.toString(comments) +
+                ", likes=" + Arrays.toString(likes) +
+                ", media=" + Arrays.toString(media) +
+                '}';
+    }
+
+    public Article(String id, String title, String profid, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media) {
         this.id = id;
         this.title = title;
-        this.email = email;
+        this.profid = profid;
         this.photo_url = photo_url;
         this.timestamp = timestamp;
         this.categories = categories;
@@ -39,9 +55,9 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title, String email, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media) {
+    public Article(String title, String profid, String photo_url, String timestamp, String[] categories, String text, String[][] comments, String[] likes, String[][] media) {
         this.title = title;
-        this.email = email;
+        this.profid = profid;
         this.photo_url = photo_url;
         this.timestamp = timestamp;
         this.categories = categories;
@@ -67,12 +83,12 @@ public class Article {
         this.title = title;
     }
 
-    public String getEmail() {
-        return email;
+    public String getProfid() {
+        return profid;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
     public String getTimestamp() {
@@ -121,22 +137,6 @@ public class Article {
 
     public void setMedia(String[][] media) {
         this.media = media;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", email='" + email + '\'' +
-                ", photo_url='" + photo_url + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", categories=" + Arrays.toString(categories) +
-                ", text='" + text + '\'' +
-                ", comments=" + Arrays.toString(comments) +
-                ", likes=" + Arrays.toString(likes) +
-                ", media=" + Arrays.toString(media) +
-                '}';
     }
 
     public String getId() {

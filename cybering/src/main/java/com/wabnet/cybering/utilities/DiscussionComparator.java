@@ -16,7 +16,7 @@ public class DiscussionComparator implements Comparator<Discussion> {
         String lastMessageTimeStamp1 = messagesArray1[messagesArray1.length - 1].getTimeStamp();
         String lastMessageTimeStamp2 = messagesArray2[messagesArray2.length - 1].getTimeStamp();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date1, date2;
         try {
             date1 = dateFormat.parse(lastMessageTimeStamp1);

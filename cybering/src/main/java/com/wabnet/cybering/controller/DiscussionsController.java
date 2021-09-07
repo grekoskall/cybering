@@ -1,6 +1,5 @@
 package com.wabnet.cybering.controller;
 
-import com.wabnet.cybering.model.advertisements.AdvertisementApplication;
 import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.discussions.Discussion;
 import com.wabnet.cybering.model.discussions.DiscussionReply;
@@ -47,27 +46,27 @@ public class DiscussionsController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if (professional.isEmpty()) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
 
         List<Discussion> discussionList = new LinkedList<>();
-        discussionList.addAll(this.discussionsRepository.findAllByParticipant1(professional.get().getEmail()));
-        discussionList.addAll(this.discussionsRepository.findAllByParticipant2(professional.get().getEmail()));
+        discussionList.addAll(this.discussionsRepository.findAllByParticipant1(professional.get().getId()));
+        discussionList.addAll(this.discussionsRepository.findAllByParticipant2(professional.get().getId()));
         if (discussionList.isEmpty())
             return null;
         discussionList.sort(new DiscussionComparator());
         for (Discussion currentDiscussion : discussionList) {
-            String email1 = currentDiscussion.getParticipant1();
-            String email2 = currentDiscussion.getParticipant2();
-            Optional<Professional> professional1 = this.professionalRepository.findByEmail(email1);
-            Optional<Professional> professional2 = this.professionalRepository.findByEmail(email2);
+            String profid1 = currentDiscussion.getParticipant1();
+            String profid2 = currentDiscussion.getParticipant2();
+            Optional<Professional> professional1 = this.professionalRepository.findById(profid1);
+            Optional<Professional> professional2 = this.professionalRepository.findById(profid2);
             if (professional1.isEmpty() || professional2.isEmpty()) {
                 return null;
             }
-            if (professional.get().getEmail().equals(email1)) {
+            if (professional.get().getId().equals(profid1)) {
                 currentDiscussion.setParticipant1(professional1.get().getFirstName() + ' ' + professional1.get().getLastName());
                 currentDiscussion.setParticipant2(professional2.get().getFirstName() + ' ' + professional2.get().getLastName());
             } else {
@@ -76,8 +75,8 @@ public class DiscussionsController {
             }
 
             for (Message currentMessage : currentDiscussion.getMessagesArray()) {
-                String email = currentMessage.getSender();
-                Optional<Professional> messageSender = this.professionalRepository.findByEmail(email);
+                String profid = currentMessage.getSender();
+                Optional<Professional> messageSender = this.professionalRepository.findById(profid);
                 if (messageSender.isEmpty())
                     return null;
 
@@ -103,9 +102,9 @@ public class DiscussionsController {
             System.out.println("\tThe cookie doesn't match the records");
             return new SimpleString("failed");
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if (professional.isEmpty()) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return new SimpleString("failed");
         }
 
@@ -113,7 +112,7 @@ public class DiscussionsController {
             return new SimpleString("failed");
         }
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime localDateTime = LocalDateTime.now();
 
         Optional<Discussion> discussion = this.discussionsRepository.findById(discussionReply.getId());
@@ -121,7 +120,7 @@ public class DiscussionsController {
             return new SimpleString("failed");
         Message[] messageArray = discussion.get().getMessagesArray();
         LinkedList<Message> messageList = new LinkedList<>(Arrays.asList(messageArray));
-        messageList.addLast(new Message(dateTimeFormatter.format(localDateTime), professional.get().getEmail(), discussionReply.getMessage()));
+        messageList.addLast(new Message(dateTimeFormatter.format(localDateTime), professional.get().getId(), discussionReply.getMessage()));
         discussion.get().setMessagesArray(messageList.toArray(new Message[0]));
         this.discussionsRepository.save(discussion.get());
 

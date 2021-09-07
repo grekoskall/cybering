@@ -3,6 +3,7 @@ export class Article {
 	title !: String;
 	firstName !: String;
 	lastName !: String;
+	profid !: String;
 	photo_url !: String;
 	timestamp !: String;
 	categories !: String[];

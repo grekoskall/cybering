@@ -6,7 +6,6 @@ import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.posts.AdvertisementsRepository;
-import com.wabnet.cybering.repository.posts.ApplicationsRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
@@ -47,14 +46,14 @@ public class AdvertisementsController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
 
         LinkedList<AdvertisementFull> advertisementFulls = new LinkedList<>(
-                this.advertisementsRepository.findAllByEmail(professional.get().getEmail())
+                this.advertisementsRepository.findAllByProfid(professional.get().getId())
         );
 
         if ( advertisementFulls.isEmpty()) {
@@ -97,21 +96,21 @@ public class AdvertisementsController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
 
         LinkedList<AdvertisementFull> advertisementFulls = new LinkedList<>();
 
-        Optional<Connections> connections = this.connectionRepository.findById(professional.get().getEmail());
+        Optional<Connections> connections = this.connectionRepository.findById(professional.get().getId());
         if ( connections.isPresent() ) {
-            for (String consEmail :
+            for (String consProfid :
                     connections.get().getList()) {
                 advertisementFulls.addAll(
-                        this.advertisementsRepository.findAllByEmail(
-                                consEmail
+                        this.advertisementsRepository.findAllByProfid(
+                                consProfid
                         )
                 );
             }
@@ -122,9 +121,9 @@ public class AdvertisementsController {
         Hashtable<String, String[]> ads = new Hashtable<>();
         for (Professional user :
                 this.professionalRepository.findAll() ) {
-            if ( !user.getEmail().equals(professional.get().getEmail())) {
+            if ( !user.getId().equals(professional.get().getId())) {
                 users.put(
-                        user.getEmail(),
+                        user.getId(),
                         user.getSkills()
                 );
 
@@ -133,7 +132,7 @@ public class AdvertisementsController {
         }
         for (AdvertisementFull advertisementFull:
              this.advertisementsRepository.findAll()) {
-            if ( !advertisementFull.getEmail().equals(professional.get().getEmail()) ) {
+            if ( !advertisementFull.getProfid().equals(professional.get().getId()) ) {
                 ads.put(
                         advertisementFull.getId(),
                         advertisementFull.getSkills().toArray(new String[0])
@@ -214,7 +213,7 @@ public class AdvertisementsController {
 
         LinkedList<Advertisement> returnAdvertisements = new LinkedList<>();
         for (AdvertisementFull advertisementFull: advertisementFulls) {
-            Optional<Professional> poster = professionalRepository.findByEmail(advertisementFull.getEmail());
+            Optional<Professional> poster = professionalRepository.findById(advertisementFull.getProfid());
             poster.ifPresent(professional1 -> returnAdvertisements.add(
                     new Advertisement(
                             advertisementFull.getId(),
@@ -252,9 +251,9 @@ public class AdvertisementsController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
         Optional<AdvertisementFull> advertisementFull = this.advertisementsRepository.findById(simpleString.getData());
@@ -288,9 +287,9 @@ public class AdvertisementsController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
 
@@ -303,13 +302,13 @@ public class AdvertisementsController {
             return null;
         }
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime localDateTime = LocalDateTime.now();
         String[] skills = advertisementPost.getSkills().split(" ");
         LinkedList<String> skillsList = new LinkedList<>(Arrays.asList(skills));
         this.advertisementsRepository.save(
                 new AdvertisementFull(
-                        professional.get().getEmail(),
+                        professional.get().getId(),
                         dateTimeFormatter.format(localDateTime),
                         advertisementPost.getEndDate(),
                         advertisementPost.getTitle(),

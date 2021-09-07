@@ -3,34 +3,32 @@ package com.wabnet.cybering.model.users;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 @Document
 public class Connections {
-    // email to emails
     @Id
-    String email;
+    String profid;
     LinkedList<String> list;
 
     public Connections() {
     }
 
-    public Connections(String email, LinkedList<String> list) {
-        this.email = email;
+    public Connections(String profid, LinkedList<String> list) {
+        this.profid = profid;
         this.list = list;
     }
 
-    public Connections(String email) {
-        this.email = email;
+    public Connections(String profid) {
+        this.profid = profid;
     }
 
-    public String getEmail() {
-        return email;
+    public String getProfid() {
+        return profid;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
     public LinkedList<String> getList() {
@@ -44,7 +42,7 @@ public class Connections {
     @Override
     public String toString() {
         return "Connections{" +
-                "email='" + email + '\'' +
+                "profid='" + profid + '\'' +
                 ", list=" + list +
                 '}';
     }

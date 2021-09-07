@@ -23,6 +23,7 @@ import { ExportComponent } from './admin/export/export.component';
 import { AdvertisementPostComponent } from './cybering/advertisements/advertisement-post/advertisement-post.component';
 import { AdvertisementsApplicationsComponent } from './cybering/advertisements/advertisements-applications/advertisements-applications.component';
 import { AdvertisementsHomeComponent } from './cybering/advertisements/advertisements-home/advertisements-home.component';
+import { ProfileComponent } from './cybering/profile/profile.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AdvertisementsHomeComponent } from './cybering/advertisements/advertise
           { path: 'discussions', component: DiscussionsComponent, canActivate: [AuthGuard] },
           { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
           { path: 'personalinfo', component: PersonalinfoComponent, canActivate: [AuthGuard] },
-          { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] }
+          { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+          { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
         ]
       },
       { path: 'forgotpassword', component: ForgotPasswordComponent },

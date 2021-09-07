@@ -23,7 +23,7 @@
 					<div class="row">
 						<div class="col-auto">
 							<a class="con-a h5"
-								href="/cybering/profile/{{connection.firstName}}_{{connection.lastName}}">
+								href="/cybering/profile?id={{connection.profid}}">
 								<img src="/assets/{{connection.photo}}" class="con-img">
 							</a>
 						</div>
@@ -31,7 +31,7 @@
 							<div class="row">
 								<div class="col text-nowrap">
 									<a class="con-name h4"
-										href="/cybering/profile/{{connection.firstName}}_{{connection.lastName}}">
+										href="/cybering/profile?id={{connection.profid}}">
 										{{connection.firstName}} {{connection.lastName}}
 									</a>
 								</div>
@@ -52,7 +52,7 @@
 							<div class="row">
 								<div class="col">
 									<a class="h5"
-										href="/cybering/profile/{{connection.firstName}}_{{connection.lastName}}">
+										href="/cybering/profile?id={{connection.profid}}">
 										Check profile
 									</a>
 								</div>
@@ -74,12 +74,12 @@
 						<div class="search-div mt-2">
 							<div class="row ">
 								<div class="col-auto">
-									<a class="search-a h5" href="/cybering/profile/{{search[0]}}_{{search[1]}}">
+									<a class="search-a h5" href="/cybering/profile?id={{search[3]}}">
 										<img src="/assets/{{search[2]}}" class="search-img">
 									</a>
 								</div>
 								<div class="col-auto">
-									<a class="con-name h4" href="/cybering/profile/{{search[0]}}_{{search[1]}}">
+									<a class="con-name h4" href="/cybering/profile?id={{search[3]}}">
 										{{search[0]}} {{search[1]}}
 									</a>
 								</div>

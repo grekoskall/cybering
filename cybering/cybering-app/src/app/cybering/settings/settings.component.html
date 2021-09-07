@@ -3,34 +3,59 @@
 		<h3 class="mb-0">Change Email and Password</h3>
 	</div>
 	<div class="card-body">
-		<form class="form" role="form" autocomplete="off">
-			<div class="form-group" formGroupName="emailForm">
-				<label for="inputEmail">Email</label>
-				<input type="text" class="form-control" formControlName="newEmail" required="">
+		<form [formGroup]="emailForm" (ngSubmit)="setEmail()">
+
+			<label for="inputEmail">Email</label>
+			<input id="inputEmail" type="email" class="form-control" formControlName="newEmail" (input)="onEmailType()">
+			<div class="invalid-email" *ngIf="this.emailCheck === -1">
+				<p class="error">An error occurred. Please contact the administrator.</p>
 			</div>
-			<div class="form-group" formGroupName="passwordForm">
-				<label for="inputPasswordOld">Current Password</label>
-				<input type="password" class="form-control" formControlName="oldPassword" required="">
-
-
+			<div class="exists-email" *ngIf="this.emailCheck === -2">
+				<p class="error">This Email is already in use.</p>
+			</div>
+			<div class="success-email" *ngIf="this.emailCheck === 1">
+				<p class="success">Your Email changed successfully.</p>
+			</div>
+			<div class="validator-email" *ngIf="this.emailForm.invalid">
+				<p class="error">Please type a valid Email address.</p>
+			</div>
+			<button type="submit" class="btn btn-success float-right mt-2 mb-2">Save Email</button>
+		</form>
+		<form [formGroup]="passwordForm" (ngSubmit)="setPassword()">
+			<label for="inputPasswordOld">Current Password</label>
+			<input id="inputPasswordOld" type="password" class="form-control" formControlName="oldPassword">
+			<div class="old-password-invalid" *ngIf="this.passwordCheck === 'failed'">
+				<p class="error">The old Password is invalid.</p>
+			</div>
+			<div formGroupName="newPasswordFields">
 				<label for="inputPasswordNew">New Password</label>
-				<input type="password" class="form-control" formControlName="newPassword" required="">
+				<input id="inputPasswordNew" type="password" class="form-control" formControlName="passwordControl">
+				<div class="new-password-short" *ngIf="this.passwordCheck === 'newPassword-small'">
+					<p class="error">The password must be at least 6 characters long.</p>
+				</div>
 				<span class="form-text small text-muted">
 					The password must be at least 6 characters long, and must <em>not</em> contain spaces.
 				</span>
-
 				<div>
 					<label for="inputPasswordNewVerify">Verify Password</label>
-					<input type="password" class="form-control" formControlName="rePassword" required="">
+					<input id="inputPasswordNewVerify" type="password" class="form-control"
+						formControlName="passwordValidControl">
+					<div class="different-password" *ngIf="this.passwordCheck === 'password-notSame'">
+						<p class="error">The passwords must match.</p>
+					</div>
 					<span class="form-text small text-muted">
 						To confirm, type the new password again.
 					</span>
+					<!-- <div class="failed-password" *ngIf="this.passwordCheck === 'failed'">
+						<p class="error">An error occurred. Please contact the administrator.</p>
+					</div> -->
+					<div class="success-password" *ngIf="this.passwordCheck === 'success'">
+						<p class="success">The password changed successfully.</p>
+					</div>
 				</div>
 			</div>
-
-			<div class="form-group mt-3">
-				<button type="submit" class="btn btn-success btn-lg float-right">Save</button>
-			</div>
+			<button type="submit" class="btn btn-success float-right mt-2">Save Password</button>
 		</form>
+
 	</div>
 </div>

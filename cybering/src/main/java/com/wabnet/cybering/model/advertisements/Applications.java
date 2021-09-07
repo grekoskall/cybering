@@ -8,11 +8,11 @@ import java.util.LinkedList;
 @Document
 public class Applications {
     @Id
-    String email;
+    String profid;
     LinkedList<String> adIds;
 
-    public Applications(String email, LinkedList<String> adIds) {
-        this.email = email;
+    public Applications(String profid, LinkedList<String> adIds) {
+        this.profid = profid;
         this.adIds = adIds;
     }
 
@@ -27,13 +27,13 @@ public class Applications {
     public Applications() {
     }
 
-    public String getEmail() {
-        return email;
+    public String getProfid() {
+        return profid;
     }
 
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
 }

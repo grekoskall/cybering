@@ -131,9 +131,9 @@ public class FileUploadController {
             this.authenticationRepository.flushRepository();
             return new SimpleString("failed");
         }
-        if ( !authentication.getEmail().equals(registerInfo.getEmail()) ) {
+        if ( !authentication.getProfid().equals(registerInfo.getEmail()) ) {
             System.out.println("\tEmail provided doesn't match the cookies': "
-                    + "Assigned email: " + authentication.getEmail()
+                    + "Assigned email: " + authentication.getProfid()
                     + " | Provided email: " + registerInfo.getEmail());
             if (!authentication.isRegistered()) {
                 if ( photo.exists() && !photo.delete() ) {
@@ -180,32 +180,32 @@ public class FileUploadController {
             System.out.println("\tToken not in database: " + cookie);
             for ( Authentication authentication1 : authenticationRepository.findAll() ) {
                 if ( !authentication1.isRegistered() ) {
-                    professionalRepository.deleteAllByEmail(authentication1.getEmail());
+                    professionalRepository.deleteAllById(authentication1.getProfid());
                 }
             }
             this.authenticationRepository.flushRepository();
             return new SimpleString("failed");
         }
 
-        Optional<Professional> professional = this.professionalRepository.findByEmail(authentication.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(authentication.getProfid());
         if (professional.isEmpty()) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + authentication.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + authentication.getProfid());
             for ( Authentication authentication1 : authenticationRepository.findAll() ) {
                 if ( !authentication1.isRegistered() ) {
-                    professionalRepository.deleteAllByEmail(authentication1.getEmail());
+                    professionalRepository.deleteAllById(authentication1.getProfid());
                 }
             }
             this.authenticationRepository.flushRepository();
             return new SimpleString("failed");
         }
 
-        if ( !professional.get().getEmail().equals(authentication.getEmail())  ) {
-            System.out.println("\tThe email in authRep and profRep don't match: "
-                    + "Auth: " + authentication.getEmail()
-                    + " | Prof: " + professional.get().getEmail() );
+        if ( !professional.get().getId().equals(authentication.getProfid())  ) {
+            System.out.println("\tThe Id in authRep and profRep don't match: "
+                    + "Auth: " + authentication.getProfid()
+                    + " | Prof: " + professional.get().getId() );
             for ( Authentication authentication1 : authenticationRepository.findAll() ) {
                 if ( !authentication1.isRegistered() ) {
-                    professionalRepository.deleteAllByEmail(authentication1.getEmail());
+                    professionalRepository.deleteAllById(authentication1.getProfid());
                 }
             }
             this.authenticationRepository.flushRepository();

@@ -21,7 +21,7 @@
 							<div class="row m-1 ">
 								<div class="col-flex d-flex inline mb-2 mr-1 text-nowrap"
 									*ngFor="let connection of connection_list; index as i;">
-									<a href="/cybering/profile/{{connection[2]}}" class="a">
+									<a href="/cybering/profile?id={{connection[2]}}" class="a">
 										<img src="{{connection[3]}}" class="prof " *ngIf="connection[3].toString() != 'default'">
 										<img src="/assets/dpp.jpg" class="prof inline"
 											*ngIf="connection[3].toString() === 'default'">

@@ -6,6 +6,7 @@ export class RegisterInfo {
 }
 
 export class Professional {
+	id!: String;
 	email!: String;
 	firstName!: String;
 	lastName!: String;

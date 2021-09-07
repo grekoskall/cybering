@@ -4,25 +4,24 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.LinkedList;
-import java.util.List;
 
 @Document
 public class Likes {
     @Id
-    String email;
+    String profid;
     LinkedList<String> article_ids;
 
-    public Likes(String email, LinkedList<String> article_ids) {
-        this.email = email;
+    public Likes(String profid, LinkedList<String> article_ids) {
+        this.profid = profid;
         this.article_ids = article_ids;
     }
 
-    public String getEmail() {
-        return email;
+    public String getProfid() {
+        return profid;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfid(String profid) {
+        this.profid = profid;
     }
 
     public LinkedList<String> getArticle_ids() {
@@ -36,7 +35,7 @@ public class Likes {
     @Override
     public String toString() {
         return "Likes{" +
-                "email='" + email + '\'' +
+                "profid='" + profid + '\'' +
                 ", article_ids=" + article_ids +
                 '}';
     }

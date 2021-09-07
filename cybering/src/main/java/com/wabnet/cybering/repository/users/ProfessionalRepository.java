@@ -25,5 +25,5 @@ public interface ProfessionalRepository extends MongoRepository<Professional, St
     @RestResource(path = "emails", rel="Emails")
     Optional<Professional> findByEmail(@Param("email") String email);
 
-    void deleteAllByEmail(String email);
+    void deleteAllById(String id);
 }

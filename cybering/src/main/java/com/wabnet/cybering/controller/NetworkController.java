@@ -8,11 +8,9 @@ import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -43,9 +41,9 @@ public class NetworkController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if (professional.isEmpty()) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
 
@@ -67,7 +65,8 @@ public class NetworkController {
                     search.add(new String[] {
                             prof.getFirstName(),
                             prof.getLastName(),
-                            image
+                            image,
+                            prof.getId()
                     });
                     continue;
                 }
@@ -81,7 +80,8 @@ public class NetworkController {
                     search.add(new String[] {
                             prof.getFirstName(),
                             prof.getLastName(),
-                            image
+                            image,
+                            prof.getId()
                     });
                 }
             } else {
@@ -97,7 +97,8 @@ public class NetworkController {
                     search.add(new String[] {
                             prof.getFirstName(),
                             prof.getLastName(),
-                            image
+                            image,
+                            prof.getId()
                     });
                     continue;
                 }
@@ -112,7 +113,8 @@ public class NetworkController {
                     search.add(new String[] {
                             prof.getFirstName(),
                             prof.getLastName(),
-                            image
+                            image,
+                            prof.getId()
                     });
                 }
             }
@@ -140,12 +142,12 @@ public class NetworkController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
-        Optional<Connections> connections = this.connectionRepository.findById(professional.get().getEmail());
+        Optional<Connections> connections = this.connectionRepository.findById(professional.get().getId());
         if (connections.isEmpty()) {
             System.out.println("\tThis user has no connections");
             return null;
@@ -153,9 +155,9 @@ public class NetworkController {
 
         LinkedList<Network> networkLinkedList = new LinkedList<>();
         LinkedList<String> conList = connections.get().getList();
-        for (String email :
+        for (String profid :
                 conList) {
-            Optional<Professional> professionalConnection = this.professionalRepository.findByEmail(email);
+            Optional<Professional> professionalConnection = this.professionalRepository.findById(profid);
             if (professionalConnection.isEmpty()) {
                 System.out.println("\tThis user has an unknown connection: " + professional.get());
                 return null;
@@ -170,6 +172,7 @@ public class NetworkController {
                     new Network(
                             professionalConnection.get().getFirstName(),
                             professionalConnection.get().getLastName(),
+                            professionalConnection.get().getId(),
                             image,
                             professionalConnection.get().getWorkPlace(),
                             professionalConnection.get().getWorkPosition()

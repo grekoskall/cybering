@@ -45,7 +45,11 @@ public class ProfessionalsController {
             System.out.println("\tEmail doesn't exist " + signInfo.getEmail());
             return new SignInResponse("failed", "failed");
         }
-        Authentication token = this.authenticationRepository.findByEmail(signInfo.getEmail());
+        Authentication token;
+        if (professional.isPresent())
+            token = this.authenticationRepository.findByProfid(professional.get().getId());
+        else
+            token = authenticationRepository.findByProfid(signInfo.getEmail());
         if (token == null) {
             System.out.println("\tThis email doesn't have a token associated with it, but it exists in database, probably check data tables");
             return new SignInResponse("failed", "failed");
@@ -79,9 +83,9 @@ public class ProfessionalsController {
             System.out.println("\tThe cookie doesn't match the records: " + cookie);
             return new PersonalInfoList();
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return new PersonalInfoList();
         }
         String image_url;
@@ -116,25 +120,25 @@ public class ProfessionalsController {
             System.out.println("\tThe cookie doesn't match the records");
             return null;
         }
-        Optional<Professional> professional = this.professionalRepository.findByEmail(token.getEmail());
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
         if ( professional.isEmpty() ) {
-            System.out.println("\tThe email in authRep doesn't belong to a professional yet: " + token.getEmail());
+            System.out.println("\tThe id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
 
-        Optional<Connections> connections = connectionRepository.findById(professional.get().getEmail());
+        Optional<Connections> connections = connectionRepository.findById(professional.get().getId());
         if ( connections.isEmpty() ) {
-            System.out.println("\tThis user doesn't have any connections: " + token.getEmail());
+            System.out.println("\tThis user doesn't have any connections: " + token.getProfid());
             return null;
         }
 
         LinkedList<String> con_list = connections.get().getList();
         LinkedList<String[]> con_array = new LinkedList<>();
-        for (String email:
+        for (String profid:
              con_list) {
-            Optional<Professional> professional1 = professionalRepository.findByEmail(email);
+            Optional<Professional> professional1 = professionalRepository.findById(profid);
             if ( professional1.isEmpty() ) {
-                System.out.println("\tEmail found that doesn't belong to a professional: " + token.getEmail() + "| " + email);
+                System.out.println("\tId found that doesn't belong to a professional: " + token.getProfid() + "| " + profid);
                 continue;
             }
             LinkedList<String> infos = new LinkedList<>();
@@ -152,7 +156,7 @@ public class ProfessionalsController {
             }
             infos.add(professional1.get().getFirstName());
             infos.add(professional1.get().getLastName());
-            infos.add(professional1.get().getFirstName() + "_" + professional1.get().getLastName());
+            infos.add(professional1.get().getId());
             infos.add(image_url);
             con_array.add(infos.toArray(new String[0]));
         }

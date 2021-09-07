@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface AuthenticationRepository extends MongoRepository<Authentication, String> {
 
     Authentication findByToken(String cookie);
-    Authentication findByEmail(String email);
+    Authentication findByProfid(String profid);
 
 
     default boolean flushRepository() {
