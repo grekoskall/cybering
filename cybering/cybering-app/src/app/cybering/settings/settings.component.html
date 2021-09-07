@@ -1,1 +1,36 @@
-<p>settings works!</p>
+<div class="card card-outline-secondary">
+	<div class="card-header">
+		<h3 class="mb-0">Change Email and Password</h3>
+	</div>
+	<div class="card-body">
+		<form class="form" role="form" autocomplete="off">
+			<div class="form-group" formGroupName="emailForm">
+				<label for="inputEmail">Email</label>
+				<input type="text" class="form-control" formControlName="newEmail" required="">
+			</div>
+			<div class="form-group" formGroupName="passwordForm">
+				<label for="inputPasswordOld">Current Password</label>
+				<input type="password" class="form-control" formControlName="oldPassword" required="">
+
+
+				<label for="inputPasswordNew">New Password</label>
+				<input type="password" class="form-control" formControlName="newPassword" required="">
+				<span class="form-text small text-muted">
+					The password must be at least 6 characters long, and must <em>not</em> contain spaces.
+				</span>
+
+				<div>
+					<label for="inputPasswordNewVerify">Verify Password</label>
+					<input type="password" class="form-control" formControlName="rePassword" required="">
+					<span class="form-text small text-muted">
+						To confirm, type the new password again.
+					</span>
+				</div>
+			</div>
+
+			<div class="form-group mt-3">
+				<button type="submit" class="btn btn-success btn-lg float-right">Save</button>
+			</div>
+		</form>
+	</div>
+</div>

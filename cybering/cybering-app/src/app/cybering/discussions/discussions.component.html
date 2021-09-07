@@ -49,15 +49,19 @@
 			</div>
 			<form [formGroup]="discussionForm" (ngSubmit)="onPost()">
 				<div class="row">
-					<div class="col-flex">
-						<div class="text-area">
+					<div class="col-10">
+						<!-- <div class="text-area">
 							<input type="text" class="reply" formControlName="discussionReply" placeholder="Enter a message ...">
-						</div>
+						</div> -->
+						<textarea class="form-control" style="margin-left: 1rem;"
+							formControlName="discussionReply" placeholder="Enter a message ..."></textarea>
 					</div>
-					<div class="col">
-						<button type="submit" class="btn btn-primary mb-2">
-							Send
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+								Send
 						</button>
+					</div>
+					<div class="col" style="margin-top: 10rem;">
 					</div>
 				</div>
 			</form>
