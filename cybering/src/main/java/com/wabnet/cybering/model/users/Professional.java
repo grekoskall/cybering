@@ -1,7 +1,8 @@
 package com.wabnet.cybering.model.users;
 
 
-import org.springframework.boot.autoconfigure.web.WebProperties;
+import com.wabnet.cybering.CyberingApplication;
+import com.wabnet.cybering.model.privacy.PrivacySettings;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,10 +10,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.Arrays;
+import java.util.PrimitiveIterator;
 
 
 @Document
-
 public class Professional {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +32,7 @@ public class Professional {
     private String[] skills;
     private String password;
     private String lastDiscussionOpen;
+    private PrivacySettings privacySettings;
 
     public Professional() {
     }
@@ -40,6 +42,7 @@ public class Professional {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.createPrivacySettings();
     }
 
 
@@ -57,6 +60,7 @@ public class Professional {
         this.education = education;
         this.skills = skills;
         this.password = password;
+        this.createPrivacySettings();
     }
 
     public Professional(String email, String firstName, String lastName, String photo, String password) {
@@ -65,6 +69,7 @@ public class Professional {
         this.lastName = lastName;
         this.photo = photo;
         this.password = password;
+        this.createPrivacySettings();
     }
 
     public Professional(String email, String firstName, String lastName, String age, String phone, String photo, String workPosition, String workPlace, String bio, String[] workExperience, String[] education, String[] skills, String password, String lastDiscussionOpen) {
@@ -82,6 +87,11 @@ public class Professional {
         this.skills = skills;
         this.password = password;
         this.lastDiscussionOpen = lastDiscussionOpen;
+        this.createPrivacySettings();
+    }
+
+    private void createPrivacySettings() {
+        this.privacySettings = new PrivacySettings();
     }
 
     public String getId() {
@@ -204,6 +214,14 @@ public class Professional {
         this.lastDiscussionOpen = lastDiscussionOpen;
     }
 
+    public PrivacySettings getPrivacySettings() {
+        return privacySettings;
+    }
+
+    public void setPrivacySettings(PrivacySettings privacySettings) {
+        this.privacySettings = privacySettings;
+    }
+
     @Override
     public String toString() {
         return "Professional{" +
@@ -222,6 +240,7 @@ public class Professional {
                 ", skills=" + Arrays.toString(skills) +
                 ", password='" + password + '\'' +
                 ", lastDiscussionOpen='" + lastDiscussionOpen + '\'' +
+                ", privacySettings=" + privacySettings +
                 '}';
     }
 }
