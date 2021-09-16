@@ -37,6 +37,11 @@ public class Professional {
     public Professional() {
     }
 
+    public Professional(String email) {
+        this.email = email;
+        this.createPrivacySettings();
+    }
+
     public Professional(String email, String firstName, String lastName, String password) {
         this.email = email;
         this.firstName = firstName;

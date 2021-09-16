@@ -33,7 +33,7 @@ public class AdvertisementsController {
         this.connectionRepository = connectionRepository;
     }
 
-    @PostMapping(value="/cybering/advertisements/applications", headers = "action=get-apps")
+    @PostMapping(value="/cybering/advertisements", headers = "action=get-apps")
     public AdvertisementApplication[] getApplications(@RequestHeader HttpHeaders httpHeaders) {
         System.out.println("\tGot a request to advertisement applications list.");
         String cookie = httpHeaders.getFirst("Cookies");
@@ -83,7 +83,7 @@ public class AdvertisementsController {
 
 
 
-    @PostMapping(value="/cybering/advertisements/home", headers = "action=get-ads")
+    @PostMapping(value="/cybering/advertisements", headers = "action=get-ads")
     public Advertisement[] getAdvertisements(@RequestHeader HttpHeaders httpHeaders) {
         System.out.println("\tGot a request to get advertisements.");
         String cookie = httpHeaders.getFirst("Cookies");
@@ -238,7 +238,7 @@ public class AdvertisementsController {
 
 
 
-    @PostMapping(value="/cybering/advertisements/home", headers = "action=apply")
+    @PostMapping(value="/cybering/advertisements", headers = "action=apply")
     public SimpleString apply(@RequestHeader HttpHeaders httpHeaders, @RequestBody SimpleString simpleString) {
         System.out.println("\tGot a request to apply to an article.");
         String cookie = httpHeaders.getFirst("Cookies");
@@ -274,7 +274,7 @@ public class AdvertisementsController {
         return new SimpleString("success");
     }
 
-    @PostMapping(value="/cybering/advertisements/post", headers = "action=post")
+    @PostMapping(value="/cybering/advertisements", headers = "action=post")
     public SimpleString post(@RequestHeader HttpHeaders httpHeaders, @RequestBody AdvertisementPost advertisementPost) {
         System.out.println("\tGot a request to post an article.");
         String cookie = httpHeaders.getFirst("Cookies");
@@ -302,7 +302,7 @@ public class AdvertisementsController {
             return null;
         }
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime localDateTime = LocalDateTime.now();
         String[] skills = advertisementPost.getSkills().split(" ");
         LinkedList<String> skillsList = new LinkedList<>(Arrays.asList(skills));

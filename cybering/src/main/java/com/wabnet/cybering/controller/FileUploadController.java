@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +55,15 @@ public class FileUploadController {
         if ( authentication == null ) {
             System.out.println("\tToken not in database: " + cookie);
             this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
+            return new SimpleString("failed");
+        }
+
+        Optional<Professional> professional = this.professionalRepository.findById(authentication.getProfid());
+        if (professional.isEmpty()) {
+            System.out.println("\tCookie not belonging to anyone: " + cookie);
+            this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
             return new SimpleString("failed");
         }
 
@@ -69,12 +79,13 @@ public class FileUploadController {
                     System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
                 }
                 this.authenticationRepository.flushRepository();
+                this.professionalRepository.flushRepository();
                 return new SimpleString("failed");
             }
         } else {
             try {
                 FileWriter writer = new FileWriter(file_path);
-                writer.write(profilePhoto.getOriginalFilename());
+                writer.write(new String(profilePhoto.getBytes()));
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -83,6 +94,7 @@ public class FileUploadController {
                     System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
                 }
                 this.authenticationRepository.flushRepository();
+                this.professionalRepository.flushRepository();
                 return new SimpleString("failed");
             }
         }
@@ -107,6 +119,7 @@ public class FileUploadController {
         if ( authentication == null ) {
             System.out.println("\tToken not in database: " + cookie);
             this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
             return new SimpleString("failed");
         }
 
@@ -118,31 +131,32 @@ public class FileUploadController {
                 System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
             }
             this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
             return new SimpleString("failed");
         }
         Optional<Professional> professional = this.professionalRepository.findByEmail(registerInfo.getEmail());
         if ( professional.isPresent() ) {
-            System.out.println("\tEmail provided already exists: " + registerInfo.getEmail());
-            if (!authentication.isRegistered()) {
+            Optional<Authentication> tempAuthentication = Optional.ofNullable(this.authenticationRepository.findByProfid(professional.get().getId()));
+            if (tempAuthentication.isEmpty()) {
+                this.authenticationRepository.flushRepository();
+                this.professionalRepository.flushRepository();
                 if ( photo.exists() && !photo.delete() ) {
                     System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
                 }
-            }
-            this.authenticationRepository.flushRepository();
-            return new SimpleString("failed");
-        }
-        if ( !authentication.getProfid().equals(registerInfo.getEmail()) ) {
-            System.out.println("\tEmail provided doesn't match the cookies': "
-                    + "Assigned email: " + authentication.getProfid()
-                    + " | Provided email: " + registerInfo.getEmail());
-            if (!authentication.isRegistered()) {
-                if ( photo.exists() && !photo.delete() ) {
-                    System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
+                return new SimpleString("failed");
+            } else {
+                if (tempAuthentication.get().isRegistered()) {
+                    this.authenticationRepository.flushRepository();
+                    this.professionalRepository.flushRepository();
+                    System.out.println("\tEmail provided already exists: " + registerInfo.getEmail());
+                    if ( photo.exists() && !photo.delete() ) {
+                        System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
+                    }
+                    return new SimpleString("failed");
                 }
             }
-            this.authenticationRepository.flushRepository();
-            return new SimpleString("failed");
         }
+
         List<Professional> name_check = this.professionalRepository.findByFirstName(registerInfo.getFirstName());
         if ( !name_check.isEmpty() ) {
             for (Professional prof_check :
@@ -154,8 +168,11 @@ public class FileUploadController {
                 }
         }
 
-        this.professionalRepository.save(
-                new Professional(registerInfo.getEmail(), registerInfo.getFirstName(), registerInfo.getLastName(), file_path, registerInfo.getPassword()));
+        professional.get().setFirstName(registerInfo.getFirstName());
+        professional.get().setLastName(registerInfo.getLastName());
+        professional.get().setPhoto(file_path);
+        professional.get().setPassword(registerInfo.getPassword());
+        this.professionalRepository.save(professional.get());
         this.likesRepository.save(
                 new Likes(registerInfo.getEmail(), new LinkedList<>())
         );
@@ -184,6 +201,7 @@ public class FileUploadController {
                 }
             }
             this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
             return new SimpleString("failed");
         }
 
@@ -196,6 +214,7 @@ public class FileUploadController {
                 }
             }
             this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
             return new SimpleString("failed");
         }
 
@@ -209,6 +228,7 @@ public class FileUploadController {
                 }
             }
             this.authenticationRepository.flushRepository();
+            this.professionalRepository.flushRepository();
             return new SimpleString("failed");
         }
 
@@ -220,6 +240,7 @@ public class FileUploadController {
         authentication.setRegistered(true);
         authenticationRepository.save(authentication);
         this.authenticationRepository.flushRepository();
+        this.professionalRepository.flushRepository();
         System.out.println("\tRequest to add a phone completed successfully");
         System.out.println("Registration completed: " + professional + " | " + authentication);
         return new SimpleString(newToken);

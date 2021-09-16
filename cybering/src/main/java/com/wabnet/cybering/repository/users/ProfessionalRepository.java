@@ -1,5 +1,6 @@
 package com.wabnet.cybering.repository.users;
 
+import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
@@ -26,4 +27,14 @@ public interface ProfessionalRepository extends MongoRepository<Professional, St
     Optional<Professional> findByEmail(@Param("email") String email);
 
     void deleteAllById(String id);
+
+    default boolean flushRepository() {
+        List<Professional> professionals = this.findAll();
+        for (Professional professional: professionals) {
+            if (professional.getFirstName() != null && professional.getFirstName().length() <= 0) {
+                this.delete(professional);
+            }
+        }
+        return true;
+    }
 }

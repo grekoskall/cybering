@@ -3,6 +3,7 @@ package com.wabnet.cybering.controller;
 
 import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
+import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.AuthTokenMaker;
@@ -39,7 +40,10 @@ public class RegisterController {
             token = token.replaceAll(token.substring(2,5), token.substring(1,4));
         }
 
-        authenticationRepository.save(new Authentication(token, simpleString.getData(), false));
+        Professional newProfessional = new Professional(simpleString.getData());
+        newProfessional = professionalRepository.save(newProfessional);
+
+        authenticationRepository.save(new Authentication(token, newProfessional.getId(), false));
         return new SimpleString(token);
     }
 }

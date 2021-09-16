@@ -3,25 +3,47 @@
 		<h3 class="mb-0">Change your personal information</h3>
 	</div>
 	<div class="card-body">
-		<form [formGroup]="emailForm" (ngSubmit)="setEmail()">
 
-			<label for="inputEmail">Email</label>
-			<input id="inputEmail" type="email" class="form-control" formControlName="newEmail" (input)="onEmailType()">
-			<div class="invalid-email" *ngIf="this.emailCheck === -1">
-				<p class="error">An error occurred. Please contact the administrator.</p>
+		<div class="row mb-3">
+			<div class="col-flex">
+				<form [formGroup]="bioForm">
+					<label>Bio</label>
+					<input placeholder="Bio" class="form-control" formControlName="bio">
+					<!-- <button type="submit" class="btn btn-success float-right mt-2 mb-2">Save Email</button> -->
+				</form>
 			</div>
-			<div class="exists-email" *ngIf="this.emailCheck === -2">
-				<p class="error">This Email is already in use.</p>
+		</div>
+
+		<div class="row mb-3">
+			<div class="col-6">
+				<form [formGroup]="workPlaceForm">
+					<label>Workplace</label>
+					<input class="form-control" placeholder="Workplace" formControlName="workPlace">
+					<!-- <button type="submit" class="btn btn-success float-right mt-2 mb-2">Save Email</button> -->
+				</form>
 			</div>
-			<div class="success-email" *ngIf="this.emailCheck === 1">
-				<p class="success">Your Email changed successfully.</p>
+			<div class="col-6">
+				<form [formGroup]="workPositionForm">
+					<label>Work position</label>
+					<input class="form-control" placeholder="Work position" formControlName="workPosition">
+					<!-- <button type="submit" class="btn btn-success float-right mt-2 mb-2">Save Email</button> -->
+				</form>
 			</div>
-			<div class="validator-email" *ngIf="this.emailForm.invalid">
-				<p class="error">Please type a valid Email address.</p>
+		</div>
+
+		<div class="row mb-3">
+			<div class="col-flex">
+				<form [formGroup]="educationForm">
+					<label>Education</label>
+					<div *ngFor="let control of educationForm.controls | keyvalue; index as i">
+					<input class="form-control mb-2" formControlName="{{control}}" >
+					</div>
+					<!-- <button type="submit" class="btn btn-success float-right mt-2 mb-2">Save Email</button> -->
+				</form>
 			</div>
-			<button type="submit" class="btn btn-success float-right mt-2 mb-2">Save Email</button>
-		</form>
-		<form [formGroup]="passwordForm" (ngSubmit)="setPassword()">
+		</div>
+
+		<!-- <form [formGroup]="passwordForm" (ngSubmit)="setPassword()">
 			<label for="inputPasswordOld">Current Password</label>
 			<input id="inputPasswordOld" type="password" class="form-control" formControlName="oldPassword">
 			<div class="old-password-invalid" *ngIf="this.passwordCheck === 'failed'">
@@ -48,14 +70,14 @@
 					</span>
 					<!-- <div class="failed-password" *ngIf="this.passwordCheck === 'failed'">
 						<p class="error">An error occurred. Please contact the administrator.</p>
-					</div> -->
+					</div>
 					<div class="success-password" *ngIf="this.passwordCheck === 'success'">
 						<p class="success">The password changed successfully.</p>
-					</div>
+					</div> 
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success float-right mt-2">Save Password</button>
-		</form>
+		</form> -->
 
 	</div>
 </div>

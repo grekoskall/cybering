@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, AbstractControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { SettingsService } from 'src/service/settings-service/settings.service';
 import { Router } from '@angular/router';
 import { PersonalInfoService } from 'src/service/personal-info-service/personal-info.service';
 import { PersonalInfo, PrivacySettings, Privacy } from 'src/app/interfaces/personalinfo';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-personalinfo',
@@ -50,6 +51,16 @@ export class PersonalinfoComponent implements OnInit {
           this.router.navigate(['/']);
         }
         this._personalInfo = result;
+        this.bioForm.controls.bio.setValue(result.bio);
+        this.workPlaceForm.controls.workPlace.setValue(result.workPlace);
+        this.workPositionForm.controls.workPosition.setValue(result.workPosition);
+
+        this.index = 0;
+        for (var currentWorkEducation of result.education) {
+          this.index = this.index + 1;
+          this.educationForm.addControl(this.index.toString(), this.fb.control(''));
+          this.educationForm.get(this.index.toString())?.setValue(currentWorkEducation);
+        }
       }
     )
   }
@@ -84,35 +95,57 @@ export class PersonalinfoComponent implements OnInit {
     //TODO: append new item to the String arrays if a new one was added to the forms
     this.index = 0;
     Object.keys(this.workExperienceForm.controls).forEach(key => {
-      if (this.workExperienceForm.controls[key].value === null) {
-        this._personalInfo.workExperience.splice(this.index, 1);
+
+      if (this.index > this._personalInfo.workExperience.length) {
+        if (!(this.workExperienceForm.controls[key].value === null)) {
+          this._personalInfo.workExperience.push(this.workExperienceForm.controls[key].value);
+          this.index = this.index + 1;
+        }
       } else {
-        this._personalInfo.workExperience[this.index] = this.workExperienceForm.controls[key].value;
+        if (this.workExperienceForm.controls[key].value === null) {
+          this._personalInfo.workExperience.splice(this.index, 1);
+        } else {
+          this._personalInfo.workExperience[this.index] = this.workExperienceForm.controls[key].value;
+          this.index = this.index + 1;
+        }
       }
 
-      this.index = this.index + 1;
     });
 
     this.index = 0;
     Object.keys(this.educationForm.controls).forEach(key => {
-      if (this.educationForm.controls[key].value === null) {
-        this._personalInfo.education.splice(this.index, 1);
+      if (this.index > this._personalInfo.education.length) {
+        if (!(this.educationForm.controls[key].value === null)) {
+          this._personalInfo.education.push(this.educationForm.controls[key].value);
+          this.index = this.index + 1;
+        }
       } else {
-        this._personalInfo.education[this.index] = this.educationForm.controls[key].value;
+        if (this.educationForm.controls[key].value === null) {
+          this._personalInfo.education.splice(this.index, 1);
+        } else {
+          this._personalInfo.education[this.index] = this.educationForm.controls[key].value;
+          this.index = this.index + 1;
+        }
       }
 
-      this.index = this.index + 1;
     });
 
     this.index = 0;
     Object.keys(this.skillsForm.controls).forEach(key => {
-      if (this.skillsForm.controls[key].value === null) {
-        this._personalInfo.skills.splice(this.index, 1);
+      if (this.index > this._personalInfo.skills.length) {
+        if (!(this.skillsForm.controls[key].value === null)) {
+          this._personalInfo.skills.push(this.skillsForm.controls[key].value);
+          this.index = this.index + 1;
+        }
       } else {
-        this._personalInfo.skills[this.index] = this.skillsForm.controls[key].value;
+        if (this.skillsForm.controls[key].value === null) {
+          this._personalInfo.skills.splice(this.index, 1);
+        } else {
+          this._personalInfo.skills[this.index] = this.skillsForm.controls[key].value;
+          this.index = this.index + 1;
+        }
       }
 
-      this.index = this.index + 1;
     });
 
     this.setPersonalInfo();

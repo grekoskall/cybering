@@ -19,7 +19,7 @@ export class AdvertService extends BaseService {
 
   getApplications(cookie: string): Observable<AdvertisementApplication[]> {
     return this.http.post<AdvertisementApplication[]>(
-      this.extendurl('cybering/advertisements/applications'),
+      this.extendurl('cybering/advertisements'),
       null,
       {
         headers: {
@@ -35,7 +35,7 @@ export class AdvertService extends BaseService {
 
   getAdvertisments(cookie: string): Observable<Advertisement[]> {
     return this.http.post<Advertisement[]>(
-      this.extendurl('cybering/advertisements/home'),
+      this.extendurl('cybering/advertisements'),
       null,
       {
         headers: {
@@ -49,10 +49,10 @@ export class AdvertService extends BaseService {
     );
   }
 
-  apply(cookie: string, adId: string): Observable<SimpleString> {
-    let ad = new SimpleString(adId);
+  apply(cookie: string, adId: String): Observable<SimpleString> {
+    let ad = new SimpleString(adId.toString());
     return this.http.post<SimpleString>(
-      this.extendurl('cybering/advertisements/home'),
+      this.extendurl('cybering/advertisements'),
       ad,
       {
         headers: {
@@ -68,12 +68,12 @@ export class AdvertService extends BaseService {
 
   post(cookie: string, title: string, desc: string, skills: string, date: string): Observable<SimpleString> {
     let ad = new AdvertisementPost();
-    ad.title = title;
-    ad.description = desc;
-    ad.skills = skills;
-    ad.endDate = date;
+    ad.title = title.toString();
+    ad.description = desc.toString();
+    ad.skills = skills.toString();
+    ad.endDate = date.toString();
     return this.http.post<SimpleString>(
-      this.extendurl('cybering/advertisements/post'),
+      this.extendurl('cybering/advertisements'),
       ad,
       {
         headers: {

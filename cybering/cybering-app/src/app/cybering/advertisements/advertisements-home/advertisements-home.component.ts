@@ -28,7 +28,7 @@ export class AdvertisementsHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  apply(advId: string): void {
+  apply(advId: String): void {
     this.advertService.apply(
       this.cookieService.get('ST_TOKEN'),
       advId
