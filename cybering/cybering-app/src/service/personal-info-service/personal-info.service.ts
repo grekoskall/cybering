@@ -33,7 +33,7 @@ export class PersonalInfoService extends BaseService {
     setPersonalInfo(cookie : string, personalInfo : PersonalInfo) : Observable<SimpleString> {
 
     return this.http.post<SimpleString>(
-      this.extendurl('cybering/settings'), 
+      this.extendurl('cybering/personalinfo'), 
       personalInfo,
       {headers: {
         "Cookies": cookie,

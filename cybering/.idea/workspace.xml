@@ -6,24 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/advertisements/advertisements-home/advertisements-home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/network/network.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/network/network.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/personalinfo/personalinfo.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/personalinfo/personalinfo.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/personalinfo/personalinfo.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/personalinfo/personalinfo.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/personalinfo/personalinfo.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/personalinfo/personalinfo.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/interfaces/advertisement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/advertisement.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/advert-service/advert.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/advert-service/advert.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/AdvertisementsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/AdvertisementsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/FileUploadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Professional.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/users/ProfessionalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/users/ProfessionalRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/AdvertisementsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/AdvertisementsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/FileUploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/FileUploadController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/privacy/PrivacySettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/privacy/PrivacySettings.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Professional.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/repository/users/ProfessionalRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/repository/users/ProfessionalRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/personal-info-service/personal-info.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/personal-info-service/personal-info.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/PersonalInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/PersonalInfoController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +120,8 @@
       <workItem from="1631200110099" duration="8429000" />
       <workItem from="1631290714447" duration="5876000" />
       <workItem from="1631718030391" duration="1291000" />
-      <workItem from="1631807519218" duration="11554000" />
+      <workItem from="1631807519218" duration="12182000" />
+      <workItem from="1632329464045" duration="5300000" />
     </task>
     <servers />
   </component>

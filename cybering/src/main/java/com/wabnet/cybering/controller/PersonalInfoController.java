@@ -75,9 +75,11 @@ public class PersonalInfoController {
         _professional.setWorkPosition(_personalInfo.getWorkPosition());
         _professional.setWorkPlace(_personalInfo.getWorkPlace());
         _professional.setBio(_personalInfo.getBio());
-        _personalInfo.setWorkExperience(_personalInfo.getWorkExperience());
-        _personalInfo.setEducation(_personalInfo.getEducation());
-        _personalInfo.setSkills(_personalInfo.getSkills());
-        _personalInfo.setPrivacySettings(_professional.getPrivacySettings());
+        _professional.setWorkExperience(_personalInfo.getWorkExperience());
+        _professional.setEducation(_personalInfo.getEducation());
+        _professional.setSkills(_personalInfo.getSkills());
+        _professional.setPrivacySettings(_personalInfo.getPrivacySettings());
+
+        this.professionalRepository.save(_professional);
     }
 }

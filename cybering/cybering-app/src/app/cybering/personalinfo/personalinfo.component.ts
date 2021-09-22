@@ -32,11 +32,14 @@ export class PersonalinfoComponent implements OnInit {
   skillsForm = this.fb.group({
 
   });
-  privacyWorkExperience !: boolean;
-  privacyEducation !: boolean;
-  privacySkills !: boolean;
+  privacyWorkExperience: boolean = false;
+  privacyEducation: boolean = false;
+  privacySkills: boolean = false;
   _personalInfo !: PersonalInfo;
   index !: number;
+  saveError : boolean = false;
+
+
 
   constructor(
     private cookieService: CookieService,
@@ -56,11 +59,41 @@ export class PersonalinfoComponent implements OnInit {
         this.workPositionForm.controls.workPosition.setValue(result.workPosition);
 
         this.index = 0;
-        for (var currentWorkEducation of result.education) {
+        for (var currentEducation of result.education) {
           this.index = this.index + 1;
           this.educationForm.addControl(this.index.toString(), this.fb.control(''));
-          this.educationForm.get(this.index.toString())?.setValue(currentWorkEducation);
+          this.educationForm.get(this.index.toString())?.setValue(currentEducation);
         }
+
+        this.index = 0;
+        for (var currentWorkExperience of result.workExperience) {
+          this.index = this.index + 1;
+          this.workExperienceForm.addControl(this.index.toString(), this.fb.control(''));
+          this.workExperienceForm.get(this.index.toString())?.setValue(currentWorkExperience);
+        }
+
+        this.index = 0;
+        for (var currentSkills of result.skills) {
+          this.index = this.index + 1;
+          this.skillsForm.addControl(this.index.toString(), this.fb.control(''));
+          this.skillsForm.get(this.index.toString())?.setValue(currentSkills);
+        }
+
+        if (result.privacySettings.education.toString() == Privacy[Privacy.PRIVATE]) {
+          let educationCheckbox = <HTMLInputElement>document.getElementById("educationCheckbox");
+          this.privacyEducation = true;
+        }
+
+        if (result.privacySettings.workExperience.toString() == Privacy[Privacy.PRIVATE]) {
+          let workExperienceCheckbox = <HTMLInputElement>document.getElementById("workExperienceCheckbox");
+          this.privacyWorkExperience = true;
+        }
+
+        if (result.privacySettings.skills.toString() == Privacy[Privacy.PRIVATE]) {
+          let skillsCheckbox = <HTMLInputElement>document.getElementById("skillsCheckbox");
+          this.privacySkills = true;
+        }
+
       }
     )
   }
@@ -69,15 +102,46 @@ export class PersonalinfoComponent implements OnInit {
 
     this.personalInfoService.setPersonalInfo(this.cookieService.get('ST_TOKEN'), this._personalInfo).subscribe(
       result => {
-
+        if (result.data === "success") {
+          window.location.reload();
+        } else {
+          this.saveError = true;
+        }
       }
     )
+  }
+
+  onAddMoreEducation(): void {
+    let _index = Object.keys(this.educationForm.controls).length + 1;
+
+    this.educationForm.addControl(_index.toString(), this.fb.control(''));
+  }
+
+  onAddMoreWorkExperience(): void {
+    let _index = Object.keys(this.workExperienceForm.controls).length + 1;
+
+    this.workExperienceForm.addControl(_index.toString(), this.fb.control(''));
+  }
+
+  onAddMoreSkills(): void {
+    let _index = Object.keys(this.skillsForm.controls).length + 1;
+
+    this.skillsForm.addControl(_index.toString(), this.fb.control(''));
   }
 
   onSave(): void {
     this._personalInfo.workPosition = this.workPositionForm.controls.workPosition.value;
     this._personalInfo.workPlace = this.workPlaceForm.controls.workPlace.value;
     this._personalInfo.bio = this.bioForm.controls.bio.value;
+
+    let educationCheckbox = <HTMLInputElement>document.getElementById("educationCheckbox");
+    this.privacyEducation = educationCheckbox.checked;
+
+    let workExperienceCheckbox = <HTMLInputElement>document.getElementById("workExperienceCheckbox");
+    this.privacyWorkExperience = workExperienceCheckbox.checked;
+
+    let skillsCheckbox = <HTMLInputElement>document.getElementById("skillsCheckbox");
+    this.privacySkills = skillsCheckbox.checked;
 
     if (this.privacyWorkExperience === true)
       this._personalInfo.privacySettings.workExperience = Privacy.PRIVATE;
@@ -97,12 +161,12 @@ export class PersonalinfoComponent implements OnInit {
     Object.keys(this.workExperienceForm.controls).forEach(key => {
 
       if (this.index > this._personalInfo.workExperience.length) {
-        if (!(this.workExperienceForm.controls[key].value === null)) {
+        if (!(this.workExperienceForm.controls[key].value === "")) {
           this._personalInfo.workExperience.push(this.workExperienceForm.controls[key].value);
           this.index = this.index + 1;
         }
       } else {
-        if (this.workExperienceForm.controls[key].value === null) {
+        if (this.workExperienceForm.controls[key].value === "") {
           this._personalInfo.workExperience.splice(this.index, 1);
         } else {
           this._personalInfo.workExperience[this.index] = this.workExperienceForm.controls[key].value;
@@ -115,12 +179,12 @@ export class PersonalinfoComponent implements OnInit {
     this.index = 0;
     Object.keys(this.educationForm.controls).forEach(key => {
       if (this.index > this._personalInfo.education.length) {
-        if (!(this.educationForm.controls[key].value === null)) {
+        if (!(this.educationForm.controls[key].value === "")) {
           this._personalInfo.education.push(this.educationForm.controls[key].value);
           this.index = this.index + 1;
         }
       } else {
-        if (this.educationForm.controls[key].value === null) {
+        if (this.educationForm.controls[key].value === "") {
           this._personalInfo.education.splice(this.index, 1);
         } else {
           this._personalInfo.education[this.index] = this.educationForm.controls[key].value;
@@ -133,12 +197,12 @@ export class PersonalinfoComponent implements OnInit {
     this.index = 0;
     Object.keys(this.skillsForm.controls).forEach(key => {
       if (this.index > this._personalInfo.skills.length) {
-        if (!(this.skillsForm.controls[key].value === null)) {
+        if (!(this.skillsForm.controls[key].value === "")) {
           this._personalInfo.skills.push(this.skillsForm.controls[key].value);
           this.index = this.index + 1;
         }
       } else {
-        if (this.skillsForm.controls[key].value === null) {
+        if (this.skillsForm.controls[key].value === "") {
           this._personalInfo.skills.splice(this.index, 1);
         } else {
           this._personalInfo.skills[this.index] = this.skillsForm.controls[key].value;
