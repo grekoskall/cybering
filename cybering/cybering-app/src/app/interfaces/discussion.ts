@@ -6,6 +6,11 @@ export class Discussion {
 	messagesArray !: Message[];
 }
 
+export class DiscussionsInfo {
+	discussionArray !: Discussion[];
+	selectedIndex !: number;
+}
+
 export class Message {
 
 	id !: String;

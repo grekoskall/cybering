@@ -3,6 +3,7 @@ package com.wabnet.cybering.controller;
 import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.discussions.Discussion;
 import com.wabnet.cybering.model.discussions.DiscussionReply;
+import com.wabnet.cybering.model.discussions.DiscussionsInfo;
 import com.wabnet.cybering.model.discussions.Message;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
@@ -127,6 +128,93 @@ public class DiscussionsController {
         System.out.println("\tReply set successfully");
 
         return new SimpleString("success");
+    }
+
+    @PostMapping(value="/cybering/discussions", headers = "action=discussion-array-with-param")
+    public DiscussionsInfo discussionArrayWithParam(@RequestHeader HttpHeaders httpHeaders, @RequestBody SimpleString profidFromUrl) {
+        System.out.println("\tGot a request to discussion array.");
+        String cookie = httpHeaders.getFirst("Cookies");
+        if (cookie == null) {
+            System.out.println("\tCookie header is empty");
+            return null;
+        }
+        Authentication token = this.authenticationRepository.findByToken(cookie);
+        if (token == null) {
+            System.out.println("\tThe cookie doesn't match the records");
+            return null;
+        }
+        Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
+        if (professional.isEmpty()) {
+            System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
+            return null;
+        }
+
+        int i = 0, index = -1;
+
+
+        List<Discussion> discussionList = new LinkedList<>();
+        discussionList.addAll(this.discussionsRepository.findAllByParticipant1(professional.get().getId()));
+        discussionList.addAll(this.discussionsRepository.findAllByParticipant2(professional.get().getId()));
+        if (discussionList.isEmpty())
+            return null;
+        discussionList.sort(new DiscussionComparator());
+
+        Optional<Professional> professionalToMsg = this.professionalRepository.findById(profidFromUrl.getData());
+
+        for (Discussion currentDiscussion : discussionList) {
+            String profid1 = currentDiscussion.getParticipant1();
+            String profid2 = currentDiscussion.getParticipant2();
+            Optional<Professional> professional1 = this.professionalRepository.findById(profid1);
+            Optional<Professional> professional2 = this.professionalRepository.findById(profid2);
+            if (professional1.isEmpty() || professional2.isEmpty()) {
+                return null;
+            }
+
+            if (professional.get().getId().equals(profid1)) {
+                currentDiscussion.setParticipant1(professional1.get().getFirstName() + ' ' + professional1.get().getLastName());
+                currentDiscussion.setParticipant2(professional2.get().getFirstName() + ' ' + professional2.get().getLastName());
+
+                if (professionalToMsg.isPresent() && professionalToMsg.get().getId().equals(profid2)) {
+                    index = i;
+                }
+            } else {
+                currentDiscussion.setParticipant1(professional2.get().getFirstName() + ' ' + professional2.get().getLastName());
+                currentDiscussion.setParticipant2(professional1.get().getFirstName() + ' ' + professional1.get().getLastName());
+
+                if (professionalToMsg.isPresent() && professionalToMsg.get().getId().equals(profid1)) {
+                    index = i;
+                }
+            }
+
+            for (Message currentMessage : currentDiscussion.getMessagesArray()) {
+                String profid = currentMessage.getSender();
+                Optional<Professional> messageSender = this.professionalRepository.findById(profid);
+                if (messageSender.isEmpty())
+                    return null;
+
+                currentMessage.setSender(messageSender.get().getFirstName() + ' ' + messageSender.get().getLastName());
+            }
+
+            i++;
+        }
+
+        if (index == -1) {
+            if (professionalToMsg.isEmpty()) {
+                index = 0;
+            } else {
+                Discussion newDiscussion = new Discussion(professional.get().getId(), professionalToMsg.get().getId());
+                newDiscussion = this.discussionsRepository.save(newDiscussion);
+                newDiscussion.setParticipant1(professional.get().getFirstName() + ' ' + professional.get().getLastName());
+                newDiscussion.setParticipant2(professionalToMsg.get().getFirstName() + ' ' + professionalToMsg.get().getLastName());
+
+                discussionList.add(newDiscussion);
+                index = discussionList.size() - 1;
+            }
+        }
+
+        System.out.println("\tReturning Discussions info");
+
+        return new DiscussionsInfo(discussionList.toArray(new Discussion[0]), index);
     }
 
 }

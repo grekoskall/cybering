@@ -3,6 +3,7 @@ import { Discussion } from 'src/app/interfaces/discussion';
 import { CookieService } from 'ngx-cookie-service';
 import { DiscussionService } from 'src/service/discussions-service/discussion.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-discussions',
@@ -11,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class DiscussionsComponent implements OnInit {
 
+  profidParam !: string | null;
   discussionsExist: number = 0;
   discussionsArray !: Discussion[];
   selectedDiscussion: number = 0;
@@ -22,22 +24,42 @@ export class DiscussionsComponent implements OnInit {
   constructor(
     private cookieService: CookieService,
     private discussionService: DiscussionService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
   ) {
-    this.discussionService.getDiscussionsArray(this.cookieService.get('ST_TOKEN')).subscribe(
-      result => {
-        this.discussionsArray = result;
-        if (result === null) {
-          this.discussionsExist = -1;
-        } else {
-          this.discussionsExist = 1;
-          for (let discussion of this.discussionsArray) {
-            this.isSelectedArray.push(false);
+    this.profidParam = this.route.snapshot.queryParamMap.get('id');
+    if (this.profidParam === null || this.profidParam.length <= 0 || this.profidParam === undefined) {
+      this.discussionService.getDiscussionsArray(this.cookieService.get('ST_TOKEN')).subscribe(
+        result => {
+          this.discussionsArray = result;
+          if (result === null) {
+            this.discussionsExist = -1;
+          } else {
+            this.discussionsExist = 1;
+            for (let discussion of this.discussionsArray) {
+              this.isSelectedArray.push(false);
+            }
+            this.isSelectedArray[0] = true;
           }
-          this.isSelectedArray[0] = true;
         }
-      }
-    )
+      );
+    } else {
+      this.discussionService.getDiscussionsArrayWithParam(this.cookieService.get('ST_TOKEN'), this.profidParam).subscribe(
+        result => {
+          this.discussionsArray = result.discussionArray;
+          if (result === null) {
+            this.discussionsExist = -1;
+          } else {
+            this.discussionsExist = 1;
+            for (let discussion of this.discussionsArray) {
+              this.isSelectedArray.push(false);
+            }
+            this.isSelectedArray[result.selectedIndex] = true;
+            this.selectedDiscussion = result.selectedIndex;
+          }
+        }
+      );
+    }
   }
 
   onSelect(index: number) {

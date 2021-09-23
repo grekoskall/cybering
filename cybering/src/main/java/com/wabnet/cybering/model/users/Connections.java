@@ -14,6 +14,8 @@ public class Connections {
     public Connections() {
     }
 
+
+
     public Connections(String profid, LinkedList<String> list) {
         this.profid = profid;
         this.list = list;
@@ -21,6 +23,7 @@ public class Connections {
 
     public Connections(String profid) {
         this.profid = profid;
+        this.list = new LinkedList<>();
     }
 
     public String getProfid() {

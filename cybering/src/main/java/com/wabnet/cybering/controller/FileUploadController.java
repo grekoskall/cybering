@@ -2,10 +2,14 @@ package com.wabnet.cybering.controller;
 
 import com.wabnet.cybering.model.articles.Likes;
 import com.wabnet.cybering.model.bases.SimpleString;
+import com.wabnet.cybering.model.notifications.ConnectionRequests;
 import com.wabnet.cybering.model.signin.info.RegisterInfo;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
+import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.notifications.ConnectionRequestsRepository;
 import com.wabnet.cybering.repository.posts.LikesRepository;
+import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.AuthTokenMaker;
@@ -17,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -29,13 +32,17 @@ public class FileUploadController {
     private final AuthenticationRepository authenticationRepository;
     private final ProfessionalRepository professionalRepository;
     private final LikesRepository likesRepository;
+    private final ConnectionRepository connectionRepository;
+    private final ConnectionRequestsRepository connectionRequestsRepository;
     @Autowired
     private final AuthTokenMaker authTokenMaker;
 
-    public FileUploadController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, LikesRepository likesRepository, AuthTokenMaker authTokenMaker) {
+    public FileUploadController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, LikesRepository likesRepository, ConnectionRepository connectionRepository, ConnectionRequestsRepository connectionRequestsRepository, AuthTokenMaker authTokenMaker) {
         this.authenticationRepository = authenticationRepository;
         this.professionalRepository = professionalRepository;
         this.likesRepository = likesRepository;
+        this.connectionRepository = connectionRepository;
+        this.connectionRequestsRepository = connectionRequestsRepository;
         this.authTokenMaker = authTokenMaker;
     }
 
@@ -233,7 +240,12 @@ public class FileUploadController {
         }
 
         professional.get().setPhone(simpleString.getData());
-        professionalRepository.save(professional.get());
+        Professional profSaved = professionalRepository.save(professional.get());
+        // Create Connectons and ConnectionRequests record for the new professional
+        Connections newConnection = new Connections(profSaved.getId());
+        connectionRepository.save(newConnection);
+        ConnectionRequests newConnectionRequests = new ConnectionRequests(profSaved.getId());
+        connectionRequestsRepository.save(newConnectionRequests);
 
         String newToken = authTokenMaker.makeToken(authentication.getToken());
         authentication.setToken(newToken);

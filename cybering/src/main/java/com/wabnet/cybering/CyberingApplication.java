@@ -10,6 +10,7 @@ import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.discussions.DiscussionsRepository;
+import com.wabnet.cybering.repository.notifications.ConnectionRequestsRepository;
 import com.wabnet.cybering.repository.posts.*;
 import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
@@ -45,9 +46,11 @@ public class CyberingApplication implements CommandLineRunner {
 	private final AdvertisementsRepository advertisementsRepository;
 	@Autowired
 	private final DiscussionsRepository discussionsRepository;
+	@Autowired
+	private final ConnectionRequestsRepository connectionRequestsRepository;
 
 
-	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository, DiscussionsRepository discussionsRepository) {
+	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository, DiscussionsRepository discussionsRepository, ConnectionRequestsRepository connectionRequestsRepository) {
 		this.professionalRepository = professionalRepository;
 		this.authenticationRepository = authenticationRepository;
 		this.connectionRepository = connectionRepository;
@@ -57,6 +60,7 @@ public class CyberingApplication implements CommandLineRunner {
 		this.commentsRepository = commentsRepository;
 		this.advertisementsRepository = advertisementsRepository;
 		this.discussionsRepository = discussionsRepository;
+		this.connectionRequestsRepository = connectionRequestsRepository;
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -74,6 +78,7 @@ public class CyberingApplication implements CommandLineRunner {
 		commentsRepository.deleteAll();
 		advertisementsRepository.deleteAll();
 		discussionsRepository.deleteAll();
+		connectionRequestsRepository.deleteAll();
 		adminRepository.save(
 				new Admins("admin@mail.ko", "admin")
 		);

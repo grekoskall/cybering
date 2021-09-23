@@ -13,6 +13,11 @@ public class DiscussionComparator implements Comparator<Discussion> {
     public int compare(Discussion discussion1, Discussion discussion2) {
         Message[] messagesArray1 = discussion1.getMessagesArray();
         Message[] messagesArray2 = discussion2.getMessagesArray();
+        if (messagesArray1 == null || messagesArray1.length <= 0) {
+            return 1;
+        } else if (messagesArray2 == null || messagesArray2.length <= 0) {
+            return -1;
+        }
         String lastMessageTimeStamp1 = messagesArray1[messagesArray1.length - 1].getTimeStamp();
         String lastMessageTimeStamp2 = messagesArray2[messagesArray2.length - 1].getTimeStamp();
 

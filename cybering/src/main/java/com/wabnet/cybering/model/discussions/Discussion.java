@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Document
@@ -27,6 +29,12 @@ public class Discussion {
         this.participant1 = participant1;
         this.participant2 = participant2;
         this.messagesArray = messagesArray;
+    }
+
+    public Discussion(String participant1, String participant2) {
+        this.participant1 = participant1;
+        this.participant2 = participant2;
+        this.messagesArray = new Message[0];
     }
 
     public Discussion() {
