@@ -3,11 +3,13 @@ package com.wabnet.cybering.controller;
 import com.wabnet.cybering.model.articles.Likes;
 import com.wabnet.cybering.model.bases.SimpleString;
 import com.wabnet.cybering.model.notifications.ConnectionRequests;
+import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.info.RegisterInfo;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.notifications.ConnectionRequestsRepository;
+import com.wabnet.cybering.repository.notifications.NotificationsRepository;
 import com.wabnet.cybering.repository.posts.LikesRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
@@ -34,15 +36,17 @@ public class FileUploadController {
     private final LikesRepository likesRepository;
     private final ConnectionRepository connectionRepository;
     private final ConnectionRequestsRepository connectionRequestsRepository;
+    private final NotificationsRepository notificationsRepository;
     @Autowired
     private final AuthTokenMaker authTokenMaker;
 
-    public FileUploadController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, LikesRepository likesRepository, ConnectionRepository connectionRepository, ConnectionRequestsRepository connectionRequestsRepository, AuthTokenMaker authTokenMaker) {
+    public FileUploadController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, LikesRepository likesRepository, ConnectionRepository connectionRepository, ConnectionRequestsRepository connectionRequestsRepository, NotificationsRepository notificationsRepository, AuthTokenMaker authTokenMaker) {
         this.authenticationRepository = authenticationRepository;
         this.professionalRepository = professionalRepository;
         this.likesRepository = likesRepository;
         this.connectionRepository = connectionRepository;
         this.connectionRequestsRepository = connectionRequestsRepository;
+        this.notificationsRepository = notificationsRepository;
         this.authTokenMaker = authTokenMaker;
     }
 
@@ -241,11 +245,13 @@ public class FileUploadController {
 
         professional.get().setPhone(simpleString.getData());
         Professional profSaved = professionalRepository.save(professional.get());
-        // Create Connectons and ConnectionRequests record for the new professional
+        // Create Connectons, ConnectionRequests and Notifications record for the new professional
         Connections newConnection = new Connections(profSaved.getId());
         connectionRepository.save(newConnection);
         ConnectionRequests newConnectionRequests = new ConnectionRequests(profSaved.getId());
         connectionRequestsRepository.save(newConnectionRequests);
+        Notifications newNotification = new Notifications(profSaved.getId());
+        notificationsRepository.save(newNotification);
 
         String newToken = authTokenMaker.makeToken(authentication.getToken());
         authentication.setToken(newToken);

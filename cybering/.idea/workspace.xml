@@ -5,33 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5989cf5f-ef69-4236-97b1-d916c07d662f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/ProfileViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/ProfessionalProfile/ProfessionalProfileInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/ProfessionalProfile/UserStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/discussions/DiscussionsInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/notifications/ConnectionRequests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/notifications/ConnectionRequestsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/NotificationsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/notifications/NotificationInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/notifications/NotificationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/notifications/Notifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/notifications/NotificationsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/cybering/discussions/discussions.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/app/interfaces/discussion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/app/interfaces/discussion.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cybering-app/src/service/discussions-service/discussion.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cybering-app/src/service/discussions-service/discussion.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/CyberingApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/DiscussionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/DiscussionsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/controller/FileUploadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/discussions/Discussion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/discussions/Discussion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Connections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/model/users/Connections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/users/ConnectionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/repository/users/ConnectionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/utilities/DiscussionComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wabnet/cybering/utilities/DiscussionComparator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/CyberingApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/DiscussionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/DiscussionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/FileUploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/controller/FileUploadController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/discussions/Discussion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/discussions/Discussion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Connections.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/model/users/Connections.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/repository/users/ConnectionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/repository/users/ConnectionRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/utilities/DiscussionComparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wabnet/cybering/utilities/DiscussionComparator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +124,9 @@
       <workItem from="1631718030391" duration="1291000" />
       <workItem from="1631807519218" duration="12182000" />
       <workItem from="1632329464045" duration="5480000" />
-      <workItem from="1632409589080" duration="23641000" />
+      <workItem from="1632409589080" duration="24241000" />
+      <workItem from="1632503680018" duration="694000" />
+      <workItem from="1632665114192" duration="6769000" />
     </task>
     <servers />
   </component>

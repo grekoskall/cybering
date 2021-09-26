@@ -11,6 +11,7 @@ import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.discussions.DiscussionsRepository;
 import com.wabnet.cybering.repository.notifications.ConnectionRequestsRepository;
+import com.wabnet.cybering.repository.notifications.NotificationsRepository;
 import com.wabnet.cybering.repository.posts.*;
 import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
@@ -48,9 +49,11 @@ public class CyberingApplication implements CommandLineRunner {
 	private final DiscussionsRepository discussionsRepository;
 	@Autowired
 	private final ConnectionRequestsRepository connectionRequestsRepository;
+	@Autowired
+	private final NotificationsRepository notificationsRepository;
 
 
-	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository, DiscussionsRepository discussionsRepository, ConnectionRequestsRepository connectionRequestsRepository) {
+	public CyberingApplication(ProfessionalRepository professionalRepository, AuthenticationRepository authenticationRepository, ConnectionRepository connectionRepository, ArticlesRepository articlesRepository, LikesRepository likesRepository, AdminRepository adminRepository, CommentsRepository commentsRepository, AdvertisementsRepository advertisementsRepository, DiscussionsRepository discussionsRepository, ConnectionRequestsRepository connectionRequestsRepository, NotificationsRepository notificationsRepository) {
 		this.professionalRepository = professionalRepository;
 		this.authenticationRepository = authenticationRepository;
 		this.connectionRepository = connectionRepository;
@@ -61,6 +64,7 @@ public class CyberingApplication implements CommandLineRunner {
 		this.advertisementsRepository = advertisementsRepository;
 		this.discussionsRepository = discussionsRepository;
 		this.connectionRequestsRepository = connectionRequestsRepository;
+		this.notificationsRepository = notificationsRepository;
 	}
 
 	public static void main(String[] args) throws Exception {
