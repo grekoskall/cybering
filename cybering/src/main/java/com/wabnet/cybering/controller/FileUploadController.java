@@ -183,9 +183,9 @@ public class FileUploadController {
         professional.get().setLastName(registerInfo.getLastName());
         professional.get().setPhoto(file_path);
         professional.get().setPassword(registerInfo.getPassword());
-        this.professionalRepository.save(professional.get());
+        Professional savedProfessional = this.professionalRepository.save(professional.get());
         this.likesRepository.save(
-                new Likes(registerInfo.getEmail(), new LinkedList<>())
+                new Likes(savedProfessional.getId(), new LinkedList<>())
         );
         System.out.println("\tRequest to add register info completed successfully");
         return new SimpleString("ok");

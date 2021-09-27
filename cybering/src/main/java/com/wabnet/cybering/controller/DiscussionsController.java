@@ -5,9 +5,13 @@ import com.wabnet.cybering.model.discussions.Discussion;
 import com.wabnet.cybering.model.discussions.DiscussionReply;
 import com.wabnet.cybering.model.discussions.DiscussionsInfo;
 import com.wabnet.cybering.model.discussions.Message;
+import com.wabnet.cybering.model.notifications.NotificationInfo;
+import com.wabnet.cybering.model.notifications.NotificationType;
+import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.discussions.DiscussionsRepository;
+import com.wabnet.cybering.repository.notifications.NotificationsRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
 import com.wabnet.cybering.utilities.DiscussionComparator;
@@ -27,11 +31,13 @@ public class DiscussionsController {
     private final AuthenticationRepository authenticationRepository;
     private final ProfessionalRepository professionalRepository;
     private final DiscussionsRepository discussionsRepository;
+    private final NotificationsRepository notificationsRepository;
 
-    public DiscussionsController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, DiscussionsRepository discussionsRepository) {
+    public DiscussionsController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, DiscussionsRepository discussionsRepository, NotificationsRepository notificationsRepository) {
         this.authenticationRepository = authenticationRepository;
         this.professionalRepository = professionalRepository;
         this.discussionsRepository = discussionsRepository;
+        this.notificationsRepository = notificationsRepository;
     }
 
     @PostMapping(value="/cybering/discussions", headers = "action=discussion-array")
@@ -126,6 +132,14 @@ public class DiscussionsController {
         this.discussionsRepository.save(discussion.get());
 
         System.out.println("\tReply set successfully");
+        // Create appropriate Notification
+        Optional<Professional> receiverProfessional = professionalRepository.findById(discussionReply.getId());
+        if (receiverProfessional.isPresent()) {
+            Optional<Notifications> profilesNotifications = notificationsRepository.findById(receiverProfessional.get().getId());
+            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.CHAT_MESSAGE, "");
+            profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
+            notificationsRepository.save(profilesNotifications.get());
+        }
 
         return new SimpleString("success");
     }

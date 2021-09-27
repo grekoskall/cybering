@@ -3,9 +3,13 @@ package com.wabnet.cybering.controller;
 
 import com.wabnet.cybering.model.articles.*;
 import com.wabnet.cybering.model.bases.SimpleString;
+import com.wabnet.cybering.model.notifications.NotificationInfo;
+import com.wabnet.cybering.model.notifications.NotificationType;
+import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.notifications.NotificationsRepository;
 import com.wabnet.cybering.repository.posts.ArticlesRepository;
 import com.wabnet.cybering.repository.posts.CommentsRepository;
 import com.wabnet.cybering.repository.posts.LikesRepository;
@@ -31,14 +35,16 @@ public class ArticleController {
     private final ConnectionRepository connectionRepository;
     private final LikesRepository likesRepository;
     private final CommentsRepository commentsRepository;
+    private final NotificationsRepository notificationsRepository;
 
-    public ArticleController(AuthenticationRepository authenticationRepository, ArticlesRepository articlesRepository, ProfessionalRepository professionalRepository, ConnectionRepository connectionRepository, LikesRepository likesRepository, CommentsRepository commentsRepository) {
+    public ArticleController(AuthenticationRepository authenticationRepository, ArticlesRepository articlesRepository, ProfessionalRepository professionalRepository, ConnectionRepository connectionRepository, LikesRepository likesRepository, CommentsRepository commentsRepository, NotificationsRepository notificationsRepository) {
         this.authenticationRepository = authenticationRepository;
         this.articlesRepository = articlesRepository;
         this.professionalRepository = professionalRepository;
         this.connectionRepository = connectionRepository;
         this.likesRepository = likesRepository;
         this.commentsRepository = commentsRepository;
+        this.notificationsRepository = notificationsRepository;
     }
 
 
@@ -222,6 +228,14 @@ public class ArticleController {
             comments.get().setArticle_ids(aids);
             this.commentsRepository.save(comments.get());
         }
+        // Create appropriate notification
+        Optional<Professional> articleOwner = professionalRepository.findById(article.get().getProfid());
+        if (articleOwner.isPresent()) {
+            Optional<Notifications> profilesNotifications = notificationsRepository.findById(articleOwner.get().getId());
+            NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.COMMENT, article.get().getTitle());
+            profilesNotifications.get().getNotificationsList().addFirst(newNotification);
+            notificationsRepository.save(profilesNotifications.get());
+        }
         return new SimpleString("success");
     }
 
@@ -278,6 +292,14 @@ public class ArticleController {
             articleIds.add(simpleString.getData());
             this.likesRepository.save(optionalLikes.get());
             System.out.println("\tChanged article from unliked to liked");
+            // Create appropriate notification
+            Optional<Professional> articleOwner = professionalRepository.findById(article.get().getProfid());
+            if (articleOwner.isPresent()) {
+                Optional<Notifications> profilesNotifications = notificationsRepository.findById(articleOwner.get().getId());
+                NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.LIKE, article.get().getTitle());
+                profilesNotifications.get().getNotificationsList().addFirst(newNotification);
+                notificationsRepository.save(profilesNotifications.get());
+            }
         }
         article.get().setLikes(likes.toArray(new String[0]));
         this.articlesRepository.save(article.get());

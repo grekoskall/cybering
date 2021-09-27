@@ -3,11 +3,15 @@ package com.wabnet.cybering.controller;
 import com.wabnet.cybering.model.ProfessionalProfile.ProfessionalProfileInfo;
 import com.wabnet.cybering.model.ProfessionalProfile.UserStatus;
 import com.wabnet.cybering.model.bases.SimpleString;
+import com.wabnet.cybering.model.notifications.NotificationInfo;
+import com.wabnet.cybering.model.notifications.NotificationType;
+import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.privacy.Privacy;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Professional;
 import com.wabnet.cybering.repository.notifications.ConnectionRequestsRepository;
+import com.wabnet.cybering.repository.notifications.NotificationsRepository;
 import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
@@ -25,14 +29,16 @@ public class ProfileViewController {
     private final ProfessionalRepository professionalRepository;
     private final ConnectionRepository connectionRepository;
     private final ConnectionRequestsRepository connectionRequestsRepository;
+    private final NotificationsRepository notificationsRepository;
 
 
-    public ProfileViewController(AuthenticationRepository authenticationRepository, AdminRepository adminRepository, ProfessionalRepository professionalRepository, ConnectionRepository connectionRepository, ConnectionRequestsRepository connectionRequestsRepository) {
+    public ProfileViewController(AuthenticationRepository authenticationRepository, AdminRepository adminRepository, ProfessionalRepository professionalRepository, ConnectionRepository connectionRepository, ConnectionRequestsRepository connectionRequestsRepository, NotificationsRepository notificationsRepository) {
         this.authenticationRepository = authenticationRepository;
         this.adminRepository = adminRepository;
         this.professionalRepository = professionalRepository;
         this.connectionRepository = connectionRepository;
         this.connectionRequestsRepository = connectionRequestsRepository;
+        this.notificationsRepository = notificationsRepository;
     }
 
     @PostMapping(value="/cybering/profile", headers = "action=professional-info-get")
@@ -144,6 +150,13 @@ public class ProfileViewController {
             // User has approved request from the profile
             if (connectionRepository.createUsersConnection(professional.get().getId(), profidFromUrl.getData())) {
                 connectionRequestsRepository.deleteConnectionRequest(profidFromUrl.getData(), professional.get().getId());
+                // Create appropriate notification
+                Optional<Notifications> profilesNotifications = notificationsRepository.findById(profidFromUrl.getData());
+                if (profilesNotifications.isPresent()) {
+                    NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.CONNECTION_APPROVED, "");
+                    profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
+                    notificationsRepository.save(profilesNotifications.get());
+                }
             }
             else {
                 return new SimpleString("failed");
@@ -151,6 +164,13 @@ public class ProfileViewController {
         } else {
             // User sent request to profile
             connectionRequestsRepository.createConnectionRequest(professional.get().getId(), profidFromUrl.getData());
+            // Create apropriate notification
+            Optional<Notifications> profilesNotifications = notificationsRepository.findById(profidFromUrl.getData());
+            if (profilesNotifications.isPresent()) {
+                NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.CONNECTION_REQUEST, "");
+                profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
+                notificationsRepository.save(profilesNotifications.get());
+            }
         }
 
         return new SimpleString("success");

@@ -5,5 +5,6 @@ public enum NotificationType {
     COMMENT,
     APPLY_AD,
     CHAT_MESSAGE,
-    CONNECTION_REQUEST
+    CONNECTION_REQUEST,
+    CONNECTION_APPROVED
 }

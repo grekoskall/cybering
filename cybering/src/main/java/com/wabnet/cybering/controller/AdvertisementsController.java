@@ -2,9 +2,13 @@ package com.wabnet.cybering.controller;
 
 import com.wabnet.cybering.model.advertisements.*;
 import com.wabnet.cybering.model.bases.SimpleString;
+import com.wabnet.cybering.model.notifications.NotificationInfo;
+import com.wabnet.cybering.model.notifications.NotificationType;
+import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Connections;
 import com.wabnet.cybering.model.users.Professional;
+import com.wabnet.cybering.repository.notifications.NotificationsRepository;
 import com.wabnet.cybering.repository.posts.AdvertisementsRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
@@ -24,13 +28,15 @@ public class AdvertisementsController {
     private final ProfessionalRepository professionalRepository;
     private final AdvertisementsRepository advertisementsRepository;
     private final ConnectionRepository connectionRepository;
+    private final NotificationsRepository notificationsRepository;
 
 
-    public AdvertisementsController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, AdvertisementsRepository advertisementsRepository, ConnectionRepository connectionRepository) {
+    public AdvertisementsController(AuthenticationRepository authenticationRepository, ProfessionalRepository professionalRepository, AdvertisementsRepository advertisementsRepository, ConnectionRepository connectionRepository, NotificationsRepository notificationsRepository) {
         this.authenticationRepository = authenticationRepository;
         this.professionalRepository = professionalRepository;
         this.advertisementsRepository = advertisementsRepository;
         this.connectionRepository = connectionRepository;
+        this.notificationsRepository = notificationsRepository;
     }
 
     @PostMapping(value="/cybering/advertisements", headers = "action=get-apps")
@@ -271,6 +277,14 @@ public class AdvertisementsController {
         this.advertisementsRepository.save(advertisementFull.get());
 
         System.out.println("\tUser: " + professional.get() + " applied successfully to: " +  advertisementFull.get());
+        // Create appropriate Notification
+        Optional<Professional> adProfessional = professionalRepository.findById(advertisementFull.get().getProfid());
+        if (adProfessional.isPresent()) {
+            Optional<Notifications> profilesNotifications = notificationsRepository.findById(adProfessional.get().getId());
+            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.APPLY_AD, advertisementFull.get().getTitle());
+            profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
+            notificationsRepository.save(profilesNotifications.get());
+        }
         return new SimpleString("success");
     }
 
