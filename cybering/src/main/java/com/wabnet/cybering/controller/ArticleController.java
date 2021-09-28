@@ -232,7 +232,8 @@ public class ArticleController {
         Optional<Professional> articleOwner = professionalRepository.findById(article.get().getProfid());
         if (articleOwner.isPresent()) {
             Optional<Notifications> profilesNotifications = notificationsRepository.findById(articleOwner.get().getId());
-            NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.COMMENT, article.get().getTitle());
+            String textPreview = article.get().getText().substring(0, Math.min(article.get().getText().length(), 15));
+            NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.COMMENT, " '" + textPreview + "...' from " + article.get().getTimestamp().toString());
             profilesNotifications.get().getNotificationsList().addFirst(newNotification);
             notificationsRepository.save(profilesNotifications.get());
         }
@@ -296,7 +297,8 @@ public class ArticleController {
             Optional<Professional> articleOwner = professionalRepository.findById(article.get().getProfid());
             if (articleOwner.isPresent()) {
                 Optional<Notifications> profilesNotifications = notificationsRepository.findById(articleOwner.get().getId());
-                NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.LIKE, article.get().getTitle());
+                String textPreview = article.get().getText().substring(0, Math.min(article.get().getText().length(), 15));
+                NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.LIKE, " '" + textPreview + "...' from " + article.get().getTimestamp().toString());
                 profilesNotifications.get().getNotificationsList().addFirst(newNotification);
                 notificationsRepository.save(profilesNotifications.get());
             }

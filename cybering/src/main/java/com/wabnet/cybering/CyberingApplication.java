@@ -5,6 +5,7 @@ import com.wabnet.cybering.model.articles.Comments;
 import com.wabnet.cybering.model.articles.Likes;
 import com.wabnet.cybering.model.discussions.Discussion;
 import com.wabnet.cybering.model.discussions.Message;
+import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Admins;
 import com.wabnet.cybering.model.users.Connections;
@@ -83,6 +84,7 @@ public class CyberingApplication implements CommandLineRunner {
 		advertisementsRepository.deleteAll();
 		discussionsRepository.deleteAll();
 		connectionRequestsRepository.deleteAll();
+		notificationsRepository.deleteAll();
 		adminRepository.save(
 				new Admins("admin@mail.ko", "admin")
 		);
@@ -143,6 +145,9 @@ public class CyberingApplication implements CommandLineRunner {
 		String bobId = this.professionalRepository.findByEmail("mail@at.ok").get().getId();
 		String jacobId = this.professionalRepository.findByEmail("jacobsm@yahop.ok").get().getId();
 
+		notificationsRepository.save(new Notifications(aliceId));
+		notificationsRepository.save(new Notifications(bobId));
+		notificationsRepository.save(new Notifications(jacobId));
 
 		likesRepository.save(
 				new Likes(aliceId, new LinkedList<>() {

@@ -133,10 +133,16 @@ public class DiscussionsController {
 
         System.out.println("\tReply set successfully");
         // Create appropriate Notification
-        Optional<Professional> receiverProfessional = professionalRepository.findById(discussionReply.getId());
+        String profid1 = discussion.get().getParticipant1();
+        String  profid2 = discussion.get().getParticipant2();
+        Optional<Professional> receiverProfessional;
+        if (profid1.equals(professional.get().getId()))
+            receiverProfessional = professionalRepository.findById(profid2);
+        else
+            receiverProfessional = professionalRepository.findById(profid1);
         if (receiverProfessional.isPresent()) {
             Optional<Notifications> profilesNotifications = notificationsRepository.findById(receiverProfessional.get().getId());
-            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.CHAT_MESSAGE, "");
+            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.CHAT_MESSAGE, " " + professional.get().getFirstName() + " " + professional.get().getLastName());
             profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
             notificationsRepository.save(profilesNotifications.get());
         }
