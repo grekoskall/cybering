@@ -1,6 +1,7 @@
 package com.wabnet.cybering.controller;
 
 import com.wabnet.cybering.model.bases.SimpleString;
+import com.wabnet.cybering.model.notifications.NotificationInfo;
 import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Professional;
@@ -29,7 +30,7 @@ public class NotificationsController {
     }
 
     @PostMapping(value="/cybering/notifications", headers = "action=notifications-get")
-    public Notifications getNotifications(@RequestHeader HttpHeaders httpHeaders) {
+    public NotificationInfo[] getNotifications(@RequestHeader HttpHeaders httpHeaders) {
         System.out.println("\tGot a request to get Notifications.");
         String cookie = httpHeaders.getFirst("Cookies");
         if (cookie == null) {
@@ -55,7 +56,8 @@ public class NotificationsController {
             return null;
         }
 
+        NotificationInfo[] notificationsInfoArray = profNotifications.get().getNotificationsList().toArray(new NotificationInfo[0]);
         System.out.println("\tReturning user notifications...");
-        return profNotifications.get();
+        return notificationsInfoArray;
     }
 }

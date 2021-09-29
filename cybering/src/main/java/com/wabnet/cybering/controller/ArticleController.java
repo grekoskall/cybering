@@ -233,7 +233,11 @@ public class ArticleController {
         if (articleOwner.isPresent()) {
             Optional<Notifications> profilesNotifications = notificationsRepository.findById(articleOwner.get().getId());
             String textPreview = article.get().getText().substring(0, Math.min(article.get().getText().length(), 15));
-            NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.COMMENT, " '" + textPreview + "...' from " + article.get().getTimestamp().toString());
+            if (article.get().getText().length() > 15) {
+                textPreview += "...";
+            }
+            String fullName = professional.get().getFirstName() + " " + professional.get().getLastName();
+            NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), fullName, NotificationType.COMMENT, " '" + textPreview + "' from " + article.get().getTimestamp().toString());
             profilesNotifications.get().getNotificationsList().addFirst(newNotification);
             notificationsRepository.save(profilesNotifications.get());
         }
@@ -298,7 +302,11 @@ public class ArticleController {
             if (articleOwner.isPresent()) {
                 Optional<Notifications> profilesNotifications = notificationsRepository.findById(articleOwner.get().getId());
                 String textPreview = article.get().getText().substring(0, Math.min(article.get().getText().length(), 15));
-                NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), NotificationType.LIKE, " '" + textPreview + "...' from " + article.get().getTimestamp().toString());
+                if (article.get().getText().length() > 15) {
+                    textPreview += "...";
+                }
+                String fullName = professional.get().getFirstName() + " " + professional.get().getLastName();
+                NotificationInfo newNotification = new NotificationInfo(professional.get().getId(), fullName, NotificationType.LIKE, " '" + textPreview + "' from " + article.get().getTimestamp().toString());
                 profilesNotifications.get().getNotificationsList().addFirst(newNotification);
                 notificationsRepository.save(profilesNotifications.get());
             }

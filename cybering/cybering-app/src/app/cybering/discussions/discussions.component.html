@@ -15,9 +15,9 @@
 						<div class="row">
 							| {{discussion.participant2}}
 						</div>
-						<div class="row">
+						<div class="row" *ngIf="discussion.messagesArray.length > 0">
 							<span class="msgPreview">
-								{{discussion.messagesArray[discussion.messagesArray.length-1].message.slice(0, 20) + "..."}}
+								{{discussion.messagesArray[discussion.messagesArray.length-1].message.slice(0, 20)}}
 							</span>
 						</div>
 					</button>

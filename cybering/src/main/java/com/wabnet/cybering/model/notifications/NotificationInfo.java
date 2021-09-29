@@ -1,9 +1,12 @@
 package com.wabnet.cybering.model.notifications;
 
+import com.wabnet.cybering.model.users.Professional;
+
 import java.text.SimpleDateFormat;
 
 public class NotificationInfo {
     String senderProfid;
+    String fullName;
     NotificationType type;
     String timestamp;
     String info;
@@ -11,15 +14,17 @@ public class NotificationInfo {
     public NotificationInfo() {
     }
 
-    public NotificationInfo(String senderProfid, NotificationType type, String info) {
+    public NotificationInfo(String senderProfid, String fullName, NotificationType type, String info) {
         this.senderProfid = senderProfid;
+        this.fullName = fullName;
         this.type = type;
         this.timestamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date());
         this.info = info;
     }
 
-    public NotificationInfo(String senderProfid, NotificationType type, String timestamp, String info) {
+    public NotificationInfo(String senderProfid, String fullName, NotificationType type, String timestamp, String info) {
         this.senderProfid = senderProfid;
+        this.fullName = fullName;
         this.type = type;
         this.timestamp = timestamp;
         this.info = info;
@@ -31,6 +36,14 @@ public class NotificationInfo {
 
     public void setSenderProfid(String senderProfid) {
         this.senderProfid = senderProfid;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public NotificationType getType() {
@@ -61,6 +74,7 @@ public class NotificationInfo {
     public String toString() {
         return "NotificationInfo{" +
                 "senderProfid='" + senderProfid + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", type=" + type +
                 ", timestamp='" + timestamp + '\'' +
                 ", info='" + info + '\'' +

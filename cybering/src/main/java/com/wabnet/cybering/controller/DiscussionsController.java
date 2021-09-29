@@ -142,7 +142,13 @@ public class DiscussionsController {
             receiverProfessional = professionalRepository.findById(profid1);
         if (receiverProfessional.isPresent()) {
             Optional<Notifications> profilesNotifications = notificationsRepository.findById(receiverProfessional.get().getId());
-            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.CHAT_MESSAGE, " " + professional.get().getFirstName() + " " + professional.get().getLastName());
+            String text = messageList.getLast().getMessage();
+            String textPreview = text.substring(0, Math.min(text.length(), 15));
+            if (text.length() > 15) {
+                textPreview += "...";
+            }
+            String fullName = professional.get().getFirstName() + " " + professional.get().getLastName();
+            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), fullName, NotificationType.CHAT_MESSAGE, " '" + textPreview + "' ");
             profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
             notificationsRepository.save(profilesNotifications.get());
         }
@@ -171,15 +177,19 @@ public class DiscussionsController {
 
         int i = 0, index = -1;
 
+        Optional<Professional> professionalToMsg = this.professionalRepository.findById(profidFromUrl.getData());
+        if (professionalToMsg.isEmpty())
+            return null;
 
         List<Discussion> discussionList = new LinkedList<>();
         discussionList.addAll(this.discussionsRepository.findAllByParticipant1(professional.get().getId()));
         discussionList.addAll(this.discussionsRepository.findAllByParticipant2(professional.get().getId()));
-        if (discussionList.isEmpty())
-            return null;
+        if (discussionList.isEmpty()) {
+            Discussion discussion = new Discussion(professional.get().getId(), professionalToMsg.get().getId());
+            discussion = this.discussionsRepository.save(discussion);
+            discussionList.add(discussion);
+        }
         discussionList.sort(new DiscussionComparator());
-
-        Optional<Professional> professionalToMsg = this.professionalRepository.findById(profidFromUrl.getData());
 
         for (Discussion currentDiscussion : discussionList) {
             String profid1 = currentDiscussion.getParticipant1();

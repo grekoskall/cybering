@@ -5,6 +5,7 @@ import com.wabnet.cybering.model.articles.Comments;
 import com.wabnet.cybering.model.articles.Likes;
 import com.wabnet.cybering.model.discussions.Discussion;
 import com.wabnet.cybering.model.discussions.Message;
+import com.wabnet.cybering.model.notifications.ConnectionRequests;
 import com.wabnet.cybering.model.notifications.Notifications;
 import com.wabnet.cybering.model.signin.tokens.Authentication;
 import com.wabnet.cybering.model.users.Admins;
@@ -99,8 +100,8 @@ public class CyberingApplication implements CommandLineRunner {
 						"CEO",
 						"Intrawebel",
 						"I like my work, but even more, i love the people involved in it.",
-						new String[] {"Lead Producer", "Elixir of Life", "School Teacher", "Private School of Economics"},
-						new String[] {"Masters Degree", "Business Management", "Bachelors Degree", "Cambridge Economics"},
+						new String[] {"Lead Producer, Elixir of Life", "School Teacher, Private School of Economics"},
+						new String[] {"Masters Degree, Business Management", "Bachelors Degree, Cambridge Economics"},
 						new String[] {"Leadership", "Marketing", "Human Resources", "Business Management", "Design", "Product Development"},
 						"alice",
 						"1")
@@ -117,8 +118,8 @@ public class CyberingApplication implements CommandLineRunner {
 						"Junior Programmer",
 						"Intrawebex",
 						"I like to code and make computers do BEEP BOOP BEEP BOOP",
-						new String[] {"IT Support", "Gougle360"},
-						new String[] {"Bachelors Degree", "National and Kapodistrian University of Athens"},
+						new String[] {"IT Support, Gougle360"},
+						new String[] {"Bachelors Degree, National and Kapodistrian University of Athens"},
 						new String[] {"Unix", "C++", "Java"},
 						"bob",
 						"1")
@@ -135,8 +136,8 @@ public class CyberingApplication implements CommandLineRunner {
 						"Recruiter",
 						"Loopsterdam",
 						"Keeping an eye out for upcoming talents.",
-						new String[] {""},
-						new String[] {"Bachelors Degree", "Deree College"},
+						new String[] {"Firefighter, Miami City Guards"},
+						new String[] {"Bachelors Degree, Deree College"},
 						new String[] {"Recruiting", "Motivating", "Inspiring"},
 						"jacob")
 		);
@@ -188,6 +189,11 @@ public class CyberingApplication implements CommandLineRunner {
 		Connections entity3 = new Connections(jacobId, connections3);
 		connectionRepository.save(entity3);
 
+		connectionRequestsRepository.save(new ConnectionRequests(aliceId));
+		connectionRequestsRepository.save(new ConnectionRequests(jacobId));
+		connectionRequestsRepository.save(new ConnectionRequests(bobId));
+
+
 		articlesRepository.save(
 				new Article(
 						"1",
@@ -199,7 +205,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"\"Beauty lies in the hands of the codeholder\"\n\nToday marks the start of the Intrawebel Annual Code Marathon(ACM), we will be accepting applicants until 18/8.\n\nThe theme this year will be an application that can help better the environment and urge people to become more environment friendly!\n\nWe are looking forward to the new applications this year, have fun coding!",
 						new String[][] {new String[] {bobId, "This is a great opportunity and a great theme. I am up to the challenge :)"}, new String[] {jacobId, "What a perfect way to show concern about the environment and promote talent, keep being awesome!"} },
 						new String[] {jacobId, bobId},
-						new String[][] {new String[] {"image", "/assets/foxwhite.jpg"}}
+						new String[][] {new String[] {"image", "foxwhite.jpg"}}
 				)
 		);
 		Likes like3 = likesRepository.findById(jacobId).get();

@@ -25,7 +25,7 @@ export class PersonalinfoListComponent implements OnInit {
         if (this.info.photo_url === '' && this.info.firstName === '') {
           this.router.navigate(['/']);
         }
-        if (this.info.photo_url != 'default' && this.info.photo_url != '') {
+        if (this.info.photo_url != 'default' && this.info.photo_url != '' && this.info.photo_url != 'dpp.jpg') {
           this.img_url = 'assets/' + this.info.photo_url;
         } else {
           this.img_url = 'assets/dpp.jpg';

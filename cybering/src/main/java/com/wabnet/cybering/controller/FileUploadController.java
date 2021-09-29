@@ -96,7 +96,7 @@ public class FileUploadController {
         } else {
             try {
                 FileWriter writer = new FileWriter(file_path);
-                writer.write(new String(profilePhoto.getBytes()));
+                writer.write(new String(profilePhoto.getOriginalFilename()));
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -168,16 +168,6 @@ public class FileUploadController {
             }
         }
 
-        List<Professional> name_check = this.professionalRepository.findByFirstName(registerInfo.getFirstName());
-        if ( !name_check.isEmpty() ) {
-            for (Professional prof_check :
-                    name_check) {
-                if (prof_check.getLastName().equals(registerInfo.getLastName())) {
-                    System.out.println("\tError: found professional with same First and Last name");
-                    return new SimpleString("failed");
-                }
-                }
-        }
 
         professional.get().setFirstName(registerInfo.getFirstName());
         professional.get().setLastName(registerInfo.getLastName());

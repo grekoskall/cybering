@@ -109,42 +109,5 @@
 				<button class="btn-lg btn-success mt-2" (click)="onSave()">Save</button>
 			</div>
 		</div>
-
-		<!-- <form [formGroup]="passwordForm" (ngSubmit)="setPassword()">
-			<label for="inputPasswordOld">Current Password</label>
-			<input id="inputPasswordOld" type="password" class="form-control" formControlName="oldPassword">
-			<div class="old-password-invalid" *ngIf="this.passwordCheck === 'failed'">
-				<p class="error">The old Password is invalid.</p>
-			</div>
-			<div formGroupName="newPasswordFields">
-				<label for="inputPasswordNew">New Password</label>
-				<input id="inputPasswordNew" type="password" class="form-control" formControlName="passwordControl">
-				<div class="new-password-short" *ngIf="this.passwordCheck === 'newPassword-small'">
-					<p class="error">The password must be at least 6 characters long.</p>
-				</div>
-				<span class="form-text small text-muted">
-					The password must be at least 6 characters long, and must <em>not</em> contain spaces.
-				</span>
-				<div>
-					<label for="inputPasswordNewVerify">Verify Password</label>
-					<input id="inputPasswordNewVerify" type="password" class="form-control"
-						formControlName="passwordValidControl">
-					<div class="different-password" *ngIf="this.passwordCheck === 'password-notSame'">
-						<p class="error">The passwords must match.</p>
-					</div>
-					<span class="form-text small text-muted">
-						To confirm, type the new password again.
-					</span>
-					<!-- <div class="failed-password" *ngIf="this.passwordCheck === 'failed'">
-						<p class="error">An error occurred. Please contact the administrator.</p>
-					</div>
-					<div class="success-password" *ngIf="this.passwordCheck === 'success'">
-						<p class="success">The password changed successfully.</p>
-					</div> 
-				</div>
-			</div>
-			<button type="submit" class="btn btn-success float-right mt-2">Save Password</button>
-		</form> -->
-
 	</div>
 </div>

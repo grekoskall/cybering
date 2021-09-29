@@ -37,7 +37,7 @@ export class PersonalinfoComponent implements OnInit {
   privacySkills: boolean = false;
   _personalInfo !: PersonalInfo;
   index !: number;
-  saveError : boolean = false;
+  saveError: boolean = false;
 
 
 
@@ -59,24 +59,30 @@ export class PersonalinfoComponent implements OnInit {
         this.workPositionForm.controls.workPosition.setValue(result.workPosition);
 
         this.index = 0;
-        for (var currentEducation of result.education) {
-          this.index = this.index + 1;
-          this.educationForm.addControl(this.index.toString(), this.fb.control(''));
-          this.educationForm.get(this.index.toString())?.setValue(currentEducation);
+        if (result.education != null) {
+          for (var currentEducation of result.education) {
+            this.index = this.index + 1;
+            this.educationForm.addControl(this.index.toString(), this.fb.control(''));
+            this.educationForm.get(this.index.toString())?.setValue(currentEducation);
+          }
         }
 
         this.index = 0;
-        for (var currentWorkExperience of result.workExperience) {
-          this.index = this.index + 1;
-          this.workExperienceForm.addControl(this.index.toString(), this.fb.control(''));
-          this.workExperienceForm.get(this.index.toString())?.setValue(currentWorkExperience);
+        if (result.workExperience != null) {
+          for (var currentWorkExperience of result.workExperience) {
+            this.index = this.index + 1;
+            this.workExperienceForm.addControl(this.index.toString(), this.fb.control(''));
+            this.workExperienceForm.get(this.index.toString())?.setValue(currentWorkExperience);
+          }
         }
 
         this.index = 0;
-        for (var currentSkills of result.skills) {
-          this.index = this.index + 1;
-          this.skillsForm.addControl(this.index.toString(), this.fb.control(''));
-          this.skillsForm.get(this.index.toString())?.setValue(currentSkills);
+        if (result.skills != null) {
+          for (var currentSkills of result.skills) {
+            this.index = this.index + 1;
+            this.skillsForm.addControl(this.index.toString(), this.fb.control(''));
+            this.skillsForm.get(this.index.toString())?.setValue(currentSkills);
+          }
         }
 
         if (result.privacySettings.education.toString() == Privacy[Privacy.PRIVATE]) {

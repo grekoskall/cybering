@@ -57,8 +57,7 @@
 												</a>
 											</div>
 											<div class="col-auto m-0 text-wrap">
-												<a class="article-link"
-													href="cybering/profile?id={{article.profid}}">
+												<a class="article-link" href="cybering/profile?id={{article.profid}}">
 													<p class="article-title m-0 ">
 														{{article.firstName}} {{article.lastName}}
 													</p>
@@ -98,15 +97,14 @@
 																<div class="if-media-div text-center"
 																	*ngIf="media[0].toString() === 'image'">
 																	<img class="image-frame"
-																		[src]="sanitizer.bypassSecurityTrustUrl(media[1].toString())">
+																		[src]="sanitizer.bypassSecurityTrustUrl('/assets/' + media[1].toString())">
 																</div>
-																<div class="if-media-div text-end"
-																	*ngIf="media[0].toString() === 'url'">
-																	<a href="{{media[1].toString()}}" class="link">
-																		<i class="bi bi-link-45deg"></i>
-																		Link here
-																	</a>
-																</div>
+																<div class="if-media-div text-center"
+																*ngIf="media[0].toString() === 'audio'">
+																<audio controls>
+																	<source [src]="sanitizer.bypassSecurityTrustUrl('/assets/' + media[1].toString())" type="audio/mpeg">
+																</audio>
+															</div>
 															</div>
 														</div>
 													</div>
@@ -146,7 +144,8 @@
 														<div class="row">
 															<div class="col-flex">
 																<textarea class="form-control"
-																	formControlName="replyText" placeholder="Type your comment"></textarea>
+																	formControlName="replyText"
+																	placeholder="Type your comment"></textarea>
 															</div>
 														</div>
 														<div class="row">
@@ -178,7 +177,8 @@
 											<div class="col-auto d-flex inline"
 												*ngIf="article != null && article != undefined">
 												<div class="likecount">
-													<button id="cmntBtn" type="button" class="btn btn-link" (click)="changeInterest(article.id, i_article)">
+													<button id="cmntBtn" type="button" class="btn btn-link"
+														(click)="changeInterest(article.id, i_article)">
 														<i class="bi bi-check2-circle" *ngIf="!article.interested"></i>
 														<i class="bi bi-patch-check-fill"
 															*ngIf="article.interested"></i>
@@ -228,7 +228,7 @@
 													</div>
 													<div class="col-10 comment-col">
 														<a class="comment-name"
-													href="/cybering/profile?id={{comment[3]}}">
+															href="/cybering/profile?id={{comment[3]}}">
 															{{comment[0]}} {{comment[1]}}
 														</a>
 

@@ -1,1 +1,329 @@
-<p>profile works! id={{profid}}</p>
+<div class="container mt-5">
+	<div class="row profile-info" *ngIf="professionalProfileInfo != undefined">
+		<div class="col-9">
+			<div class="row g-5">
+				<div class="col-auto">
+					<img src="{{img_url}}" class="img-fluid rounded-start">
+				</div>
+				<div class="col-6">
+					<div class="row">
+						<div class="col-flex">
+							<p class="name h4">
+								{{professionalProfileInfo.firstName}} {{professionalProfileInfo.lastName}}
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-flex">
+							<p class="work-position h5">
+								<span class="text-muted">Work Position: </span>{{professionalProfileInfo.workPosition}}
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-flex">
+							<p class="phone h5">
+								<span class="text-muted">Phone: </span>{{professionalProfileInfo.phone}}
+							</p>
+						</div>
+						<div class="col-flex">
+							<p class="work-place h5">
+								<span class="text-muted">Work Place: </span>{{professionalProfileInfo.workPlace}}
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-flex">
+							<p class="work-experience h5">
+								<span class="text-muted">Work Experience: </span>
+							</p>
+							<div class="row we">
+								<div class="col-flex h6"
+									*ngFor="let workExperience of professionalProfileInfo.workExperience; index as i">
+									- {{workExperience}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-4">
+					<div class="col-flex">
+						<p class="h5">
+							<span class="text-muted">About me: </span>
+						</p>
+						<p class="bio h5">
+							{{professionalProfileInfo.bio}}
+						</p>
+					</div>
+				</div>
+				<div class="col-8">
+					<div class="row g-0">
+						<div class="col-6">
+							<p class="education h5">
+								<span class="text-muted">Education: </span>
+							</p>
+							<div class="row we">
+								<div class="col-flex h6"
+									*ngFor="let education of professionalProfileInfo.education; index as i">
+									- {{education}}
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<p class="skills h5">
+								<span class="text-muted">Skills: </span>
+							</p>
+							<div class="row we">
+								<div class="col-flex h6"
+									*ngFor="let skill of professionalProfileInfo.skills; index as i">
+									- {{skill}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-3">
+			<div class="row">
+				<div class="col-flex">
+					<div class="button" *ngIf="professionalProfileInfo.userStatus.toString() === 'CONNECTED'">
+						<button class="btn btn-dark" (click)="onClickMessage()">
+							Message
+							<i class="bi bi-chat-text"></i>
+						</button>
+					</div>
+					<div class="button"
+						*ngIf="professionalProfileInfo.userStatus.toString() === 'IS_ADMIN' || professionalProfileInfo.userStatus.toString() === 'SAME_USER'">
+
+					</div>
+					<div class="button" *ngIf="professionalProfileInfo.userStatus.toString() === 'NOT_CONNECTED'">
+						<button class="btn btn-dark" (click)="onClickRequest()">
+							Connect
+							<i class="bi bi-person-plus"></i>
+						</button>
+					</div>
+					<div class="button" *ngIf="professionalProfileInfo.userStatus.toString() === 'SENT_REQUEST'">
+						<button class="btn btn-dark" (click)="onClickRequest()">
+							Cancel Request
+							<i class="bi bi-person-dash"></i>
+						</button>
+					</div>
+					<div class="button" *ngIf="professionalProfileInfo.userStatus.toString() === 'RECEIVED_REQUEST'">
+						<button class="btn btn-dark" (click)="onClickRequest()">
+							Approve Request
+							<i class="bi bi-person-check"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-flex">
+					<div class="network">
+						<p class="connections h5">
+							Connections:
+						</p>
+						<hr>
+						<div class="row mb-2" *ngFor="let connection of network_list; index as i">
+							<div class="col-flex">
+								<a href="/cybering/profile?id={{connection.profid}}" class="a">
+									<img src="/assets/{{connection.photo}}" class="prof ">
+									<span class="name inline m-2">{{connection.firstName}}
+										{{connection.lastName}}</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row profile-posts"
+		*ngIf="professionalProfileInfo != undefined && articles_list != undefined && articles_list != null">
+		<div class="col-1">
+
+		</div>
+		<div class="col-10 text-start">
+			<p class="h3 text-center">
+				Posts
+			</p>
+
+			<div class="row article-row">
+				<div class="col-1">
+
+				</div>
+				<div class="col-10 article-col">
+
+					<div class="row small-article-row" *ngFor="let article of articles_list; index as i_article;">
+						<div class="col-1">
+
+						</div>
+						<div class="col-10 small-article-col">
+							<div class="row">
+								<div class="col-flex ">
+									<div class="row g-1">
+										<div class="col-auto">
+											<a href="cybering/profile?id={{article.profid}}">
+												<img class="article-profile-image" src="assets/{{article.photo_url}}">
+											</a>
+										</div>
+										<div class="col-auto m-0 text-wrap">
+											<a class="article-link" href="cybering/profile?id={{article.profid}}">
+												<p class="article-title m-0 ">
+													{{article.firstName}} {{article.lastName}}
+												</p>
+											</a>
+											<a class="article-small-link" href="cybering/profile?id={{article.profid}}">
+												<p class="article-title-small text-muted m-0 ">{{article.title}}</p>
+											</a>
+											<p class="article-time">
+												{{article.timestamp}}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mb-0">
+								<div class="col-flex mt-3 mb-0">
+									<div class="row">
+										<div class="col-1">
+										</div>
+										<div class="col-10">
+											<p>
+												{{article.text}}
+											</p>
+											<div class="media-div" *ngIf="article != null && article != undefined 
+												&& article.media != null && article.media != undefined">
+												<div class="for-media-div">
+													<div class=" row">
+														<div class="col"
+															*ngFor="let media of article.media; index as i">
+															<div class="if-media-div text-center"
+																*ngIf="media[0].toString() === 'video'">
+																<iframe class="image-frame"
+																	[src]="sanitizer.bypassSecurityTrustResourceUrl(media[1].toString())"
+																	allowfullscreen> </iframe>
+															</div>
+															<div class="if-media-div text-center"
+																*ngIf="media[0].toString() === 'image'">
+																<img class="image-frame"
+																	[src]="sanitizer.bypassSecurityTrustUrl('/assets/' + media[1].toString())">
+															</div>
+															<div class="if-media-div text-center"
+																*ngIf="media[0].toString() === 'audio'">
+																<audio controls>
+																	<source [src]="sanitizer.bypassSecurityTrustUrl('/assets/' + media[1].toString())" type="audio/mpeg">
+																</audio>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-1">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3">
+
+								<div class="col-flex d-flex inline mt-1">
+									<div class="row g-0 ">
+										<div class="col-auto d-flex inline"
+											*ngIf="article != null && article != undefined">
+											<div class="likecount">
+													<i class="bi bi-check2-circle" *ngIf="!article.interested"></i>
+													<i class="bi bi-patch-check-fill" *ngIf="article.interested"></i>
+													<span class="likes">{{article.likes.length}}</span>
+											</div>
+										</div>
+
+
+										<div class="col-auto if-exists-categories d-flex inline"
+											*ngIf="article != null && article != undefined && article.categories != null && article.categories != undefined">
+											<div class="row g-0 d-flex inline">
+												<div class="col-auto d-flex inline"
+													*ngFor="let category of article.categories; index as i;">
+													<p class="category">
+														{{category}}
+													</p>
+
+												</div>
+											</div>
+										</div>
+										<div class="col-auto">
+
+										</div>
+
+
+									</div>
+
+
+								</div>
+
+							</div>
+							<div class="row ">
+
+								<div class="col">
+
+
+									<hr>
+
+									<div class="row mb-2">
+
+										<div class="col-flex"
+											*ngIf="article != null && article != undefined && article.comments != null && article.comments != undefined">
+											<div class="row " *ngFor="let comment of article.comments; index as i;">
+												<div class="col-1">
+
+												</div>
+												<div class="col-10 comment-col">
+													<a class="comment-name" href="/cybering/profile?id={{comment[3]}}">
+														{{comment[0]}} {{comment[1]}}
+													</a>
+
+													<div class="row">
+														<div class="col-1">
+
+														</div>
+														<div class="col-11">
+															<p class="comment-text">{{comment[2]}}</p>
+														</div>
+
+													</div>
+
+												</div>
+												<div class="col-1">
+
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+
+
+								</div>
+							</div>
+
+						</div>
+						<div class="col-1">
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-1">
+
+				</div>
+
+			</div>
+		</div>
+		<div class="col-1">
+
+		</div>
+	</div>
+</div>

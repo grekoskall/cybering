@@ -12,37 +12,41 @@ import { SimpleString } from 'src/app/interfaces/simplestring';
 })
 export class PersonalInfoService extends BaseService {
 
-  constructor(private http : HttpClient) { 
+  constructor(private http: HttpClient) {
     super();
   }
 
-    getPersonalInfo(cookie : string) : Observable<PersonalInfo> {
+  getPersonalInfo(cookie: string): Observable<PersonalInfo> {
     return this.http.post<PersonalInfo>(
-      this.extendurl('cybering/personalinfo'), 
+      this.extendurl('cybering/personalinfo'),
       null,
-      {headers: {
-        "Cookies": cookie,
-        "action": "personal-info-get"
-      }}
+      {
+        headers: {
+          "Cookies": cookie,
+          "action": "personal-info-get"
+        }
+      }
     ).pipe(
       retry(2),
       catchError(this.handleError)
     );
   }
 
-    setPersonalInfo(cookie : string, personalInfo : PersonalInfo) : Observable<SimpleString> {
+  setPersonalInfo(cookie: string, personalInfo: PersonalInfo): Observable<SimpleString> {
 
     return this.http.post<SimpleString>(
-      this.extendurl('cybering/personalinfo'), 
+      this.extendurl('cybering/personalinfo'),
       personalInfo,
-      {headers: {
-        "Cookies": cookie,
-        "action": "personal-info-set"
-      }}
+      {
+        headers: {
+          "Cookies": cookie,
+          "action": "personal-info-set"
+        }
+      }
     ).pipe(
       retry(2),
       catchError(this.handleError)
     );
   }
-  
+
 }

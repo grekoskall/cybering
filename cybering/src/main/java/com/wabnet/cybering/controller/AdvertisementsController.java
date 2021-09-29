@@ -281,7 +281,8 @@ public class AdvertisementsController {
         Optional<Professional> adProfessional = professionalRepository.findById(advertisementFull.get().getProfid());
         if (adProfessional.isPresent()) {
             Optional<Notifications> profilesNotifications = notificationsRepository.findById(adProfessional.get().getId());
-            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), NotificationType.APPLY_AD, advertisementFull.get().getTitle());
+            String fullName = professional.get().getFirstName() + " " + professional.get().getLastName();
+            NotificationInfo newNotificationInfo = new NotificationInfo(professional.get().getId(), fullName, NotificationType.APPLY_AD, advertisementFull.get().getTitle());
             profilesNotifications.get().getNotificationsList().addFirst(newNotificationInfo);
             notificationsRepository.save(profilesNotifications.get());
         }

@@ -1,0 +1,20 @@
+.type-check {
+	margin-top: 0.3rem;
+	border: 0.14rem solid grey;
+	padding-top: 0.7rem;
+	padding-bottom: 0.5rem;
+	border-radius: 1rem;
+}
+
+.name {
+	color: cornflowerblue;
+}
+
+.info {
+	color: coral;
+}
+
+.timestamp {
+	color: gray;
+	padding-top: 0.5rem;
+}

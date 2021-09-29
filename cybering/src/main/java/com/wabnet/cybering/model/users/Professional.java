@@ -39,6 +39,9 @@ public class Professional {
 
     public Professional(String email) {
         this.email = email;
+        this.workExperience = new String[0];
+        this.education = new String[0];
+        this.skills = new String[0];
         this.createPrivacySettings();
     }
 
@@ -47,6 +50,9 @@ public class Professional {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.workExperience = new String[0];
+        this.education = new String[0];
+        this.skills = new String[0];
         this.createPrivacySettings();
     }
 
@@ -74,6 +80,9 @@ public class Professional {
         this.lastName = lastName;
         this.photo = photo;
         this.password = password;
+        this.workExperience = new String[0];
+        this.education = new String[0];
+        this.skills = new String[0];
         this.createPrivacySettings();
     }
 

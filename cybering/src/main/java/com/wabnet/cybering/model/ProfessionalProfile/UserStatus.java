@@ -5,5 +5,6 @@ public enum UserStatus {
     NOT_CONNECTED,
     SENT_REQUEST,
     RECEIVED_REQUEST,
-    IS_ADMIN
+    IS_ADMIN,
+    SAME_USER
 }

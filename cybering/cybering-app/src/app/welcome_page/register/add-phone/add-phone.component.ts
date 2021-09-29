@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AddPhoneComponent implements OnInit {
 
-  registerInfo!: RegisterInfo ;
+  registerInfo!: RegisterInfo;
   image_url: string = "assets/dpp.jpg";
   phone: string = '';
   photoToUpload: File | null = null;
@@ -59,9 +59,9 @@ export class AddPhoneComponent implements OnInit {
       return;
     }
 
-    if (this.photoToUpload === null) {
-      this.photoToUpload = new File(["default"], "dpp.txt");
-    }
+    this.image_url = this.onetoForm.controls.photoControl.value;
+
+    this.photoToUpload = new File([this.image_url], this.image_url);
 
     this.registerService.uploadProfilePhoto
       (
@@ -93,7 +93,7 @@ export class AddPhoneComponent implements OnInit {
 
                 this.registerService.sendPhone
                   (
-                    this.onetoForm.controls.phoneControl.value,
+                    this.image_url,
                     this.cookieService.get('ST_TOKEN')
                   ).subscribe
                   (
@@ -113,7 +113,7 @@ export class AddPhoneComponent implements OnInit {
         }
       );
   }
-  
+
   updateInfo(registerInfo: RegisterInfo) {
     this.registerInfo = registerInfo;
   }

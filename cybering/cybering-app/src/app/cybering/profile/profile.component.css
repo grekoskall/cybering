@@ -1,0 +1,166 @@
+.rounded-start {
+	width: 18rem;
+	height: 18rem;
+}
+
+.we {
+	overflow: scroll;
+	overflow-y: auto;
+	overflow-x: auto;
+	width: 100%;
+	max-height: 8.3rem;
+}
+
+.prof {
+	width: 3rem;
+	height: 3rem;
+}
+
+.a {
+	text-decoration: none;
+	color: black;
+}
+
+.a:hover {
+	color: cornflowerblue;
+	
+}
+
+.network {
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100%;
+	max-height: 15rem;
+}
+
+.btn {
+	min-width: 10rem;
+	font-size: larger;
+}
+
+.profile-info {
+	padding: 2rem;
+	border: 0.14rem solid gray;
+	border-radius: 0.5rem;
+}
+
+.profile-posts {
+	margin-top: 3rem;
+}
+
+.article-profile-image {
+  width: 69px;
+  height: 69px;
+}
+
+.link {
+  text-decoration: none;
+  
+}
+
+.comt-msg {
+  margin-bottom: 0.5rem;
+  margin-left: 1.4rem;
+  color: palevioletred;
+}
+
+
+.color-red {
+  color: palevioletred;
+}
+
+.reply {
+  margin-right: 1rem;
+}
+
+.small-article-col {
+  border: 0.1rem solid gainsboro;
+  border-radius: 2px;
+  margin: 1.42rem;
+  padding: 0.39rem;
+}
+
+.article-title {
+  padding-top: 0.24rem;
+  padding-left: 0.14rem;
+  font-weight: bold;
+}
+
+.article-link {
+  color: black;
+  text-decoration: none;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+
+
+.btn-link {
+	text-decoration: none;
+	color: black;
+}
+
+.likes {
+  margin-left: 0.26rem;
+}
+
+
+
+.article-small-link {
+  text-decoration: none;
+}
+
+.category {
+  border: 0.5px solid cornflowerblue;
+  border-radius: 4rem;
+  color: cornflowerblue;
+  padding: 3px;
+  background-color: aliceblue;
+  margin-left: 5px;
+  margin-top: 8px;
+}
+
+.article-title-small {
+  padding-left: 0.14rem;
+  font-size: small;
+}
+
+.color-black {
+  color: red;
+}
+
+.comment-col {
+  margin: 1rem;
+  background-color: aliceblue;
+  border: 0.06rem solid cornflowerblue;
+  padding-top: 1rem;
+}
+
+
+
+.comment-name {
+  color: cornflowerblue;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.image-frame {
+  width: 50%;
+  height: 10%;
+
+}
+
+
+.comment-text {
+  margin-top: 0.5rem;
+}
+
+.likecount {
+  padding: 0.14rem;
+}
+
+.article-time {
+  font-size: small;
+}
