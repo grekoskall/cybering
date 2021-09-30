@@ -294,7 +294,8 @@ public class ProfileViewController {
             return null;
         }
         Optional<Professional> professional = this.professionalRepository.findById(token.getProfid());
-        if ( professional.isEmpty() ) {
+        Optional<Admins> admin = this.adminRepository.findById(token.getProfid());
+        if ( professional.isEmpty() && admin.isEmpty()) {
             System.out.println("\tThe Id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return null;
         }
@@ -311,20 +312,24 @@ public class ProfileViewController {
             return null;
         }
 
+        if (admin.isEmpty() && !connections.get().getList().contains(professional.get().getId()) && !professional.get().getId().equals(profidFromUrl.getData())) {
+            return null;
+        }
+
         LinkedList<Network> networkLinkedList = new LinkedList<>();
         LinkedList<String> conList = connections.get().getList();
         for (String profid :
                 conList) {
             Optional<Professional> professionalConnection = this.professionalRepository.findById(profid);
             if (professionalConnection.isEmpty()) {
-                System.out.println("\tThis user has an unknown connection: " + professional.get());
+                System.out.println("\tThis user has an unknown connection: " + professionalConnection.get());
                 return null;
             }
             String image;
-            if ( professional.get().getPhoto().equals("default") ) {
+            if ( professionalConnection.get().getPhoto().equals("default") ) {
                 image="dpp.jpg";
             } else {
-                image = professional.get().getPhoto();
+                image = professionalConnection.get().getPhoto();
             }
             networkLinkedList.add(
                     new Network(

@@ -1,96 +1,112 @@
 <div class="container">
-	<div class="row" *ngFor="let notification of notificationInfoArray; index as i">
-		<div class="type-check" *ngIf="notification.type.toString() === 'LIKE'">
-			<div class="row">
-				<div class="col-9">
-					<p class="text h5">
-					<a href="/cybering/profile?id={{notification.senderProfid}}">
-						<span class="name">{{notification.fullName}}</span></a> liked your Post: <span
-							class="info">{{notification.info}}</span>
-					</p>
+	<p class="h4 text-center">Connection requests & Messages</p>
+	<div class="upper-div">
+		<div class="row" *ngFor="let notification of notificationInfoArray; index as i">
+			<div class="col-flex">
+				<div class="type-check" *ngIf="notification.type.toString() === 'CHAT_MESSAGE'">
+					<div class="row">
+						<div class="col-9">
+							<p class="text h5">
+								<a href="/cybering/profile?id={{notification.senderProfid}}">
+									<span class="name">{{notification.fullName}}</span></a> sent you a message: <span
+									class="info">{{notification.info}}</span>
+							</p>
+						</div>
+						<div class="col-3 text-end">
+							<p class="text h6 pt-2">
+								<span class="timestamp">{{notification.timestamp}}</span>
+							</p>
+						</div>
+					</div>
 				</div>
-				<div class="col-3 text-end">
-					<p class="text h6 pt-2">
-						<span class="timestamp">{{notification.timestamp}}</span>
-					</p>
+				<div class="type-check" *ngIf="notification.type.toString() === 'CONNECTION_REQUEST'">
+					<div class="row">
+						<div class="col-9">
+							<p class="text h5">
+								<a href="/cybering/profile?id={{notification.senderProfid}}">
+									<span class="name">{{notification.fullName}}</span></a> sent you a connection
+								request.
+							</p>
+						</div>
+						<div class="col-3 text-end">
+							<p class="text h6 pt-2">
+								<span class="timestamp">{{notification.timestamp}}</span>
+							</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="type-check" *ngIf="notification.type.toString() === 'COMMENT'">
-			<div class="row">
-				<div class="col-9">
-					<p class="text h5">
-						<a href="/cybering/profile?id={{notification.senderProfid}}">
-						<span class="name">{{notification.fullName}}</span></a> commented on your Post: <span
-							class="info">{{notification.info}}</span>
-					</p>
-				</div>
-				<div class="col-3 text-end">
-					<p class="text h6 pt-2">
-						<span class="timestamp">{{notification.timestamp}}</span>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="type-check" *ngIf="notification.type.toString() === 'APPLY_AD'">
-			<div class="row">
-				<div class="col-9">
-					<p class="text h5">
-						<a href="/cybering/profile?id={{notification.senderProfid}}">
-						<span class="name">{{notification.fullName}}</span></a> applied to your Advertisement with title: <span
-							class="info">{{notification.info}}</span>
-					</p>
-				</div>
-				<div class="col-3 text-end">
-					<p class="text h6 pt-2">
-						<span class="timestamp">{{notification.timestamp}}</span>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="type-check" *ngIf="notification.type.toString() === 'CHAT_MESSAGE'">
-			<div class="row">
-				<div class="col-9">
-					<p class="text h5">
-						<a href="/cybering/profile?id={{notification.senderProfid}}">
-						<span class="name">{{notification.fullName}}</span></a> sent you a message: <span
-							class="info">{{notification.info}}</span>
-					</p>
-				</div>
-				<div class="col-3 text-end">
-					<p class="text h6 pt-2">
-						<span class="timestamp">{{notification.timestamp}}</span>
-					</p>
+				<div class="type-check" *ngIf="notification.type.toString() === 'CONNECTION_APPROVED'">
+					<div class="row">
+						<div class="col-9">
+							<p class="text h5">
+								<a href="/cybering/profile?id={{notification.senderProfid}}">
+									<span class="name">{{notification.fullName}}</span></a> has approved your request to
+								connect.
+							</p>
+						</div>
+						<div class="col-3 text-end">
+							<p class="text h6 pt-2">
+								<span class="timestamp">{{notification.timestamp}}</span>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="type-check" *ngIf="notification.type.toString() === 'CONNECTION_REQUEST'">
-			<div class="row">
-				<div class="col-9">
-					<p class="text h5">
-						<a href="/cybering/profile?id={{notification.senderProfid}}">
-						<span class="name">{{notification.fullName}}</span></a> sent you a connection request.
-					</p>
+	</div>
+	<hr>
+	<p class="h4 text-center">Likes, Comments & Applications</p>
+	<div class="bottom-div">
+		<div class="row" *ngFor="let notification of notificationInfoArray; index as i">
+			<div class="col-flex">
+				<div class="type-check" *ngIf="notification.type.toString() === 'LIKE'">
+					<div class="row">
+						<div class="col-9">
+							<p class="text h5">
+								<a href="/cybering/profile?id={{notification.senderProfid}}">
+									<span class="name">{{notification.fullName}}</span></a> liked your Post: <span
+									class="info">{{notification.info}}</span>
+							</p>
+						</div>
+						<div class="col-3 text-end">
+							<p class="text h6 pt-2">
+								<span class="timestamp">{{notification.timestamp}}</span>
+							</p>
+						</div>
+					</div>
 				</div>
-				<div class="col-3 text-end">
-					<p class="text h6 pt-2">
-						<span class="timestamp">{{notification.timestamp}}</span>
-					</p>
+				<div class="type-check" *ngIf="notification.type.toString() === 'COMMENT'">
+					<div class="row">
+						<div class="col-9">
+							<p class="text h5">
+								<a href="/cybering/profile?id={{notification.senderProfid}}">
+									<span class="name">{{notification.fullName}}</span></a> commented on your Post:
+								<span class="info">{{notification.info}}</span>
+							</p>
+						</div>
+						<div class="col-3 text-end">
+							<p class="text h6 pt-2">
+								<span class="timestamp">{{notification.timestamp}}</span>
+							</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="type-check" *ngIf="notification.type.toString() === 'CONNECTION_APPROVED'">
-			<div class="row">
-				<div class="col-9">
-					<p class="text h5">
-						<a href="/cybering/profile?id={{notification.senderProfid}}">
-						<span class="name">{{notification.fullName}}</span></a> has approved your request to connect.
-					</p>
-				</div>
-				<div class="col-3 text-end">
-					<p class="text h6 pt-2">
-						<span class="timestamp">{{notification.timestamp}}</span>
-					</p>
+				<div class="type-check" *ngIf="notification.type.toString() === 'APPLY_AD'">
+					<div class="row">
+						<div class="col-9">
+							<p class="text h5">
+								<a href="/cybering/profile?id={{notification.senderProfid}}">
+									<span class="name">{{notification.fullName}}</span></a> applied to your
+								Advertisement with
+								title: <span class="info">{{notification.info}}</span>
+							</p>
+						</div>
+						<div class="col-3 text-end">
+							<p class="text h6 pt-2">
+								<span class="timestamp">{{notification.timestamp}}</span>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

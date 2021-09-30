@@ -121,7 +121,9 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-flex">
-					<div class="network">
+					<div class="network" *ngIf="professionalProfileInfo.userStatus.toString() === 'CONNECTED' ||
+					professionalProfileInfo.userStatus.toString() === 'SAME_USER' ||
+					professionalProfileInfo.userStatus.toString() === 'IS_ADMIN'">
 						<p class="connections h5">
 							Connections:
 						</p>

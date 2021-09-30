@@ -4,6 +4,8 @@
 	padding-top: 0.7rem;
 	padding-bottom: 0.5rem;
 	border-radius: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .name {
@@ -17,4 +19,18 @@
 .timestamp {
 	color: gray;
 	padding-top: 0.5rem;
+}
+
+.upper-div {
+	padding: 1.5rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 35rem;
+}
+
+.bottom-div {
+	padding: 1.5rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 35rem;
 }

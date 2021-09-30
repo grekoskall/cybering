@@ -47,5 +47,21 @@ export class AdminService extends BaseService {
     );
   }
 
-  
+  onExport(cookie: string): Observable<SimpleString> {
+    return this.http.post<SimpleString>(
+      this.extendurl('admin/cybering'),
+      null,
+      {
+        headers: {
+          'Cookies': cookie,
+          'action': "admin-export"
+        }
+      }
+    ).pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  }
+
+
 }

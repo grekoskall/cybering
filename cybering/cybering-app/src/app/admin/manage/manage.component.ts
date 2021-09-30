@@ -9,16 +9,16 @@ import { Professional } from 'src/app/interfaces/professional';
   styleUrls: ['./manage.component.css']
 })
 export class ManageComponent implements OnInit {
-  canObserve : boolean = false;
+  canObserve: boolean = false;
   professionalArray !: Professional[];
-  
+
   constructor(
     private adminService: AdminService,
     private cookieService: CookieService
-  ) { 
+  ) {
     this.adminService.check(this.cookieService.get('ST_TOKEN')).subscribe(
       result => {
-        if ( result.data === "ok" ) {
+        if (result.data === "ok") {
           this.canObserve = true;
         }
       }

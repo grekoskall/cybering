@@ -1,0 +1,3 @@
+{"_id":{"$oid":"615603979deb62448488640a"},"article_ids":["1","2"],"_class":"com.wabnet.cybering.model.articles.Comments"}
+{"_id":{"$oid":"615603979deb624484886409"},"article_ids":["3"],"_class":"com.wabnet.cybering.model.articles.Comments"}
+{"_id":{"$oid":"615603979deb62448488640b"},"article_ids":["1"],"_class":"com.wabnet.cybering.model.articles.Comments"}

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   canObserve: boolean = false;
+  exportSuccess !: boolean;
+  
   constructor(
     private cookieService: CookieService,
     private adminService: AdminService,
@@ -22,6 +24,18 @@ export class AdminComponent implements OnInit {
         } else {
           this.cookieService.deleteAll();
           this.router.navigate(['/']);
+        }
+      }
+    );
+  }
+
+    onExport() {
+    this.adminService.onExport(this.cookieService.get('ST_TOKEN')).subscribe(
+      result => {
+        if (result.data === "fail") {
+          this.exportSuccess = false;
+        } else {
+          this.exportSuccess = true;
         }
       }
     );
