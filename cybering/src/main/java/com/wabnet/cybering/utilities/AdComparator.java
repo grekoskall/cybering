@@ -13,7 +13,7 @@ public class AdComparator implements Comparator<Advertisement> {
         String s1 = advertisement1.getStartDate();
         String s2 = advertisement2.getStartDate();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date1, date2;
         try {
             date1 = dateFormat.parse(s1);
