@@ -82,7 +82,7 @@ public class CyberingApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		professionalRepository.deleteAll();
+		/*professionalRepository.deleteAll();
 		authenticationRepository.deleteAll();
 		connectionRepository.deleteAll();
 		articlesRepository.deleteAll();
@@ -103,7 +103,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"Smith",
 						"29",
 						"+3069777777",
-						"default",
+						"alice_pp.JPG",
 						"CEO",
 						"Intrawebel",
 						"I like my work, but even more, i love the people involved in it.",
@@ -121,7 +121,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"Smith",
 						"24",
 						"+3069723457",
-						"default",
+						"bob_pp.JPG",
 						"Junior Programmer",
 						"Intrawebex",
 						"I like to code and make computers do BEEP BOOP BEEP BOOP",
@@ -139,7 +139,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"Smith",
 						"35",
 						"+3069723227",
-						"default",
+						"jacob_pp.JPG",
 						"Recruiter",
 						"Loopsterdam",
 						"Keeping an eye out for upcoming talents.",
@@ -206,7 +206,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"1",
 						"CEO at Intrawebel",
 						aliceId,
-						"dpp.jpg",
+						"alice_pp.JPG",
 						"11/08/2021 11:13",
 						new String[] {"Technology", "Environment", "Code Marathon"},
 						"\"Beauty lies in the hands of the codeholder\"\n\nToday marks the start of the Intrawebel Annual Code Marathon(ACM), we will be accepting applicants until 18/8.\n\nThe theme this year will be an application that can help better the environment and urge people to become more environment friendly!\n\nWe are looking forward to the new applications this year, have fun coding!",
@@ -227,7 +227,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"2",
 						"Recruiter at Loopsterdam",
 						jacobId,
-						"dpp.jpg",
+						"jacob_pp.JPG",
 						"11/08/2021 11:27",
 						new String[] {"Recruiting"},
 						"I am announcing that the recruiting process for the summer season has ended, all applicants that passed will be privately messaged at the first week of September.\n\nCongratulations to all applicants and have a great summer holiday.",
@@ -249,7 +249,7 @@ public class CyberingApplication implements CommandLineRunner {
 						"3",
 						"Junior Programmer at Intrawebex",
 						bobId,
-						"dpp.jpg",
+						"bob_pp.JPG",
 						"11/08/2021 11:33",
 						new String[] {"Technology"},
 						"I have made my very own coding language! :^)\n\nCheck it out: codewithpopstar",
@@ -307,7 +307,7 @@ public class CyberingApplication implements CommandLineRunner {
 						bobId,
 						messageArray
 				)
-		);
+		);*/
 	}
 
 }

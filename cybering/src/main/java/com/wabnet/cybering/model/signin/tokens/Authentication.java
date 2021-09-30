@@ -2,16 +2,19 @@ package com.wabnet.cybering.model.signin.tokens;
 
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 public class Authentication {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String token;
     private String profid;
     private boolean registered;
 
     public Authentication() {
     }
-    public Authentication(String token, String profid, boolean registered) {
-        this.token = token;
+    public Authentication(String profid, boolean registered) {
         this.profid = profid;
         this.registered = registered;
     }

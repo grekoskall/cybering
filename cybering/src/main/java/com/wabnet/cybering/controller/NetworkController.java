@@ -166,7 +166,7 @@ public class NetworkController {
             if ( professional.get().getPhoto().equals("default") ) {
                 image="dpp.jpg";
             } else {
-                image = professional.get().getPhoto();
+                image = professionalConnection.get().getPhoto();
             }
             networkLinkedList.add(
                     new Network(

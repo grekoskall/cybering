@@ -35,16 +35,11 @@ public class RegisterController {
             return new SimpleString("used");
         }
 
-        String token = authTokenMaker.makeToken(simpleString.getData());
-        if ( authenticationRepository.existsById(token) ) {
-            token = token.replaceAll(token.substring(2,5), token.substring(1,4));
-        }
-
         Professional newProfessional = new Professional(simpleString.getData());
         newProfessional = professionalRepository.save(newProfessional);
 
-        authenticationRepository.save(new Authentication(token, newProfessional.getId(), false));
-        return new SimpleString(token);
+        Authentication savedAuth = authenticationRepository.save(new Authentication(newProfessional.getId(), false));
+        return new SimpleString(savedAuth.getToken());
     }
 }
 

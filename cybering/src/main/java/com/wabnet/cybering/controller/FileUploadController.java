@@ -213,15 +213,13 @@ public class FileUploadController {
         Notifications newNotification = new Notifications(profSaved.getId());
         notificationsRepository.save(newNotification);
 
-        String newToken = authTokenMaker.makeToken(authentication.getToken());
-        authentication.setToken(newToken);
         authentication.setRegistered(true);
-        authenticationRepository.save(authentication);
+        Authentication savedAuth = authenticationRepository.save(authentication);
         this.authenticationRepository.flushRepository();
         this.professionalRepository.flushRepository();
         System.out.println("\tRequest to add a phone completed successfully");
         System.out.println("Registration completed: " + professional + " | " + authentication);
-        return new SimpleString(newToken);
+        return new SimpleString(savedAuth.getToken());
     }
 
 }
