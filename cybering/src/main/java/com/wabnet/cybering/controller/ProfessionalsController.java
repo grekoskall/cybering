@@ -21,7 +21,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class ProfessionalsController {
 
     private final ProfessionalRepository professionalRepository;
@@ -88,21 +88,10 @@ public class ProfessionalsController {
             System.out.println("\tThe id in authRep doesn't belong to a professional yet: " + token.getProfid());
             return new PersonalInfoList();
         }
-        String image_url;
-        if ( professional.get().getPhoto().equals("default") ) {
-            image_url = "default";
-        } else {
-            try {
-                image_url = new String(Files.readAllBytes(Paths.get(professional.get().getPhoto())));
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("\tError reading image: " + professional.get().getPhoto() );
-                return new PersonalInfoList();
-            }
-        }
+
         System.out.println("\tSending profile-info list.");
         return new PersonalInfoList(professional.get().getFirstName(), professional.get().getLastName(),
-                professional.get().getPhone(), image_url, professional.get().getBio(),
+                professional.get().getPhone(), professional.get().getPhoto(), professional.get().getBio(),
                 professional.get().getWorkPosition(), professional.get().getWorkPlace(),
                 professional.get().getSkills());
     }
@@ -142,22 +131,11 @@ public class ProfessionalsController {
                 continue;
             }
             LinkedList<String> infos = new LinkedList<>();
-            String image_url;
-            if ( professional1.get().getPhoto().equals("default") ) {
-                image_url = "default";
-            } else {
-                try {
-                    image_url = new String(Files.readAllBytes(Paths.get(professional1.get().getPhoto())));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("\tError reading image: " + professional1.get().getPhoto() );
-                    return null;
-                }
-            }
+
             infos.add(professional1.get().getFirstName());
             infos.add(professional1.get().getLastName());
             infos.add(professional1.get().getId());
-            infos.add(image_url);
+            infos.add(professional1.get().getPhoto());
             con_array.add(infos.toArray(new String[0]));
         }
         

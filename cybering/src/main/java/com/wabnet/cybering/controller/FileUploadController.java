@@ -29,7 +29,7 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class FileUploadController {
     private final AuthenticationRepository authenticationRepository;
     private final ProfessionalRepository professionalRepository;
@@ -53,7 +53,7 @@ public class FileUploadController {
     @PostMapping(value = "/register/add-phone", headers = "action=add-photo")
     public SimpleString addPhoto(
             @RequestHeader  HttpHeaders httpHeaders,
-            @RequestParam("file") MultipartFile profilePhoto
+            @RequestBody SimpleString fileName
     ) {
         System.out.println("Got a request to add a photo");
 
@@ -78,37 +78,15 @@ public class FileUploadController {
             return new SimpleString("failed");
         }
 
-        String file_path = "C:/tmp/" + "PROFILE_PHOTO" + "_" + cookie.substring(0,5);
-        File photo = new File(file_path);
-        if ( profilePhoto.getName().equals("dpp.jpg") || profilePhoto.getOriginalFilename() == null) {
-            try {
-                profilePhoto.transferTo(photo);
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("\tError while transferring to file: " + photo.getPath());
-                if ( photo.exists() && !photo.delete() ) {
-                    System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
-                }
-                this.authenticationRepository.flushRepository();
-                this.professionalRepository.flushRepository();
-                return new SimpleString("failed");
-            }
+        String file = new String();
+
+        if (fileName.getData() == null || fileName.getData().equals("dpp.jpg") || fileName.getData().equals("null")) {
+            file = "dpp.jpg";
         } else {
-            try {
-                FileWriter writer = new FileWriter(file_path);
-                writer.write(new String(profilePhoto.getOriginalFilename()));
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("\tError while writing to file: " + photo.getPath());
-                if ( photo.exists() && !photo.delete() ) {
-                    System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
-                }
-                this.authenticationRepository.flushRepository();
-                this.professionalRepository.flushRepository();
-                return new SimpleString("failed");
-            }
+            file = fileName.getData();
         }
+        professional.get().setPhoto(file);
+        this.professionalRepository.save(professional.get());
 
         System.out.println("\tRequest to add a photo completed successfully");
         return new SimpleString("ok");
@@ -134,13 +112,10 @@ public class FileUploadController {
             return new SimpleString("failed");
         }
 
-        String file_path = "C:/tmp/" + "PROFILE_PHOTO" + "_" + cookie.substring(0,5);
-        File photo = new File(file_path);
+
         if ( registerInfo.getEmail() == null || registerInfo.getEmail().equals("null")) {
             System.out.println("\tEmail is empty (null)");
-            if ( photo.exists() && !photo.delete() ) {
-                System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
-            }
+
             this.authenticationRepository.flushRepository();
             this.professionalRepository.flushRepository();
             return new SimpleString("failed");
@@ -151,18 +126,14 @@ public class FileUploadController {
             if (tempAuthentication.isEmpty()) {
                 this.authenticationRepository.flushRepository();
                 this.professionalRepository.flushRepository();
-                if ( photo.exists() && !photo.delete() ) {
-                    System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
-                }
+
                 return new SimpleString("failed");
             } else {
                 if (tempAuthentication.get().isRegistered()) {
                     this.authenticationRepository.flushRepository();
                     this.professionalRepository.flushRepository();
                     System.out.println("\tEmail provided already exists: " + registerInfo.getEmail());
-                    if ( photo.exists() && !photo.delete() ) {
-                        System.out.println("\tError while deleting file on path: " + photo.getAbsolutePath());
-                    }
+
                     return new SimpleString("failed");
                 }
             }
@@ -171,7 +142,6 @@ public class FileUploadController {
 
         professional.get().setFirstName(registerInfo.getFirstName());
         professional.get().setLastName(registerInfo.getLastName());
-        professional.get().setPhoto(file_path);
         professional.get().setPassword(registerInfo.getPassword());
         Professional savedProfessional = this.professionalRepository.save(professional.get());
         this.likesRepository.save(

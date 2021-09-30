@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class AdminController {
     private final AdminRepository adminRepository;
     private final AuthenticationRepository authenticationRepository;

@@ -19,10 +19,17 @@ import com.wabnet.cybering.repository.users.AdminRepository;
 import com.wabnet.cybering.repository.users.ConnectionRepository;
 import com.wabnet.cybering.repository.users.ProfessionalRepository;
 import com.wabnet.cybering.repository.validation.AuthenticationRepository;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.context.annotation.Bean;
 
 import java.util.LinkedList;
 import java.util.List;

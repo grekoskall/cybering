@@ -34,6 +34,9 @@ export class AdvertisementsHomeComponent implements OnInit {
       advId
     ).subscribe(
       result => {
+        if (result === null) {
+          this.applicationSuccess = false;
+        }
         if (result.data === 'success') {
           this.applicationSuccess = true;
         } else {

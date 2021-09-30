@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class AdvertisementsController {
     private final AuthenticationRepository authenticationRepository;
     private final ProfessionalRepository professionalRepository;
@@ -269,6 +269,15 @@ public class AdvertisementsController {
         }
 
         LinkedList<String[]> applList = advertisementFull.get().getApplicants();
+        for (String[] currStringArr : applList) {
+            String firstName = currStringArr[0];
+            String lastName = currStringArr[1];
+            if (professional.get().getFirstName().equals(firstName) && professional.get().getLastName().equals(lastName)) {
+                System.out.println("\tUser already applied");
+                return null;
+            }
+        }
+
         applList.add( new String[] {
                 professional.get().getFirstName(),
                 professional.get().getLastName()

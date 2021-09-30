@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  home_url = 'http://localhost:8080/cybering/home-page';
+  home_url = 'https://localhost:8080/cybering/home-page';
 
   constructor(
     private cookieService: CookieService,

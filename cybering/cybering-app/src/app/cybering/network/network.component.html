@@ -59,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-4 text-nowrap">
 				<div class="input-group ml ">
 					<input #ss type="text" class="form-control" placeholder="Search network" aria-label="Search network"
 						aria-describedby="button-addon2">
@@ -67,15 +67,15 @@
 						(click)="search(ss.value)"> <i class="bi bi-search"></i></button>
 				</div>
 				<div class="row ml" *ngIf="searchArray!=null&&searchArray!=undefined&&searchArray.length>0">
-					<div class="col-flex" *ngFor="let search of searchArray; index as i">
+					<div class="col-flex text-nowrap" *ngFor="let search of searchArray; index as i">
 						<div class="search-div mt-2">
 							<div class="row ">
-								<div class="col-auto">
+								<div class="col-3 text-nowrap">
 									<a class="search-a h5" href="/cybering/profile?id={{search[3]}}">
 										<img src="/assets/{{search[2]}}" class="search-img">
 									</a>
 								</div>
-								<div class="col-auto">
+								<div class="col-9 text-nowrap">
 									<a class="con-name h4" href="/cybering/profile?id={{search[3]}}">
 										{{search[0]}} {{search[1]}}
 									</a>

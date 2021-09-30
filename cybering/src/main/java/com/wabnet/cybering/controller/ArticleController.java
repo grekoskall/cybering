@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class ArticleController {
     private final AuthenticationRepository authenticationRepository;
     private final ArticlesRepository articlesRepository;

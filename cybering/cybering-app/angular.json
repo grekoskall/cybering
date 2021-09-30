@@ -75,7 +75,12 @@
               "browserTarget": "cybering-app:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "sslKey": "./certificate.key",
+            "sslCert": "./certificate.crt",
+            "ssl": true
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

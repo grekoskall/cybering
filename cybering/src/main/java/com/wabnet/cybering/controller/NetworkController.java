@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class NetworkController {
     private final AuthenticationRepository authenticationRepository;
     private final ProfessionalRepository professionalRepository;

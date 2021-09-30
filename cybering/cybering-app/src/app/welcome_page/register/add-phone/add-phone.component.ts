@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 export class AddPhoneComponent implements OnInit {
 
   registerInfo!: RegisterInfo;
-  image_url: string = "assets/dpp.jpg";
+  default_url: string = "assets/dpp.jpg"
+  image_url: string | undefined = "dpp.jpg";
   phone: string = '';
   photoToUpload: File | null = null;
   response: string = 'unsent';
@@ -44,10 +45,18 @@ export class AddPhoneComponent implements OnInit {
       return;
     }
     var file = files[0];
-    this.photoToUpload = file;
-    this.image_url = "assets/" + file.name;
+    this.default_url = "assets/" + file.name;
   }
 
+  pathStrip(image_url: string | undefined): string | undefined {
+    if (image_url != undefined) {
+      image_url = image_url.split("/").pop();
+      if (image_url != undefined)
+        image_url = image_url.split("\\").pop();
+    }
+
+    return image_url;
+  }
 
   submitOnetoForm() {
     this.onetoForm = this.fb.group({
@@ -60,12 +69,11 @@ export class AddPhoneComponent implements OnInit {
     }
 
     this.image_url = this.onetoForm.controls.photoControl.value;
-
-    this.photoToUpload = new File([this.image_url], this.image_url);
+    this.image_url = this.pathStrip(this.image_url);
 
     this.registerService.uploadProfilePhoto
       (
-        this.photoToUpload,
+        this.image_url,
         this.cookieService.get('ST_TOKEN')
       ).subscribe
       (
@@ -93,7 +101,7 @@ export class AddPhoneComponent implements OnInit {
 
                 this.registerService.sendPhone
                   (
-                    this.image_url,
+                    this.onetoForm.controls.phoneControl.value,
                     this.cookieService.get('ST_TOKEN')
                   ).subscribe
                   (
@@ -112,6 +120,7 @@ export class AddPhoneComponent implements OnInit {
             )
         }
       );
+
   }
 
   updateInfo(registerInfo: RegisterInfo) {

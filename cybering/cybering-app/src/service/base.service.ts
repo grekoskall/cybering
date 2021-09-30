@@ -8,7 +8,7 @@ import { throwError, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BaseService {
-  url = 'http://localhost:8080/';
+  url = 'https://localhost:8080/';
   
   constructor() { }
 

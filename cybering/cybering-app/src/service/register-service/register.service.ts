@@ -49,14 +49,19 @@ export class RegisterService extends BaseService {
     this.thrFinishedSource.next(phone);
   }
 
-  uploadProfilePhoto(photoToUpload: File,  cookie: string): Observable<SimpleString> {
-    const formData: FormData = new FormData();
-    formData.append('file', photoToUpload, photoToUpload.name);
+  uploadProfilePhoto(photoToUpload: string | undefined,  cookie: string): Observable<SimpleString> {
+    let photo = new SimpleString("");
+    if (photoToUpload === undefined) {
+      photo.data = "dpp.jpg";
+    } else {
+      photo.data = photoToUpload;
+    }
+  
     return this.http
       .post<SimpleString>
       (
         this.extendurl('register/add-phone'),
-        formData,
+        photo,
         { 
           headers: {
             'Cookies': cookie,

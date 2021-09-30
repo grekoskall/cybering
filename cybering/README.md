@@ -31,7 +31,7 @@
 # Application:
   To use the application navigate to:
     
-    localhost:4200
+    https://localhost:4200
 
 # Database:
   In order to have a better overview of the database, use MongoDB Compass with the following connection string:

@@ -26,9 +26,9 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    if (state.url.toString() === 'http://localhost:8080/') {
+    if (state.url.toString() === 'https://localhost:8080/') {
       this.router.navigate(['/']);
-    } else if (state.url.toString() === 'http://localhost:8080/fullsignin') {
+    } else if (state.url.toString() === 'https://localhost:8080/fullsignin') {
       this.router.navigate(['/fullsignin']);
     }
 

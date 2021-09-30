@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class ProfileViewController {
     private final AuthenticationRepository authenticationRepository;
     private final AdminRepository adminRepository;
